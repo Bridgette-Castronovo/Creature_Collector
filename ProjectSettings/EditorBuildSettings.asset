@@ -8,6 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Computer Scene.unity
+    guid: 5b18da15bb100d64e80c4ce47e1b6c40
+  - enabled: 1
+    path: Assets/Scenes/Map View.unity
+    guid: a14d41cd3e51c0d4cab671b98389e89e
   m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: f4214cda0e522784ebdb62f38717c7da, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
