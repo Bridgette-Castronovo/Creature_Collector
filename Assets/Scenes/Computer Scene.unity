@@ -1322,7 +1322,6 @@ GameObject:
   - component: {fileID: 1781376649}
   - component: {fileID: 1781376651}
   - component: {fileID: 1781376652}
-  - component: {fileID: 1781376653}
   - component: {fileID: 1781376654}
   m_Layer: 0
   m_Name: Script Holder
@@ -1383,20 +1382,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   emailPanel: {fileID: 0}
---- !u!114 &1781376653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1781376648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94a29f7f3400afb46a653d45673ac0f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentCanvas: {fileID: 1341225698}
-  nextCanvas: {fileID: 0}
 --- !u!114 &1781376654
 MonoBehaviour:
   m_ObjectHideFlags: 0
