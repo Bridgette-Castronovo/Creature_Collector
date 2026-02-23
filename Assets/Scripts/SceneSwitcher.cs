@@ -12,4 +12,14 @@ public class SceneSwitcher : MonoBehaviour
     {
         SceneManager.LoadScene("Computer Scene");
     }
+
+    public void OpenStoreScene()
+    {
+        SceneManager.LoadScene("StoreScene");
+    }
+
+    public void OpenAnimalBookScene()
+    {
+        SceneManager.LoadScene("AnimalBookScene");
+    }
 }
