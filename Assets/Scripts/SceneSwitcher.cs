@@ -7,4 +7,9 @@ public class SceneSwitcher : MonoBehaviour
     {
         SceneManager.LoadScene("Emails");
     }
+
+    public void OpenComputerScene()
+    {
+        SceneManager.LoadScene("Computer Scene");
+    }
 }
