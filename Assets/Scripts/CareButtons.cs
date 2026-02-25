@@ -23,8 +23,8 @@ public class CareButtons : MonoBehaviour
     private String illness = "";
     private bool fed = false;
 
-    private int day = 1;
-    private int money = 2000;
+    // private int day = 1;
+    // private int money = 2000;
 
 
     private int maxFeed = 20;
@@ -38,14 +38,13 @@ public class CareButtons : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        dayText.text = $"Day {day}, ${money}";
+        dayText.text = $"Day {PlayerManager.Instance.day}, ${PlayerManager.Instance.playerMoney}";
         animalNeeds.text = $"Hunger: {hunger}%\nThirst: {thirst}%\nEntertainment: {entertainment}%\nIllness: {illness}";
     }
 
     public void DayButtonOnClick()
     {
-        day += 1;
-        money += 100;
+        PlayerManager.Instance.progressDay();
 
         hunger -= 30;
         thirst -= 30;
@@ -57,34 +56,6 @@ public class CareButtons : MonoBehaviour
     public void FeedButtonOnClick()
     {
         inMenu = 1;
-        // //hay button
-        // GameObject hayFoodButtonObject = new GameObject("HayFoodButton");
-
-        // UnityEngine.UI.Image hayButtonImage = hayFoodButtonObject.AddComponent<UnityEngine.UI.Image>();
-        // Button hayButton = hayFoodButtonObject.AddComponent<Button>();
-
-        // hayFoodButtonObject.transform.SetParent(canvas.transform, false);
-
-        // RectTransform rectTransform = hayFoodButtonObject.GetComponent<RectTransform>();
-        // rectTransform.sizeDelta = new Vector2(160, 60);
-        // rectTransform.anchoredPosition = new Vector3(200, 200, 0);
-
-        // hayButton.onClick.AddListener(HayButtonOnClick);
-
-
-        // GameObject textObject = new GameObject("Text");
-        // textObject.transform.SetParent(hayFoodButtonObject.transform, false);
-
-        // TextMeshProUGUI buttonText = textObject.AddComponent<TextMeshProUGUI>();
-        // buttonText.text = "Hay";
-        // buttonText.alignment = TextAlignmentOptions.Center;
-        // buttonText.color = Color.black;
-
-        // RectTransform textRect = textObject.GetComponent<RectTransform>();
-        // textRect.anchorMin = Vector2.zero;
-        // textRect.anchorMax = Vector2.one;
-        // textRect.offsetMin = Vector2.zero;
-        // textRect.offsetMax = Vector2.zero;
     }
 
     public void WaterButtonOnClick()
@@ -99,7 +70,7 @@ public class CareButtons : MonoBehaviour
 
     public void HayButtonOnClick()
     {
-        money -= 50;
+        PlayerManager.Instance.playerMoney -= 50;
         hunger += 5;
         currFeed += hayWeight;
 
@@ -113,7 +84,7 @@ public class CareButtons : MonoBehaviour
 
     public void FruitButtonOnClick()
     {
-        money -= 50;
+        PlayerManager.Instance.playerMoney -= 50;
         hunger += 30;
         currFeed += fruitWeight;
 
@@ -127,7 +98,7 @@ public class CareButtons : MonoBehaviour
 
     public void LiveFoodButtonOnClick()
     {
-        money -= 50;
+        PlayerManager.Instance.playerMoney -= 50;
         hunger += 50;
         currFeed += liveFoodWeight;
 
@@ -181,7 +152,7 @@ public class CareButtons : MonoBehaviour
         {
             illness = "";
         }
-        dayText.text = $"Day {day}, ${money}";
+        dayText.text = $"Day {PlayerManager.Instance.day}, ${PlayerManager.Instance.playerMoney}";
         animalNeeds.text = $"Hunger: {hunger}%\nThirst: {thirst}%\nEntertainment: {entertainment}%\nIllness: {illness}";
 
         

@@ -6,7 +6,8 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager Instance;
 
     public int playerMoney = 20000;
-    public Dictionary<string, int> inventory = new Dictionary<string, int>();
+    public int day = 1;
+    public Dictionary<string, int> foodInventory = new Dictionary<string, int>();
 
     
 
@@ -24,9 +25,31 @@ public class PlayerManager : MonoBehaviour
         }
 
 
-        inventory["feed"] = 5;
-        inventory["water"] = 5;
-        inventory["chew toy"] = 1;
+        foodInventory["Fruit"] = 5;
+        foodInventory["Grains"] = 5;
+        foodInventory["Meat"] = 5;
+        foodInventory["Crystal"] = 0;
+    }
+
+    public int getMoney()
+    {
+        return playerMoney;
+    }
+
+    public void addMoney(int amount)
+    {
+        playerMoney += amount;
+    }
+
+    public void subtractMoney(int amount)
+    {
+        playerMoney -= amount;
+    }
+
+    public void progressDay()
+    {
+        day += 1;
+        playerMoney += 1000;
     }
 
     
