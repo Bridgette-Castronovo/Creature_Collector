@@ -14,15 +14,14 @@ public class PlayerManager : MonoBehaviour
 
     void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
+            return;
         }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
 
 
         foodInventory["Fruit"] = 5;
@@ -30,6 +29,27 @@ public class PlayerManager : MonoBehaviour
         foodInventory["Meat"] = 5;
         foodInventory["Crystal"] = 0;
     }
+
+    // public PlayerManager getPlayer()
+    // {
+    //     if (Instance == null)
+    //     {
+    //         Instance = this;
+    //         DontDestroyOnLoad(gameObject);
+    //     }
+    //     else
+    //     {
+    //         Destroy(gameObject);
+    //     }
+
+
+    //     foodInventory["Fruit"] = 5;
+    //     foodInventory["Grains"] = 5;
+    //     foodInventory["Meat"] = 5;
+    //     foodInventory["Crystal"] = 0;
+
+    //     return Instance;
+    // }
 
     public int getMoney()
     {

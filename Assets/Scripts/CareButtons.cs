@@ -35,9 +35,13 @@ public class CareButtons : MonoBehaviour
 
     private int inMenu = 0;
 
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // PlayerManager player = PlayerManager.getPlayer();
+
         dayText.text = $"Day {PlayerManager.Instance.day}, ${PlayerManager.Instance.playerMoney}";
         animalNeeds.text = $"Hunger: {hunger}%\nThirst: {thirst}%\nEntertainment: {entertainment}%\nIllness: {illness}";
     }
