@@ -42,7 +42,7 @@ public class CareButtons : MonoBehaviour
     {
         // PlayerManager player = PlayerManager.getPlayer();
 
-        dayText.text = $"Day {PlayerManager.Instance.day}, ${PlayerManager.Instance.playerMoney}";
+        dayText.text = $"Day {PlayerManager.Instance.getDay()}, ${PlayerManager.Instance.getMoney()}";
         animalNeeds.text = $"Hunger: {hunger}%\nThirst: {thirst}%\nEntertainment: {entertainment}%\nIllness: {illness}";
     }
 
@@ -74,7 +74,7 @@ public class CareButtons : MonoBehaviour
 
     public void HayButtonOnClick()
     {
-        PlayerManager.Instance.playerMoney -= 50;
+        PlayerManager.Instance.foodInventory["Grains"] -= 1;
         hunger += 5;
         currFeed += hayWeight;
 
@@ -88,7 +88,7 @@ public class CareButtons : MonoBehaviour
 
     public void FruitButtonOnClick()
     {
-        PlayerManager.Instance.playerMoney -= 50;
+        PlayerManager.Instance.foodInventory["Fruit"] -= 1;
         hunger += 30;
         currFeed += fruitWeight;
 
@@ -102,7 +102,7 @@ public class CareButtons : MonoBehaviour
 
     public void LiveFoodButtonOnClick()
     {
-        PlayerManager.Instance.playerMoney -= 50;
+        PlayerManager.Instance.foodInventory["Meat"] -= 1;
         hunger += 50;
         currFeed += liveFoodWeight;
 
@@ -156,7 +156,7 @@ public class CareButtons : MonoBehaviour
         {
             illness = "";
         }
-        dayText.text = $"Day {PlayerManager.Instance.day}, ${PlayerManager.Instance.playerMoney}";
+        dayText.text = $"Day {PlayerManager.Instance.getDay()}, ${PlayerManager.Instance.getMoney()}";
         animalNeeds.text = $"Hunger: {hunger}%\nThirst: {thirst}%\nEntertainment: {entertainment}%\nIllness: {illness}";
 
         
