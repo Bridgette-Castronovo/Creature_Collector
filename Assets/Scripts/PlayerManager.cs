@@ -5,8 +5,8 @@ public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance;
 
-    public int playerMoney = 20000;
-    public int day = 1;
+    private int playerMoney = 20000;
+    private int day = 1;
     public Dictionary<string, int> foodInventory = new Dictionary<string, int>();
 
     
@@ -14,22 +14,42 @@ public class PlayerManager : MonoBehaviour
 
     void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
+            return;
         }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
 
 
         foodInventory["Fruit"] = 5;
         foodInventory["Grains"] = 5;
         foodInventory["Meat"] = 5;
-        foodInventory["Crystal"] = 0;
+        foodInventory["Crystal Dust"] = 0;
     }
+
+    // public PlayerManager getPlayer()
+    // {
+    //     if (Instance == null)
+    //     {
+    //         Instance = this;
+    //         DontDestroyOnLoad(gameObject);
+    //     }
+    //     else
+    //     {
+    //         Destroy(gameObject);
+    //     }
+
+
+    //     foodInventory["Fruit"] = 5;
+    //     foodInventory["Grains"] = 5;
+    //     foodInventory["Meat"] = 5;
+    //     foodInventory["Crystal"] = 0;
+
+    //     return Instance;
+    // }
 
     public int getMoney()
     {
@@ -50,6 +70,11 @@ public class PlayerManager : MonoBehaviour
     {
         day += 1;
         playerMoney += 1000;
+    }
+
+    public int getDay()
+    {
+        return day;
     }
 
     
