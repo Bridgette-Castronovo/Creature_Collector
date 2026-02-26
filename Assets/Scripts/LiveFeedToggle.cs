@@ -5,6 +5,6 @@ public class LiveFeedToggle : MonoBehaviour
 {
     public void LoadMapView()
     {
-        SceneManager.LoadScene("Map View");
+        SceneManager.LoadScene("HabitatView");
     }
 }

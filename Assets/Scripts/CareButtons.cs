@@ -12,10 +12,18 @@ public class CareButtons : MonoBehaviour
     [SerializeField] private Button FeedButton;
     [SerializeField] private Button WaterButton;
     [SerializeField] private Button EntertainmentButton;
-    [SerializeField] private Button HayButton;
+    
     [SerializeField] private Button FruitButton;
-    [SerializeField] private Button LiveFoodButton;
+    [SerializeField] private Button MeatButton;
+    [SerializeField] private Button GrainsButton;
+    [SerializeField] private Button CrystalButton;
     [SerializeField] public Canvas canvas;
+
+    //food type scriptable objects
+    [SerializeField] private FoodType fruitData;
+    [SerializeField] private FoodType grainData;
+    [SerializeField] private FoodType meatData;
+    [SerializeField] private FoodType crystalData;
 
     private int hunger = 50;
     private int thirst = 50;
@@ -72,25 +80,13 @@ public class CareButtons : MonoBehaviour
         
     }
 
-    public void HayButtonOnClick()
-    {
-        PlayerManager.Instance.foodInventory["Grains"] -= 1;
-        hunger += 5;
-        currFeed += hayWeight;
+    
 
-        if (currFeed >= maxFeed)
-        {
-            fed = true;
-        }
-
-        inMenu = 0;
-    }
-
-    public void FruitButtonOnClick()
+    public void FruitOnClick()
     {
         PlayerManager.Instance.foodInventory["Fruit"] -= 1;
         hunger += 30;
-        currFeed += fruitWeight;
+        currFeed += fruitData.getWeight();
 
         if (currFeed >= maxFeed)
         {
@@ -100,11 +96,39 @@ public class CareButtons : MonoBehaviour
         inMenu = 0;
     }
 
-    public void LiveFoodButtonOnClick()
+    public void MeatOnClick()
     {
         PlayerManager.Instance.foodInventory["Meat"] -= 1;
+        hunger += 5;
+        currFeed += meatData.getWeight();
+
+        if (currFeed >= maxFeed)
+        {
+            fed = true;
+        }
+
+        inMenu = 0;
+    }
+
+    public void GrainsOnClick()
+    {
+        PlayerManager.Instance.foodInventory["Grains"] -= 1;
+        hunger += 5;
+        currFeed += grainData.getWeight();
+
+        if (currFeed >= maxFeed)
+        {
+            fed = true;
+        }
+
+        inMenu = 0;
+    }
+
+    public void CrystalOnClick()
+    {
+        PlayerManager.Instance.foodInventory["Crystal Dust"] -= 1;
         hunger += 50;
-        currFeed += liveFoodWeight;
+        currFeed += crystalData.getWeight();
 
         if (currFeed >= maxFeed)
         {
@@ -127,9 +151,11 @@ public class CareButtons : MonoBehaviour
             WaterButton.gameObject.SetActive(true);
             EntertainmentButton.gameObject.SetActive(true);
 
-            HayButton.gameObject.SetActive(false);
+            
             FruitButton.gameObject.SetActive(false);
-            LiveFoodButton.gameObject.SetActive(false);
+            MeatButton.gameObject.SetActive(false);
+            GrainsButton.gameObject.SetActive(false);
+            CrystalButton.gameObject.SetActive(false);
         }
 
         if (inMenu == 1)
@@ -138,9 +164,10 @@ public class CareButtons : MonoBehaviour
             WaterButton.gameObject.SetActive(false);
             EntertainmentButton.gameObject.SetActive(false);
 
-            HayButton.gameObject.SetActive(true);
             FruitButton.gameObject.SetActive(true);
-            LiveFoodButton.gameObject.SetActive(true);
+            MeatButton.gameObject.SetActive(true);
+            GrainsButton.gameObject.SetActive(true);
+            CrystalButton.gameObject.SetActive(true);
             
         }
 
