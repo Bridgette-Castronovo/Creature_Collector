@@ -19,6 +19,11 @@ public class CareButtons : MonoBehaviour
     [SerializeField] private Button CrystalButton;
     [SerializeField] public Canvas canvas;
 
+    [SerializeField] private TextMeshProUGUI fruitAmt;
+    [SerializeField] private TextMeshProUGUI meatAmt;
+    [SerializeField] private TextMeshProUGUI grainAmt;
+    [SerializeField] private TextMeshProUGUI crystalAmt;
+
     //food type scriptable objects
     [SerializeField] private FoodType fruitData;
     [SerializeField] private FoodType grainData;
@@ -37,9 +42,6 @@ public class CareButtons : MonoBehaviour
 
     private int maxFeed = 20;
     private int currFeed = 0;
-    private int hayWeight = 10;
-    private int fruitWeight = 20;
-    private int liveFoodWeight = 20;
 
     private int inMenu = 0;
 
@@ -84,58 +86,78 @@ public class CareButtons : MonoBehaviour
 
     public void FruitOnClick()
     {
-        PlayerManager.Instance.foodInventory["Fruit"] -= 1;
-        hunger += 30;
-        currFeed += fruitData.getWeight();
-
-        if (currFeed >= maxFeed)
+        if (PlayerManager.Instance.foodInventory["Fruit"] >= 1)
         {
-            fed = true;
-        }
+            PlayerManager.Instance.foodInventory["Fruit"] -= 1;
+            fruitAmt.text = PlayerManager.Instance.foodInventory["Fruit"].ToString();
+            hunger += 30;
+            currFeed += fruitData.getWeight();
 
-        inMenu = 0;
+            if (currFeed >= maxFeed)
+            {
+                fed = true;
+            }
+
+            inMenu = 0;
+        }
+        
     }
 
     public void MeatOnClick()
     {
-        PlayerManager.Instance.foodInventory["Meat"] -= 1;
-        hunger += 5;
-        currFeed += meatData.getWeight();
-
-        if (currFeed >= maxFeed)
+        if (PlayerManager.Instance.foodInventory["Meat"] >= 1)
         {
-            fed = true;
-        }
+            PlayerManager.Instance.foodInventory["Meat"] -= 1;
+            meatAmt.text = PlayerManager.Instance.foodInventory["Meat"].ToString();
+            hunger += 5;
+            currFeed += meatData.getWeight();
 
-        inMenu = 0;
+            if (currFeed >= maxFeed)
+            {
+                fed = true;
+            }
+
+            inMenu = 0;
+        }
+        
     }
 
     public void GrainsOnClick()
     {
-        PlayerManager.Instance.foodInventory["Grains"] -= 1;
-        hunger += 5;
-        currFeed += grainData.getWeight();
-
-        if (currFeed >= maxFeed)
+        if (PlayerManager.Instance.foodInventory["Grains"] >= 1)
         {
-            fed = true;
-        }
+            PlayerManager.Instance.foodInventory["Grains"] -= 1;
+            grainAmt.text = PlayerManager.Instance.foodInventory["Grains"].ToString();
+            hunger += 5;
+            currFeed += grainData.getWeight();
 
-        inMenu = 0;
+            if (currFeed >= maxFeed)
+            {
+                fed = true;
+            }
+
+            inMenu = 0;
+        }
+        
     }
 
     public void CrystalOnClick()
     {
-        PlayerManager.Instance.foodInventory["Crystal Dust"] -= 1;
-        hunger += 50;
-        currFeed += crystalData.getWeight();
-
-        if (currFeed >= maxFeed)
+        if (PlayerManager.Instance.foodInventory["Crystal Dust"] >= 1)
         {
-            fed = true;
+            PlayerManager.Instance.foodInventory["Crystal Dust"] -= 1;
+            crystalAmt.text = PlayerManager.Instance.foodInventory["Crystal Dust"].ToString();
+            hunger += 50;
+            currFeed += crystalData.getWeight();
+
+            if (currFeed >= maxFeed)
+            {
+                fed = true;
+            }
+            
+            inMenu = 0;
         }
         
-        inMenu = 0;
     }
 
     // Update is called once per frame
@@ -168,6 +190,11 @@ public class CareButtons : MonoBehaviour
             MeatButton.gameObject.SetActive(true);
             GrainsButton.gameObject.SetActive(true);
             CrystalButton.gameObject.SetActive(true);
+
+            fruitAmt.text = PlayerManager.Instance.foodInventory["Fruit"].ToString();
+            meatAmt.text = PlayerManager.Instance.foodInventory["Meat"].ToString();
+            grainAmt.text = PlayerManager.Instance.foodInventory["Grains"].ToString();
+            crystalAmt.text = PlayerManager.Instance.foodInventory["Crystal Dust"].ToString();
             
         }
 
