@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Crystal Dust
   m_EditorClassIdentifier: 
   foodName: Crystal Dust
-  buyCost: 2000
+  buyCost: 1000
   weight: 20
