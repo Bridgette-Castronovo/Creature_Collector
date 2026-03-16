@@ -14,6 +14,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HabitatView.unity
     guid: a14d41cd3e51c0d4cab671b98389e89e
+  - enabled: 1
+    path: Assets/Scenes/AnimalBookScene.unity
+    guid: bea245080ca35c644bf6e9973e63137e
+  - enabled: 1
+    path: Assets/Scenes/Emails.unity
+    guid: 291b4663934da544c95c7b8403fbe471
+  - enabled: 1
+    path: Assets/Scenes/MapScene.unity
+    guid: 484283145ce143848acb8cf7f6602d07
+  - enabled: 1
+    path: Assets/Scenes/StoreScene.unity
+    guid: 62e4743c679e37e48b2381db926dc5a1
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: f4214cda0e522784ebdb62f38717c7da, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
