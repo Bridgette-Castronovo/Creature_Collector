@@ -23,6 +23,11 @@ public class CubePlacer : MonoBehaviour
         layerMask = ~(1 << cubeLayer);
     }
 
+    public void StartDragging()
+    {
+        isDragging = true;
+    }
+
     void OnMouseDown()
     {
         isDragging = true;
@@ -63,11 +68,15 @@ public class CubePlacer : MonoBehaviour
             previousCell = currentCell;
             hasBeenPlaced = true;
         }
-        else
+        else if (hasBeenPlaced)
         {
             transform.position = GridManager.Instance.GridToWorld(previousCell);
             rend.material = defaultMaterial;
             GridManager.Instance.RegisterCell(previousCell, gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 }
