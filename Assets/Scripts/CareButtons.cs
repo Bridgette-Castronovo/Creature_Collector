@@ -1,6 +1,6 @@
 using UnityEngine;
 using TMPro;
-using Microsoft.Unity.VisualStudio.Editor;
+// using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine.UI;
 using System;
 using UnityEngine.Timeline;
@@ -52,17 +52,28 @@ public class CareButtons : MonoBehaviour
     [SerializeField] private FoodType meatData;
     [SerializeField] private FoodType crystalData;
 
-    private int hunger = 50;
-    private int thirst = 50;
-    private int entertainment = 50;
-    private String illness = "";
+    [SerializeField] private TextMeshProUGUI weightText;
+
+    [SerializeField] private Image fruitFill;
+    [SerializeField] private Image meatFill;
+    [SerializeField] private Image grainsFill;
+    [SerializeField] private Image crystalFill;
+    [SerializeField] private Image weightFill;
+
+    private int health = 50;
+    // private int thirst = 50;
+    // private int entertainment = 50;
+    // private String illness = "";
     private bool fed = false;
 
     // private int day = 1;
     // private int money = 2000;
 
+    // private Creature[] habitatCreatures = new Creature[6];
+    [SerializeField] private Creature habitatCreature;
 
-    private int maxFeed = 20;
+
+    private int maxFeed;
     private int currFeed = 0;
 
     private int inMenu = 0;
@@ -77,21 +88,24 @@ public class CareButtons : MonoBehaviour
         // PlayerManager player = PlayerManager.getPlayer();
 
         dayText.text = $"Day {PlayerManager.Instance.getDay()}, ${PlayerManager.Instance.getMoney()}";
-        animalNeeds.text = $"Hunger: {hunger}%\nThirst: {thirst}%\nEntertainment: {entertainment}%\nIllness: {illness}";
+        animalNeeds.text = $"Health: {health}%";
 
         foodMixInv["Fruit"] = 0;
         foodMixInv["Grains"] = 0;
         foodMixInv["Meat"] = 0;
         foodMixInv["Crystal Dust"] = 0;
+
+        maxFeed = habitatCreature.hunger;
+        // maxFeed = 150;
     }
 
     public void DayButtonOnClick()
     {
         PlayerManager.Instance.progressDay();
 
-        hunger -= 30;
-        thirst -= 30;
-        entertainment -= 30;
+
+
+        
         currFeed = 0;
         fed = false;
     }
@@ -123,6 +137,8 @@ public class CareButtons : MonoBehaviour
             foodMixInv["Fruit"] += 1;
             fruitMixAmt.text = foodMixInv["Fruit"].ToString();
 
+            currFeed += fruitData.getWeight();
+
             // hunger += 30;
             // currFeed += fruitData.getWeight();
 
@@ -145,6 +161,8 @@ public class CareButtons : MonoBehaviour
 
             foodMixInv["Meat"] += 1;
             meatMixAmt.text = foodMixInv["Meat"].ToString();
+
+            currFeed += meatData.getWeight();
             // hunger += 5;
             // currFeed += meatData.getWeight();
 
@@ -167,6 +185,8 @@ public class CareButtons : MonoBehaviour
 
             foodMixInv["Grains"] += 1;
             grainMixAmt.text = foodMixInv["Grains"].ToString();
+
+            currFeed += grainData.getWeight();
 
             // hunger += 5;
             // currFeed += grainData.getWeight();
@@ -191,6 +211,8 @@ public class CareButtons : MonoBehaviour
             foodMixInv["Crystal Dust"] += 1;
             crystalMixAmt.text = foodMixInv["Crystal Dust"].ToString();
 
+            currFeed += crystalData.getWeight();
+
             // hunger += 50;
             // currFeed += crystalData.getWeight();
 
@@ -214,6 +236,8 @@ public class CareButtons : MonoBehaviour
 
             foodMixInv["Fruit"] -= 1;
             fruitMixAmt.text = foodMixInv["Fruit"].ToString();
+
+            currFeed -= fruitData.getWeight();
         }
     }
 
@@ -226,6 +250,8 @@ public class CareButtons : MonoBehaviour
 
             foodMixInv["Meat"] -= 1;
             meatMixAmt.text = foodMixInv["Meat"].ToString();
+
+            currFeed -= meatData.getWeight();
         }
     }
 
@@ -238,6 +264,8 @@ public class CareButtons : MonoBehaviour
 
             foodMixInv["Grains"] -= 1;
             grainMixAmt.text = foodMixInv["Grains"].ToString();
+            
+            currFeed -= grainData.getWeight();
         }
     }
 
@@ -250,12 +278,23 @@ public class CareButtons : MonoBehaviour
 
             foodMixInv["Crystal Dust"] -= 1;
             crystalMixAmt.text = foodMixInv["Crystal Dust"].ToString();
+
+            currFeed -= crystalData.getWeight();
         }
     }
 
     public void FeedMixOnClick()
     {
         inMenu = 0;
+
+        if (foodMixInv["Fruit"]*fruitData.getWeight() >= 50 || foodMixInv["Meat"]*meatData.getWeight() >= 90)
+        {
+            health += 10;
+        }
+        else
+        {
+            health -= 20;
+        }
 
         foodMixInv["Fruit"] = 0;
         foodMixInv["Grains"] = 0;
@@ -266,6 +305,10 @@ public class CareButtons : MonoBehaviour
         meatMixAmt.text = foodMixInv["Meat"].ToString();
         grainMixAmt.text = foodMixInv["Grains"].ToString();
         crystalMixAmt.text = foodMixInv["Crystal Dust"].ToString();
+
+        
+
+        fed = true;
     }
 
     // Update is called once per frame
@@ -273,7 +316,7 @@ public class CareButtons : MonoBehaviour
     {
         if (inMenu == 0)
         {
-            if (fed == false && hunger < 100)
+            if (fed == false)
             {
                 FeedButton.gameObject.SetActive(true);
             }
@@ -300,24 +343,56 @@ public class CareButtons : MonoBehaviour
             grainAmt.text = PlayerManager.Instance.foodInventory["Grains"].ToString();
             crystalAmt.text = PlayerManager.Instance.foodInventory["Crystal Dust"].ToString();
 
+            if (foodMixInv["Fruit"]*fruitData.getWeight() >= habitatCreature.fruitMin)
+            {
+                fruitFill.color = Color.green;
+            } else
+            {
+                fruitFill.color = Color.red;
+            }
+            if (foodMixInv["Meat"]*meatData.getWeight() >= habitatCreature.meatMin)
+            {
+                meatFill.color = Color.green;
+            } else
+            {
+                meatFill.color = Color.red;
+            }
+            if (foodMixInv["Grains"]*grainData.getWeight() >= habitatCreature.grainsMin)
+            {
+                grainsFill.color = Color.green;
+            } else
+            {
+                grainsFill.color = Color.red;
+            }
+            if (foodMixInv["Crystal Dust"]*crystalData.getWeight() >= habitatCreature.crystalMin)
+            {
+                crystalFill.color = Color.green;
+            } else
+            {
+                crystalFill.color = Color.red;
+            }
+
+
             foodMixCanvas.gameObject.SetActive(true);
+
+            weightText.text = "Weight: " + currFeed.ToString();
+            weightFill.fillAmount = (float)currFeed / maxFeed;
+            // print(maxFeed.ToString());
+            
+            fruitFill.fillAmount = (float)(foodMixInv["Fruit"] * fruitData.getWeight()) / maxFeed;
+            meatFill.fillAmount = (float)(foodMixInv["Meat"] * meatData.getWeight()) / maxFeed;
+            grainsFill.fillAmount = (float)(foodMixInv["Grains"] * grainData.getWeight()) / maxFeed;
+            crystalFill.fillAmount = (float)(foodMixInv["Crystal Dust"] * crystalData.getWeight()) / maxFeed;
             
         }
 
 
 
-        hunger = System.Math.Clamp(hunger, 0, 100);
-        thirst = System.Math.Clamp(thirst, 0, 100);
-        entertainment = System.Math.Clamp(entertainment, 0, 100);
-        if (hunger < 10)
-        {
-            illness = "Starving";
-        } else
-        {
-            illness = "";
-        }
+        health = System.Math.Clamp(health, 0, 100);
+
+        
         dayText.text = $"Day {PlayerManager.Instance.getDay()}, ${PlayerManager.Instance.getMoney()}";
-        animalNeeds.text = $"Hunger: {hunger}%\nThirst: {thirst}%\nEntertainment: {entertainment}%\nIllness: {illness}";
+        animalNeeds.text = $"Health: {health}%";
 
         
         
