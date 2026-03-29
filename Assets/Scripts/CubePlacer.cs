@@ -14,7 +14,7 @@ public class CubePlacer : MonoBehaviour
     private Renderer rend;
     private Material defaultMaterial;
 
-    void Start()
+    void Awake()
     {
         cam = Camera.main;
         rend = GetComponent<Renderer>();
@@ -37,16 +37,38 @@ public class CubePlacer : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (isDragging)
+        {
+            HandleDrag();
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                HandleRelease();
+            }
+        }
+    }
+
     void OnMouseDrag()
     {
-        if (!isDragging) return;
+        HandleDrag();
+    }
 
+    void OnMouseUp()
+    {
+        HandleRelease();
+    }
+
+    void HandleDrag()
+    {
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
         {
             if (hit.collider.CompareTag("Grid"))
             {
                 currentCell = GridManager.Instance.WorldToGrid(hit.point);
+                currentCell = GridManager.Instance.ClampToGrid(currentCell);
                 transform.position = GridManager.Instance.GridToWorld(currentCell);
 
                 bool occupied = GridManager.Instance.IsCellOccupied(currentCell);
@@ -55,7 +77,7 @@ public class CubePlacer : MonoBehaviour
         }
     }
 
-    void OnMouseUp()
+    void HandleRelease()
     {
         if (!isDragging) return;
         isDragging = false;

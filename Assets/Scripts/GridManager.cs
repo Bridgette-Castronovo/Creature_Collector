@@ -7,6 +7,8 @@ public class GridManager : MonoBehaviour
 
     public float cellSize = 1f;
     public Vector3 gridOrigin = Vector3.zero;
+    public int gridWidth = 10;
+    public int gridHeight = 10;
 
     private Dictionary<Vector2Int, GameObject> occupiedCells = new();
 
@@ -29,6 +31,15 @@ public class GridManager : MonoBehaviour
             gridOrigin.y + cellSize * 0.5f,
             cell.y * cellSize + gridOrigin.z
         );
+    }
+
+    public Vector2Int ClampToGrid(Vector2Int cell)
+    {
+        int halfWidth = gridWidth / 2;
+        int halfHeight = gridHeight / 2;
+        int clampedX = Mathf.Clamp(cell.x, -halfWidth, halfWidth);
+        int clampedZ = Mathf.Clamp(cell.y, -halfHeight, halfHeight);
+        return new Vector2Int(clampedX, clampedZ);
     }
 
     public bool IsCellOccupied(Vector2Int cell)
