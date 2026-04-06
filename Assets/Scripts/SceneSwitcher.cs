@@ -22,4 +22,14 @@ public class SceneSwitcher : MonoBehaviour
     {
         SceneManager.LoadScene("AnimalBookScene");
     }
+
+    public void OpenMapScene()
+    {
+        SceneManager.LoadScene("MapScene");
+    }
+
+    public void ZoomComputerScreen()
+    {
+        SceneManager.LoadScene("ComputerSceneZoom");
+    }
 }

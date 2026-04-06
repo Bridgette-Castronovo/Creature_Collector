@@ -8,6 +8,7 @@ public class EmailButtonController : MonoBehaviour
     {
         Debug.Log("Email button clicked!");
         emailPanel.SetActive(true);
+
     }
 
     public void OnCloseButtonClicked()

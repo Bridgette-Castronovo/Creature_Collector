@@ -1,28 +1,50 @@
 using UnityEngine;
 using TMPro;
-using Microsoft.Unity.VisualStudio.Editor;
+// using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine.UI;
 using System;
 using UnityEngine.Timeline;
+using System.Collections.Generic;
 
 public class CareButtons : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI dayText;
     [SerializeField] private TextMeshProUGUI animalNeeds;
     [SerializeField] private Button FeedButton;
-    [SerializeField] private Button WaterButton;
-    [SerializeField] private Button EntertainmentButton;
+    // [SerializeField] private Button WaterButton;
+    // [SerializeField] private Button EntertainmentButton;
+
+    [SerializeField] public Canvas foodInvCanvas;
     
-    [SerializeField] private Button FruitButton;
-    [SerializeField] private Button MeatButton;
-    [SerializeField] private Button GrainsButton;
-    [SerializeField] private Button CrystalButton;
+    // //add from inventory
+    // [SerializeField] private Button FruitButton;
+    // [SerializeField] private Button MeatButton;
+    // [SerializeField] private Button GrainsButton;
+    // [SerializeField] private Button CrystalButton;
     [SerializeField] public Canvas canvas;
 
+    //food inventory text
     [SerializeField] private TextMeshProUGUI fruitAmt;
     [SerializeField] private TextMeshProUGUI meatAmt;
     [SerializeField] private TextMeshProUGUI grainAmt;
     [SerializeField] private TextMeshProUGUI crystalAmt;
+
+    [SerializeField] public Canvas foodMixCanvas;
+
+    //food mix text
+    [SerializeField] private TextMeshProUGUI fruitMixAmt;
+    [SerializeField] private TextMeshProUGUI meatMixAmt;
+    [SerializeField] private TextMeshProUGUI grainMixAmt;
+    [SerializeField] private TextMeshProUGUI crystalMixAmt;
+
+    // //remove from mix
+    // [SerializeField] private Button FruitMixButton;
+    // [SerializeField] private Button MeatMixButton;
+    // [SerializeField] private Button GrainsMixButton;
+    // [SerializeField] private Button CrystalMixButton;
+
+    // //feed to animals
+    // [SerializeField] private Button FeedMixButton;
 
     //food type scriptable objects
     [SerializeField] private FoodType fruitData;
@@ -30,20 +52,33 @@ public class CareButtons : MonoBehaviour
     [SerializeField] private FoodType meatData;
     [SerializeField] private FoodType crystalData;
 
-    private int hunger = 50;
-    private int thirst = 50;
-    private int entertainment = 50;
-    private String illness = "";
+    [SerializeField] private TextMeshProUGUI weightText;
+
+    [SerializeField] private Image fruitFill;
+    [SerializeField] private Image meatFill;
+    [SerializeField] private Image grainsFill;
+    [SerializeField] private Image crystalFill;
+    [SerializeField] private Image weightFill;
+
+    private int health = 50;
+    // private int thirst = 50;
+    // private int entertainment = 50;
+    // private String illness = "";
     private bool fed = false;
 
     // private int day = 1;
     // private int money = 2000;
 
+    // private Creature[] habitatCreatures = new Creature[6];
+    [SerializeField] private Creature habitatCreature;
 
-    private int maxFeed = 20;
+
+    private int maxFeed;
     private int currFeed = 0;
 
     private int inMenu = 0;
+
+    private Dictionary<String, int> foodMixInv = new Dictionary<String, int>();
 
 
 
@@ -53,16 +88,24 @@ public class CareButtons : MonoBehaviour
         // PlayerManager player = PlayerManager.getPlayer();
 
         dayText.text = $"Day {PlayerManager.Instance.getDay()}, ${PlayerManager.Instance.getMoney()}";
-        animalNeeds.text = $"Hunger: {hunger}%\nThirst: {thirst}%\nEntertainment: {entertainment}%\nIllness: {illness}";
+        animalNeeds.text = $"Health: {health}%";
+
+        foodMixInv["Fruit"] = 0;
+        foodMixInv["Grains"] = 0;
+        foodMixInv["Meat"] = 0;
+        foodMixInv["Crystal Dust"] = 0;
+
+        maxFeed = habitatCreature.hunger;
+        // maxFeed = 150;
     }
 
     public void DayButtonOnClick()
     {
         PlayerManager.Instance.progressDay();
 
-        hunger -= 30;
-        thirst -= 30;
-        entertainment -= 30;
+
+
+        
         currFeed = 0;
         fed = false;
     }
@@ -84,80 +127,188 @@ public class CareButtons : MonoBehaviour
 
     
 
-    public void FruitOnClick()
+    public void FruitAddOnClick()
     {
         if (PlayerManager.Instance.foodInventory["Fruit"] >= 1)
         {
             PlayerManager.Instance.foodInventory["Fruit"] -= 1;
             fruitAmt.text = PlayerManager.Instance.foodInventory["Fruit"].ToString();
-            hunger += 30;
+
+            foodMixInv["Fruit"] += 1;
+            fruitMixAmt.text = foodMixInv["Fruit"].ToString();
+
             currFeed += fruitData.getWeight();
 
-            if (currFeed >= maxFeed)
-            {
-                fed = true;
-            }
+            // hunger += 30;
+            // currFeed += fruitData.getWeight();
 
-            inMenu = 0;
+            // if (currFeed >= maxFeed)
+            // {
+            //     fed = true;
+            // }
+
+            // inMenu = 0;
         }
         
     }
 
-    public void MeatOnClick()
+    public void MeatAddOnClick()
     {
         if (PlayerManager.Instance.foodInventory["Meat"] >= 1)
         {
             PlayerManager.Instance.foodInventory["Meat"] -= 1;
             meatAmt.text = PlayerManager.Instance.foodInventory["Meat"].ToString();
-            hunger += 5;
+
+            foodMixInv["Meat"] += 1;
+            meatMixAmt.text = foodMixInv["Meat"].ToString();
+
             currFeed += meatData.getWeight();
+            // hunger += 5;
+            // currFeed += meatData.getWeight();
 
-            if (currFeed >= maxFeed)
-            {
-                fed = true;
-            }
+            // if (currFeed >= maxFeed)
+            // {
+            //     fed = true;
+            // }
 
-            inMenu = 0;
+            // inMenu = 0;
         }
         
     }
 
-    public void GrainsOnClick()
+    public void GrainsAddOnClick()
     {
         if (PlayerManager.Instance.foodInventory["Grains"] >= 1)
         {
             PlayerManager.Instance.foodInventory["Grains"] -= 1;
             grainAmt.text = PlayerManager.Instance.foodInventory["Grains"].ToString();
-            hunger += 5;
+
+            foodMixInv["Grains"] += 1;
+            grainMixAmt.text = foodMixInv["Grains"].ToString();
+
             currFeed += grainData.getWeight();
 
-            if (currFeed >= maxFeed)
-            {
-                fed = true;
-            }
+            // hunger += 5;
+            // currFeed += grainData.getWeight();
 
-            inMenu = 0;
+            // if (currFeed >= maxFeed)
+            // {
+            //     fed = true;
+            // }
+
+            // inMenu = 0;
         }
         
     }
 
-    public void CrystalOnClick()
+    public void CrystalAddOnClick()
     {
         if (PlayerManager.Instance.foodInventory["Crystal Dust"] >= 1)
         {
             PlayerManager.Instance.foodInventory["Crystal Dust"] -= 1;
             crystalAmt.text = PlayerManager.Instance.foodInventory["Crystal Dust"].ToString();
-            hunger += 50;
+
+            foodMixInv["Crystal Dust"] += 1;
+            crystalMixAmt.text = foodMixInv["Crystal Dust"].ToString();
+
             currFeed += crystalData.getWeight();
 
-            if (currFeed >= maxFeed)
-            {
-                fed = true;
-            }
+            // hunger += 50;
+            // currFeed += crystalData.getWeight();
+
+            // if (currFeed >= maxFeed)
+            // {
+            //     fed = true;
+            // }
             
-            inMenu = 0;
+            // inMenu = 0;
         }
         
+    }
+
+
+    public void FruitRemoveOnClick()
+    {
+        if (foodMixInv["Fruit"] >= 1)
+        {
+            PlayerManager.Instance.foodInventory["Fruit"] += 1;
+            fruitAmt.text = PlayerManager.Instance.foodInventory["Fruit"].ToString();
+
+            foodMixInv["Fruit"] -= 1;
+            fruitMixAmt.text = foodMixInv["Fruit"].ToString();
+
+            currFeed -= fruitData.getWeight();
+        }
+    }
+
+    public void MeatRemoveOnClick()
+    {
+        if (foodMixInv["Meat"] >= 1)
+        {
+            PlayerManager.Instance.foodInventory["Meat"] += 1;
+            meatAmt.text = PlayerManager.Instance.foodInventory["Meat"].ToString();
+
+            foodMixInv["Meat"] -= 1;
+            meatMixAmt.text = foodMixInv["Meat"].ToString();
+
+            currFeed -= meatData.getWeight();
+        }
+    }
+
+    public void GrainsRemoveOnClick()
+    {
+        if (foodMixInv["Grains"] >= 1)
+        {
+            PlayerManager.Instance.foodInventory["Grains"] += 1;
+            grainAmt.text = PlayerManager.Instance.foodInventory["Grains"].ToString();
+
+            foodMixInv["Grains"] -= 1;
+            grainMixAmt.text = foodMixInv["Grains"].ToString();
+            
+            currFeed -= grainData.getWeight();
+        }
+    }
+
+    public void CrystalRemoveOnClick()
+    {
+        if (foodMixInv["Crystal Dust"] >= 1)
+        {
+            PlayerManager.Instance.foodInventory["Crystal Dust"] += 1;
+            crystalAmt.text = PlayerManager.Instance.foodInventory["Crystal Dust"].ToString();
+
+            foodMixInv["Crystal Dust"] -= 1;
+            crystalMixAmt.text = foodMixInv["Crystal Dust"].ToString();
+
+            currFeed -= crystalData.getWeight();
+        }
+    }
+
+    public void FeedMixOnClick()
+    {
+        inMenu = 0;
+
+        if (foodMixInv["Fruit"]*fruitData.getWeight() >= 50 || foodMixInv["Meat"]*meatData.getWeight() >= 90)
+        {
+            health += 10;
+        }
+        else
+        {
+            health -= 20;
+        }
+
+        foodMixInv["Fruit"] = 0;
+        foodMixInv["Grains"] = 0;
+        foodMixInv["Meat"] = 0;
+        foodMixInv["Crystal Dust"] = 0;
+
+        fruitMixAmt.text = foodMixInv["Fruit"].ToString();
+        meatMixAmt.text = foodMixInv["Meat"].ToString();
+        grainMixAmt.text = foodMixInv["Grains"].ToString();
+        crystalMixAmt.text = foodMixInv["Crystal Dust"].ToString();
+
+        
+
+        fed = true;
     }
 
     // Update is called once per frame
@@ -165,53 +316,83 @@ public class CareButtons : MonoBehaviour
     {
         if (inMenu == 0)
         {
-            if (fed == false && hunger < 100)
+            if (fed == false)
             {
                 FeedButton.gameObject.SetActive(true);
             }
             
-            WaterButton.gameObject.SetActive(true);
-            EntertainmentButton.gameObject.SetActive(true);
+            // WaterButton.gameObject.SetActive(true);
+            // EntertainmentButton.gameObject.SetActive(true);
 
             
-            FruitButton.gameObject.SetActive(false);
-            MeatButton.gameObject.SetActive(false);
-            GrainsButton.gameObject.SetActive(false);
-            CrystalButton.gameObject.SetActive(false);
+            foodInvCanvas.gameObject.SetActive(false);
+
+            foodMixCanvas.gameObject.SetActive(false);
         }
 
         if (inMenu == 1)
         {
             FeedButton.gameObject.SetActive(false);
-            WaterButton.gameObject.SetActive(false);
-            EntertainmentButton.gameObject.SetActive(false);
+            // WaterButton.gameObject.SetActive(false);
+            // EntertainmentButton.gameObject.SetActive(false);
 
-            FruitButton.gameObject.SetActive(true);
-            MeatButton.gameObject.SetActive(true);
-            GrainsButton.gameObject.SetActive(true);
-            CrystalButton.gameObject.SetActive(true);
+            foodInvCanvas.gameObject.SetActive(true);
 
             fruitAmt.text = PlayerManager.Instance.foodInventory["Fruit"].ToString();
             meatAmt.text = PlayerManager.Instance.foodInventory["Meat"].ToString();
             grainAmt.text = PlayerManager.Instance.foodInventory["Grains"].ToString();
             crystalAmt.text = PlayerManager.Instance.foodInventory["Crystal Dust"].ToString();
+
+            if (foodMixInv["Fruit"]*fruitData.getWeight() >= habitatCreature.fruitMin)
+            {
+                fruitFill.color = Color.green;
+            } else
+            {
+                fruitFill.color = Color.red;
+            }
+            if (foodMixInv["Meat"]*meatData.getWeight() >= habitatCreature.meatMin)
+            {
+                meatFill.color = Color.green;
+            } else
+            {
+                meatFill.color = Color.red;
+            }
+            if (foodMixInv["Grains"]*grainData.getWeight() >= habitatCreature.grainsMin)
+            {
+                grainsFill.color = Color.green;
+            } else
+            {
+                grainsFill.color = Color.red;
+            }
+            if (foodMixInv["Crystal Dust"]*crystalData.getWeight() >= habitatCreature.crystalMin)
+            {
+                crystalFill.color = Color.green;
+            } else
+            {
+                crystalFill.color = Color.red;
+            }
+
+
+            foodMixCanvas.gameObject.SetActive(true);
+
+            weightText.text = "Weight: " + currFeed.ToString();
+            weightFill.fillAmount = (float)currFeed / maxFeed;
+            // print(maxFeed.ToString());
+            
+            fruitFill.fillAmount = (float)(foodMixInv["Fruit"] * fruitData.getWeight()) / maxFeed;
+            meatFill.fillAmount = (float)(foodMixInv["Meat"] * meatData.getWeight()) / maxFeed;
+            grainsFill.fillAmount = (float)(foodMixInv["Grains"] * grainData.getWeight()) / maxFeed;
+            crystalFill.fillAmount = (float)(foodMixInv["Crystal Dust"] * crystalData.getWeight()) / maxFeed;
             
         }
 
 
 
-        hunger = System.Math.Clamp(hunger, 0, 100);
-        thirst = System.Math.Clamp(thirst, 0, 100);
-        entertainment = System.Math.Clamp(entertainment, 0, 100);
-        if (hunger < 10)
-        {
-            illness = "Starving";
-        } else
-        {
-            illness = "";
-        }
+        health = System.Math.Clamp(health, 0, 100);
+
+        
         dayText.text = $"Day {PlayerManager.Instance.getDay()}, ${PlayerManager.Instance.getMoney()}";
-        animalNeeds.text = $"Hunger: {hunger}%\nThirst: {thirst}%\nEntertainment: {entertainment}%\nIllness: {illness}";
+        animalNeeds.text = $"Health: {health}%";
 
         
         
