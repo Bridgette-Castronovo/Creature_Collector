@@ -13,6 +13,7 @@ public class animalBook : MonoBehaviour
 
     private void Start() {
         backButton.SetActive(false);
+
     }
   
     public void RotateNext() {
