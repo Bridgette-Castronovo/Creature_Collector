@@ -9,7 +9,12 @@ public class StoreScript : MonoBehaviour
 
 
     //inventory
-    [SerializeField] private TextMeshProUGUI inventoryText;
+    // [SerializeField] private TextMeshProUGUI inventoryText;
+    [SerializeField] private TextMeshProUGUI fruitAmount;
+    [SerializeField] private TextMeshProUGUI meatAmount;
+    [SerializeField] private TextMeshProUGUI grainAmount;
+    [SerializeField] private TextMeshProUGUI crystalAmount;
+    [SerializeField] private TextMeshProUGUI moneyAmount;
 
     //canvases that will be deactivated/disabled
     [SerializeField] private Canvas storeCanvas;
@@ -80,6 +85,7 @@ public class StoreScript : MonoBehaviour
         } else
         {
             purchaseCanvas.gameObject.SetActive(false);
+            
         }
 
     }
@@ -146,11 +152,11 @@ public class StoreScript : MonoBehaviour
 
     private void loadInventory()
     {
-        inventoryText.text = $"Fruit: {PlayerManager.Instance.foodInventory["Fruit"]}\n" +
-                             $"Meat: {PlayerManager.Instance.foodInventory["Meat"]}\n" +
-                             $"Grains: {PlayerManager.Instance.foodInventory["Grains"]}\n" +
-                             $"Crystal Dust: {PlayerManager.Instance.foodInventory["Crystal Dust"]}\n\n\n" +
-                             $"Money: {PlayerManager.Instance.getMoney()}";
+        fruitAmount.text = "x" + PlayerManager.Instance.foodInventory["Fruit"].ToString();
+        meatAmount.text = "x" + PlayerManager.Instance.foodInventory["Meat"].ToString();
+        grainAmount.text = "x" + PlayerManager.Instance.foodInventory["Grains"].ToString();
+        crystalAmount.text = "x" + PlayerManager.Instance.foodInventory["Crystal Dust"].ToString();
         
+        moneyAmount.text = PlayerManager.Instance.getMoney().ToString();
     }
 }
