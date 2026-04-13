@@ -27,4 +27,9 @@ public class SceneSwitcher : MonoBehaviour
     {
         SceneManager.LoadScene("MapScene");
     }
+
+    public void ZoomComputerScreen()
+    {
+        SceneManager.LoadScene("ComputerSceneZoom");
+    }
 }

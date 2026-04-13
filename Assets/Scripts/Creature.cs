@@ -5,6 +5,7 @@ public class Creature : ScriptableObject
 {
     public string speciesName = "New Species";
     public string speciesDesc = "Add a description for this species.";
+    public Sprite image;
 
     public int weightMin = 100;
     public int weightMax = 200;
