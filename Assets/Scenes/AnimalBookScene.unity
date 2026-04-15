@@ -1742,7 +1742,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 531360227}
         m_TargetAssemblyTypeName: ComputerScreenToggle, Assembly-CSharp
         m_MethodName: LoadComputerScreenView
         m_Mode: 1
