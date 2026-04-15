@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9cb3fd61c36b7ae42a800e3c1d1fb4bd
+guid: 3d88ebf614eb7bd4698cb6d642232ae3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -44,9 +44,9 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 1
-  spriteExtrude: 1
+  spriteExtrude: 0
   spriteMeshType: 1
-  alignment: 1
+  alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
