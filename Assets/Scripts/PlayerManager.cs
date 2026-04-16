@@ -8,6 +8,8 @@ public class PlayerManager : MonoBehaviour
     private int playerMoney = 20000;
     private int day = 1;
     public Dictionary<string, int> foodInventory = new Dictionary<string, int>();
+    public Dictionary<string, int> medInventory = new Dictionary<string, int>();
+    public Dictionary<int, Creature> creatureInventory = new Dictionary<int, Creature>();
 
     
 
@@ -28,28 +30,11 @@ public class PlayerManager : MonoBehaviour
         foodInventory["Grains"] = 5;
         foodInventory["Meat"] = 5;
         foodInventory["Crystal Dust"] = 0;
+
+        medInventory["Cast"] = 1;
+        medInventory["Antiparasitic"] = 1;
+        medInventory["Antibiotic"] = 1;
     }
-
-    // public PlayerManager getPlayer()
-    // {
-    //     if (Instance == null)
-    //     {
-    //         Instance = this;
-    //         DontDestroyOnLoad(gameObject);
-    //     }
-    //     else
-    //     {
-    //         Destroy(gameObject);
-    //     }
-
-
-    //     foodInventory["Fruit"] = 5;
-    //     foodInventory["Grains"] = 5;
-    //     foodInventory["Meat"] = 5;
-    //     foodInventory["Crystal"] = 0;
-
-    //     return Instance;
-    // }
 
     public int getMoney()
     {
