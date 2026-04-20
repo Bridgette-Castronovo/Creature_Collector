@@ -9,45 +9,57 @@ public class StoreScript : MonoBehaviour
 
 
     //inventory
-    [SerializeField] private TextMeshProUGUI inventoryText;
+    // [SerializeField] private TextMeshProUGUI inventoryText;
+    [Header("Inventory Amounts")]
+    [SerializeField] private TextMeshProUGUI fruitAmount;
+    [SerializeField] private TextMeshProUGUI meatAmount;
+    [SerializeField] private TextMeshProUGUI grainAmount;
+    [SerializeField] private TextMeshProUGUI crystalAmount;
+    [SerializeField] private TextMeshProUGUI castAmount;
+    [SerializeField] private TextMeshProUGUI antiparasiticAmount;
+    [SerializeField] private TextMeshProUGUI antibioticAmount;
+    [SerializeField] private TextMeshProUGUI moneyAmount;
 
     //canvases that will be deactivated/disabled
-    [SerializeField] private Canvas storeCanvas;
+    [Header("Canvases")]
+    [SerializeField] private Canvas foodStoreCanvas;
+    [SerializeField] private Canvas medStoreCanvas;
+    [SerializeField] private Canvas overlayCanvas;
     [SerializeField] private Canvas purchaseCanvas;
 
-    //food store buttons
-    // [SerializeField] private Button buyFruit;
-    // [SerializeField] private Button buyMeat;
-    // [SerializeField] private Button buyGrains;
-    // [SerializeField] private Button buyCrystal;
 
     //purchase text
+    [Header("Purchase Info")]
     [SerializeField] private TextMeshProUGUI itemName;
     [SerializeField] private TextMeshProUGUI itemAmount;
     [SerializeField] private TextMeshProUGUI itemCost;
 
-    //purchase buttons
-    // [SerializeField] private Button exitPurchase;
-    // [SerializeField] private Button addItem;
-    // [SerializeField] private Button subtractItem;
-    // [SerializeField] private Button purchase;
-
+    [Header("Buyable Types")]
     //food type scriptable objects
     [SerializeField] private FoodType fruitData;
     [SerializeField] private FoodType grainData;
     [SerializeField] private FoodType meatData;
     [SerializeField] private FoodType crystalData;
 
+    //med type scriptable objects
+    [SerializeField] private MedType castData;
+    [SerializeField] private MedType antiparasiticData;
+    [SerializeField] private MedType antibioticData;
+
 
     private bool purchaseOpen = false;
+    private int storeType = 0;
+
     private int purchaseAmount = 0;
-    private FoodType purchaseType = null;
+    private int purchaseCat = 0;
+    private Buyable purchaseType = null;
 
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        overlayCanvas.gameObject.SetActive(false);
         purchaseCanvas.gameObject.SetActive(false);
     }
 
@@ -56,30 +68,37 @@ public class StoreScript : MonoBehaviour
     {
         loadInventory();
 
+        if (storeType == 0)
+        {
+            foodStoreCanvas.gameObject.SetActive(true);
+            medStoreCanvas.gameObject.SetActive(false);
+        } 
+        if (storeType == 1)
+        {
+            foodStoreCanvas.gameObject.SetActive(false);
+            medStoreCanvas.gameObject.SetActive(true);
+        }
+
         if (purchaseOpen)
         {
+            overlayCanvas.gameObject.SetActive(true);
             purchaseCanvas.gameObject.SetActive(true);
 
-            itemName.text = purchaseType.getFoodName();
+            itemName.text = purchaseType.getName();
             itemAmount.text = purchaseAmount.ToString();
 
-            int totalCost = purchaseType.getBuyCost() * purchaseAmount;
+            int totalCost = purchaseType.getCost() * purchaseAmount;
             itemCost.text = totalCost.ToString();
 
 
-            // if (purchaseType == null)
-            // {
-            //     print("This is the problem");
-            // } else
-            // {
-            //     print(purchaseType.getFoodName());
-            // }
             
 
         
         } else
         {
+            overlayCanvas.gameObject.SetActive(false);
             purchaseCanvas.gameObject.SetActive(false);
+            
         }
 
     }
@@ -96,11 +115,17 @@ public class StoreScript : MonoBehaviour
 
     public void purchaseComplete()
     {
-        int totalCost = purchaseType.getBuyCost() * purchaseAmount;
+        int totalCost = purchaseType.getCost() * purchaseAmount;
         if (PlayerManager.Instance.getMoney() >= totalCost)
         {
             PlayerManager.Instance.subtractMoney(totalCost);
-            PlayerManager.Instance.foodInventory[purchaseType.getFoodName()] += purchaseAmount;
+            if (purchaseCat == 0) {
+                PlayerManager.Instance.foodInventory[purchaseType.getName()] += purchaseAmount;
+            }
+            if (purchaseCat == 1) {
+                PlayerManager.Instance.medInventory[purchaseType.getName()] += purchaseAmount;
+            }
+            
 
             purchaseOpen = false;
             purchaseAmount = 0;
@@ -121,36 +146,64 @@ public class StoreScript : MonoBehaviour
 
     public void purchaseFruit()
     {
-        print(fruitData.getFoodName());
         purchaseOpen = true;
         purchaseType = fruitData;
+        purchaseCat = 0;
     }
 
     public void purchaseMeat()
     {
         purchaseOpen = true;
         purchaseType = meatData;
+        purchaseCat = 0;
     }
 
     public void purchaseGrains()
     {
         purchaseOpen = true;
         purchaseType = grainData;
+        purchaseCat = 0;
     }
 
     public void purchaseCrystal()
     {
         purchaseOpen = true;
         purchaseType = crystalData;
+        purchaseCat = 0;
+    }
+
+    public void purchaseCast()
+    {
+        purchaseOpen = true;
+        purchaseType = castData;
+        purchaseCat = 1;
+    }
+
+    public void purchaseAntiparasitic()
+    {
+        purchaseOpen = true;
+        purchaseType = antiparasiticData;
+        purchaseCat = 1;
+    }
+
+    public void purchaseAntibiotic()
+    {
+        purchaseOpen = true;
+        purchaseType = antibioticData;
+        purchaseCat = 1;
     }
 
     private void loadInventory()
     {
-        inventoryText.text = $"Fruit: {PlayerManager.Instance.foodInventory["Fruit"]}\n" +
-                             $"Meat: {PlayerManager.Instance.foodInventory["Meat"]}\n" +
-                             $"Grains: {PlayerManager.Instance.foodInventory["Grains"]}\n" +
-                             $"Crystal Dust: {PlayerManager.Instance.foodInventory["Crystal Dust"]}\n\n\n" +
-                             $"Money: {PlayerManager.Instance.getMoney()}";
+        fruitAmount.text = "x" + PlayerManager.Instance.foodInventory["Fruit"].ToString();
+        meatAmount.text = "x" + PlayerManager.Instance.foodInventory["Meat"].ToString();
+        grainAmount.text = "x" + PlayerManager.Instance.foodInventory["Grains"].ToString();
+        crystalAmount.text = "x" + PlayerManager.Instance.foodInventory["Crystal Dust"].ToString();
+
+        castAmount.text = "x" + PlayerManager.Instance.medInventory["Cast"].ToString();
+        antiparasiticAmount.text = "x" + PlayerManager.Instance.medInventory["Antiparasitic"].ToString();
+        antibioticAmount.text = "x" + PlayerManager.Instance.medInventory["Antibiotic"].ToString();
         
+        moneyAmount.text = PlayerManager.Instance.getMoney().ToString();
     }
 }
