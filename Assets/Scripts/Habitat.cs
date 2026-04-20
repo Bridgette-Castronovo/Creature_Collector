@@ -1,7 +1,8 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Habitat", menuName = "Scriptable Objects/Habitat")]
-public class Habitat : ScriptableObject
+public class Habitat : Buyable
 {
+    
     
 }
