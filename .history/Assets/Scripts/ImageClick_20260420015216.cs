@@ -10,28 +10,16 @@ public class ImageClick : MonoBehaviour
     {
         if (book == null) return;
 
-       
-        Transform contentPage = book.GetPage(targetPageIndex + 1);
-
-        if (contentPage != null)
+        if (targetPageIndex >= 0 && targetPageIndex < book.pages.Count)
         {
-            PageDisplay page = contentPage.GetComponent<PageDisplay>();
+            PageDisplay page = book.pages[targetPageIndex].GetComponent<PageDisplay>();
 
             if (page != null)
             {
                 page.SetData(creature);
             }
-            else
-            {
-                Debug.LogError("No PageDisplay on content page!");
-            }
-        }
-        else
-        {
-            Debug.LogError("Content page is NULL!");
         }
 
-        
         book.GoToPage(targetPageIndex);
     }
 }
