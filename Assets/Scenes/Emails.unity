@@ -464,54 +464,77 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allEmails:
-  - id: 
+  - id: 0
     sender: 'Your Boss  '
     subject: Welcome, New Manager!
     preview: First of all, I'd like to...
-    body: 'Hello Newbie!
-
-      
-
-      First of all, I''d like to congratulate
-      you once again on your brand new position as a Zoo Manager! We''re so happy
-      to have you as a part of our team. To get you started, we''ve arranged for
-      the transfer of a Ryufuku to your property. As a part of the onboarding process,
-      we''d like to see you provide it with a suitable habitat in your facility.
-      Please note that successful completion of the onboarding process will provide
-      you with further funding for your endeavors.
-
-      
-
-      We look forward
-      to hearing back from you about your success!
-
-      
-
-      Your Boss'
-  - id: 
+    body: "Well hello there, intern! Welcome to your first day at [park name]. We\u2019re
+      happy to have some fresh meat after last year\u2019s escaped goblin incident.
+      Ah, but that\u2019s nothing for you to worry about! By now we\u2019ve managed
+      to wrangle all our escapees back to their rightful places. Probably.\r\nAnyways,
+      as you may know, taking magical creatures from the wild is generally illegal,
+      except in cases of rescue and rehabilitation. Of course there are channels
+      to get around that\u2026 but we\u2019ll wait to have that discussion until
+      I\u2019m sure you can keep your mouth shut. In any case, that means that the
+      creatures we take in most likely have injuries and diseases you\u2019ll have
+      to treat.\r\nOur first addition to the park is a young Ryufuku, rescued by
+      some fishing boats after a storm. This one has already been mostly treated,
+      so you\u2019ll only have to worry about the day-to-day care. We\u2019ve already
+      constructed your first habitat, which can house up to four creatures. Your
+      first step is to release the dragon from its shipping container into the habitat.\r\nYou\u2019ll
+      be able to oversee the habitats through the security cameras, and once you\u2019ve
+      navigated to the habitat you want your creature to be placed in, you can click
+      on it to slot the creature in.\r\n\r\n[Creature attached to email. Player clicks
+      to add to inventory]\r\n\n\nWe look forward to hearing back from you about
+      your success!\n\n\nYour Boss"
+  - id: 1
     sender: 'Your Boss  '
-    subject: Welcome, New Manager!
+    subject: Feeding the Fishes
     preview: First of all, I'd like to...
-    body: 'Hello Newbie!
-
-      
-
-      First of all, I''d like to congratulate
-      you once again on your brand new position as a Zoo Manager! We''re so happy
-      to have you as a part of our team. To get you started, we''ve arranged for
-      the transfer of a Ryufuku to your property. As a part of the onboarding process,
-      we''d like to see you provide it with a suitable habitat in your facility.
-      Please note that successful completion of the onboarding process will provide
-      you with further funding for your endeavors.
-
-      
-
-      We look forward
-      to hearing back from you about your success!
-
-      
-
-      Your Boss'
+    body: "I see your first creature has been released into their habitat. Well done!
+      Now that they\u2019re on display, the customers will start arriving at the
+      park to see what we have to offer. The greater the quantity and rarity of the
+      creatures we have on display, the more money we earn in admission fees at the
+      end of the day. Admission fees alone won\u2019t make us rich, but they\u2019re
+      enough to offset some of the costs in caring for the creatures.\r\nYour major
+      care costs will be food and healing items. You can find those at the store,
+      along with additional habitats once you\u2019re ready to expand.\r\nAs for
+      the sort of food you should get\u2026 how should I know? Each creature has
+      a certain weight of food they want to eat per day. Too much and they\u2019ll
+      become overweight, too little and they\u2019ll get malnourished. They also
+      have a certain amount of each food type that they need to eat per day. Anything
+      over that will only add weight.\r\nYou\u2019ll mix the food once per day, and
+      feed mixes are shared across creatures in the habitat. The correct food ratios
+      are consistent across members of a species, but you\u2019ll have to experiment
+      to find out what they are. Or you might see if you can get in touch with the
+      Research Lab. They\u2019ll be able to find out how you should feed your creatures\u2026
+      for a price, of course.\r\nWhy don\u2019t you go ahead and feed your Ryufuku
+      now? I\u2019ll give you some spending money to help you out.\r\n\r\n[Player
+      gets $15000]\r\n"
+  - id: 1
+    sender: 'Your Boss  '
+    subject: Feeding the Fishes
+    preview: First of all, I'd like to...
+    body: "I see your first creature has been released into their habitat. Well done!
+      Now that they\u2019re on display, the customers will start arriving at the
+      park to see what we have to offer. The greater the quantity and rarity of the
+      creatures we have on display, the more money we earn in admission fees at the
+      end of the day. Admission fees alone won\u2019t make us rich, but they\u2019re
+      enough to offset some of the costs in caring for the creatures.\r\nYour major
+      care costs will be food and healing items. You can find those at the store,
+      along with additional habitats once you\u2019re ready to expand.\r\nAs for
+      the sort of food you should get\u2026 how should I know? Each creature has
+      a certain weight of food they want to eat per day. Too much and they\u2019ll
+      become overweight, too little and they\u2019ll get malnourished. They also
+      have a certain amount of each food type that they need to eat per day. Anything
+      over that will only add weight.\r\nYou\u2019ll mix the food once per day, and
+      feed mixes are shared across creatures in the habitat. The correct food ratios
+      are consistent across members of a species, but you\u2019ll have to experiment
+      to find out what they are. Or you might see if you can get in touch with the
+      Research Lab. They\u2019ll be able to find out how you should feed your creatures\u2026
+      for a price, of course.\r\nWhy don\u2019t you go ahead and feed your Ryufuku
+      now? I\u2019ll give you some spending money to help you out.\r\n\r\n[Player
+      gets $15000]\r\n"
 --- !u!1 &52838326
 GameObject:
   m_ObjectHideFlags: 0
@@ -1723,7 +1746,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0000095367, y: 13.500058}
+  m_AnchoredPosition: {x: 0.0000095367, y: 13.500043}
   m_SizeDelta: {x: -1.4364, y: 959.15}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &961551724
@@ -3378,11 +3401,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7434305482940425107, guid: 9a9c85deec0b574438286766c9a5be1c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 25
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7434305482940425107, guid: 9a9c85deec0b574438286766c9a5be1c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 389.55847
+      value: 221
       objectReference: {fileID: 0}
     - target: {fileID: 7434305482940425107, guid: 9a9c85deec0b574438286766c9a5be1c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,10 +7,8 @@ public class QuestManager : MonoBehaviour
 {
     public static QuestManager Instance { get; private set; }
 
-    //Assign all your emails in the Inspector
     public List<QuestEmail> allEmails = new();
 
-    //Other systems subscribe to this
     public event Action<QuestEmail> OnEmailReceived;
 
     void Awake()
@@ -18,7 +17,18 @@ public class QuestManager : MonoBehaviour
         Instance = this;
     }
 
-    /// <summary>Call this from anywhere to send a specific email.</summary>
+    void Start()
+    {
+        StartCoroutine(SendStartingEmails());
+    }
+
+    IEnumerator SendStartingEmails()
+    {
+        yield return null;
+        TriggerEmail("corporate_start");
+        TriggerEmail("conservation_m1");
+    }
+
     public void TriggerEmail(string emailId)
     {
         QuestEmail email = allEmails.Find(e => e.id == emailId);
