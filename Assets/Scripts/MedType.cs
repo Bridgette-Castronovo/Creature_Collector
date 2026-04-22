@@ -4,10 +4,4 @@ using UnityEngine;
 public class MedType : Buyable
 {
     public int treatmentEffect = 0;
-
-
-    public int getTreatment()
-    {
-        return treatmentEffect;
-    }
 }
