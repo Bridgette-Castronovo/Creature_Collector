@@ -3,24 +3,19 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Buyable", menuName = "Scriptable Objects/Buyable")]
 public class Buyable : ScriptableObject
 {
-    public string name;
+    public string itemName;
     public int cost;
-    public int weight;
 
 
 
-    public string getName()
+    public virtual string getName()
     {
-        return name;
+        return itemName;
     }
 
-    public int getCost()
+    public virtual int getCost()
     {
         return cost;
     }
 
-    public int getWeight()
-    {
-        return weight;
-    }
 }

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f436da42b87856b4b8cb1d1b41643750, type: 3}
   m_Name: Crystal Dust
   m_EditorClassIdentifier: 
-  foodName: Crystal Dust
-  buyCost: 1000
+  itemName: Crystal Dust
+  cost: 1000
   weight: 20

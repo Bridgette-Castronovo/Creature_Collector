@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f436da42b87856b4b8cb1d1b41643750, type: 3}
   m_Name: Grains
   m_EditorClassIdentifier: 
-  foodName: Grains
-  buyCost: 200
+  itemName: Grains
+  cost: 100
   weight: 20

@@ -383,7 +383,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 118696792}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1621348764}
+        m_TargetAssemblyTypeName: StoreScript, Assembly-CSharp
+        m_MethodName: medTab
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &118696792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1643,7 +1655,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 643602289}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1621348764}
+        m_TargetAssemblyTypeName: StoreScript, Assembly-CSharp
+        m_MethodName: subtractItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &643602289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1942,7 +1966,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1621348764}
         m_TargetAssemblyTypeName: StoreScript, Assembly-CSharp
-        m_MethodName: purchaseFruit
+        m_MethodName: purchaseCast
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2207,7 +2231,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 938945621}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1621348764}
+        m_TargetAssemblyTypeName: StoreScript, Assembly-CSharp
+        m_MethodName: foodTab
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &938945621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2596,7 +2632,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 972142859}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1621348764}
+        m_TargetAssemblyTypeName: StoreScript, Assembly-CSharp
+        m_MethodName: purchaseComplete
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &972142859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2795,7 +2843,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1018910219}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1621348764}
+        m_TargetAssemblyTypeName: StoreScript, Assembly-CSharp
+        m_MethodName: addItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1018910219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3089,7 +3149,7 @@ GameObject:
   - component: {fileID: 1159391742}
   - component: {fileID: 1159391741}
   m_Layer: 5
-  m_Name: Computer
+  m_Name: Computer Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4269,14 +4329,18 @@ MonoBehaviour:
   meatAmount: {fileID: 255020371}
   grainAmount: {fileID: 473759654}
   crystalAmount: {fileID: 1607339721}
-  castAmount: {fileID: 0}
-  antiparasiticAmount: {fileID: 0}
-  antibioticAmount: {fileID: 0}
+  castAmount: {fileID: 1211404587}
+  antiparasiticAmount: {fileID: 1107779867}
+  antibioticAmount: {fileID: 498707661}
   moneyAmount: {fileID: 1363522351}
-  foodStoreCanvas: {fileID: 0}
-  medStoreCanvas: {fileID: 0}
-  overlayCanvas: {fileID: 0}
+  foodStoreCanvas: {fileID: 1096101084}
+  medStoreCanvas: {fileID: 2069151426}
+  habitatStoreCanvas: {fileID: 1668176858}
+  overlayCanvas: {fileID: 462958580}
   purchaseCanvas: {fileID: 1980903967}
+  foodMenuButton: {fileID: 938945620}
+  medMenuButton: {fileID: 118696791}
+  habitatMenuButton: {fileID: 1704193774}
   itemName: {fileID: 1350588678}
   itemAmount: {fileID: 1987936263}
   itemCost: {fileID: 625098328}
@@ -4284,9 +4348,110 @@ MonoBehaviour:
   grainData: {fileID: 11400000, guid: fc83e0d40b5365b4dbdec8fc94256f4a, type: 2}
   meatData: {fileID: 11400000, guid: b570a87c3ab804a4786c96b730107fe2, type: 2}
   crystalData: {fileID: 11400000, guid: c3ff5f2b9e5d3de458e4c04776502197, type: 2}
-  castData: {fileID: 0}
-  antiparasiticData: {fileID: 0}
-  antibioticData: {fileID: 0}
+  castData: {fileID: 11400000, guid: a7866dc2e89d64346892b39876d310e9, type: 2}
+  antiparasiticData: {fileID: 11400000, guid: 6b647b66fcae8ca4ab5e32b07dc76c8e, type: 2}
+  antibioticData: {fileID: 11400000, guid: 4abf7be962f451e469391dd1b9bebc78, type: 2}
+--- !u!1 &1668176855
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1668176859}
+  - component: {fileID: 1668176858}
+  - component: {fileID: 1668176857}
+  - component: {fileID: 1668176856}
+  m_Layer: 5
+  m_Name: HabitatStoreCanvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1668176856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668176855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &1668176857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668176855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!223 &1668176858
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668176855}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!224 &1668176859
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668176855}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!1 &1704193772
 GameObject:
   m_ObjectHideFlags: 0
@@ -4368,7 +4533,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1704193775}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1621348764}
+        m_TargetAssemblyTypeName: StoreScript, Assembly-CSharp
+        m_MethodName: habitatTab
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1704193775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4491,7 +4668,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1621348764}
         m_TargetAssemblyTypeName: StoreScript, Assembly-CSharp
-        m_MethodName: purchaseMeat
+        m_MethodName: purchaseAntiparasitic
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4789,7 +4966,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1856069861}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1621348764}
+        m_TargetAssemblyTypeName: StoreScript, Assembly-CSharp
+        m_MethodName: exitPurchase
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1856069861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4921,7 +5110,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1980903965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5233,7 +5422,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1621348764}
         m_TargetAssemblyTypeName: StoreScript, Assembly-CSharp
-        m_MethodName: purchaseGrains
+        m_MethodName: purchaseAntibiotic
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5433,6 +5622,7 @@ SceneRoots:
   - {fileID: 9601127}
   - {fileID: 1096101085}
   - {fileID: 2069151427}
+  - {fileID: 1668176859}
   - {fileID: 1007866632}
   - {fileID: 744039479}
   - {fileID: 462958581}
