@@ -1576,7 +1576,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Med Item
+  m_text: Current Med Item
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a50127c63002c514eb8cf0523685b81b, type: 2}
   m_sharedMaterial: {fileID: 6537253879813459668, guid: a50127c63002c514eb8cf0523685b81b, type: 2}
