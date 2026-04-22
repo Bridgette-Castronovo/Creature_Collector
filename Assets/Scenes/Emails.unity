@@ -390,6 +390,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contentArea: {fileID: 911662262}
   emailPrefab: {fileID: 8678663374019861796, guid: 9a9c85deec0b574438286766c9a5be1c, type: 3}
+  bodyDisplay: {fileID: 2056892848}
 --- !u!1 &52838326
 GameObject:
   m_ObjectHideFlags: 0
@@ -1205,6 +1206,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &810493163
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 810493164}
+  m_Layer: 0
+  m_Name: tesssst
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &810493164
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810493163}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1761.7582, y: 876.207, z: 1.6397051}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &892017705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1313,7 +1345,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000088786, y: 0.00057501846}
+  m_AnchoredPosition: {x: -0.000088786, y: 0.000063321306}
   m_SizeDelta: {x: -1.4374, y: 900.35}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &911662263
@@ -1359,7 +1391,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &961551725
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1399,47 +1431,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Subject: Welcome, New Manager!
-
-
-
-    Body:
-
-
-
-    Hello Newbie!
-
-
-
-    First
-    of all, I''d like to congratulate you once again on your brand new position as
-    a Zoo Manager! We''re so happy to have you as a part of our team. To get you
-    started, we''ve arranged for the transfer of (SINGULAR ANIMAL NAME HERE) to your
-    property. As a part of the onboarding process, we''d like to see you provide
-    it with a suitable habitat in your facility. Please note that successful completion
-    of the onboarding process will provide you with further funding for your endeavors.
-
-
-
-    We
-    look forward to hearing back from you about your success!
-
-
-
-    Your Boss
-
-
-
-
-
-
-
-
-
-
-
-
-    YEllo'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 50abd8e6f340b1a4b9a0408489404d81, type: 2}
   m_sharedMaterial: {fileID: 3787920604027395737, guid: 50abd8e6f340b1a4b9a0408489404d81, type: 2}
@@ -1530,6 +1522,7 @@ GameObject:
   - component: {fileID: 1244444121}
   - component: {fileID: 1244444120}
   - component: {fileID: 1244444119}
+  - component: {fileID: 1244444122}
   m_Layer: 5
   m_Name: DisplayEmailScrollView
   m_TagString: Untagged
@@ -1626,6 +1619,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244444117}
   m_CullTransparentMesh: 1
+--- !u!114 &1244444122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244444117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef93c64452abc344abe92517e8479d1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyText: {fileID: 961551726}
 --- !u!1 &1340295228
 GameObject:
   m_ObjectHideFlags: 0
@@ -2050,7 +2056,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -767, y: 470}
+  m_AnchoredPosition: {x: -753, y: 470}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1876599707
@@ -2354,3 +2360,4 @@ SceneRoots:
   - {fileID: 785363847}
   - {fileID: 34317780}
   - {fileID: 584564042}
+  - {fileID: 810493164}

@@ -26,5 +26,12 @@ public class EmailPrefabUI : MonoBehaviour
     void OnClick()
     {
         bodyDisplay.ShowEmail(emailData);
+        if (bodyDisplay == null)
+        {
+            Debug.LogError("bodyDisplay is NULL");
+            return;
+        }
+
+        Debug.Log("Email clicked");
     }
 }

@@ -1,3 +1,4 @@
+using UnityEngine;
 public class EmailUIManager : MonoBehaviour
 {
     [Header("References")]
@@ -27,7 +28,7 @@ public class EmailUIManager : MonoBehaviour
             return;
         }
 
-        ui.Populate(email, bodyDisplay); 
+        ui.Populate(email, bodyDisplay);
 
         instance.transform.SetAsFirstSibling();
     }
