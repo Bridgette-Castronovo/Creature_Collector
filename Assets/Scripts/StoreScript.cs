@@ -24,14 +24,8 @@ public class StoreScript : MonoBehaviour
     [Header("Canvases")]
     [SerializeField] private Canvas foodStoreCanvas;
     [SerializeField] private Canvas medStoreCanvas;
-    [SerializeField] private Canvas habitatStoreCanvas;
     [SerializeField] private Canvas overlayCanvas;
     [SerializeField] private Canvas purchaseCanvas;
-
-    [Header("Menu Buttons")]
-    [SerializeField] private Button foodMenuButton;
-    [SerializeField] private Button medMenuButton;
-    [SerializeField] private Button habitatMenuButton;
 
 
     //purchase text
@@ -58,7 +52,6 @@ public class StoreScript : MonoBehaviour
 
     private int purchaseAmount = 0;
     private int purchaseCat = 0;
-    private int totalCost = 0;
     private Buyable purchaseType = null;
 
 
@@ -79,31 +72,11 @@ public class StoreScript : MonoBehaviour
         {
             foodStoreCanvas.gameObject.SetActive(true);
             medStoreCanvas.gameObject.SetActive(false);
-            habitatStoreCanvas.gameObject.SetActive(false);
-
-            foodMenuButton.gameObject.SetActive(false);
-            medMenuButton.gameObject.SetActive(true);
-            habitatMenuButton.gameObject.SetActive(true);
         } 
         if (storeType == 1)
         {
             foodStoreCanvas.gameObject.SetActive(false);
             medStoreCanvas.gameObject.SetActive(true);
-            habitatStoreCanvas.gameObject.SetActive(false);
-
-            foodMenuButton.gameObject.SetActive(true);
-            medMenuButton.gameObject.SetActive(false);
-            habitatMenuButton.gameObject.SetActive(true);
-        }
-        if (storeType == 2)
-        {
-            foodStoreCanvas.gameObject.SetActive(false);
-            medStoreCanvas.gameObject.SetActive(false);
-            habitatStoreCanvas.gameObject.SetActive(true);
-
-            foodMenuButton.gameObject.SetActive(true);
-            medMenuButton.gameObject.SetActive(true);
-            habitatMenuButton.gameObject.SetActive(false);
         }
 
         if (purchaseOpen)
@@ -112,15 +85,20 @@ public class StoreScript : MonoBehaviour
             purchaseCanvas.gameObject.SetActive(true);
 
             itemName.text = purchaseType.getName();
-            // print(purchaseType.getName());
             itemAmount.text = purchaseAmount.ToString();
 
-            totalCost = purchaseType.getCost() * purchaseAmount;
+            int totalCost = purchaseType.getCost() * purchaseAmount;
             itemCost.text = totalCost.ToString();
+
+
+            
+
+        
         } else
         {
             overlayCanvas.gameObject.SetActive(false);
-            purchaseCanvas.gameObject.SetActive(false); 
+            purchaseCanvas.gameObject.SetActive(false);
+            
         }
 
     }
@@ -137,7 +115,7 @@ public class StoreScript : MonoBehaviour
 
     public void purchaseComplete()
     {
-        
+        int totalCost = purchaseType.getCost() * purchaseAmount;
         if (PlayerManager.Instance.getMoney() >= totalCost)
         {
             PlayerManager.Instance.subtractMoney(totalCost);
@@ -213,21 +191,6 @@ public class StoreScript : MonoBehaviour
         purchaseOpen = true;
         purchaseType = antibioticData;
         purchaseCat = 1;
-    }
-
-    public void foodTab()
-    {
-        storeType = 0;
-    }
-
-    public void medTab()
-    {
-        storeType = 1;
-    }
-
-    public void habitatTab()
-    {
-        storeType = 2;
     }
 
     private void loadInventory()
