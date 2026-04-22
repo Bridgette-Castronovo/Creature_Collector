@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f436da42b87856b4b8cb1d1b41643750, type: 3}
-  m_Name: Crystal Dust
+  m_Script: {fileID: 11500000, guid: c0f24479b6045cc41b12a4ba68003bce, type: 3}
+  m_Name: Antiparasitic
   m_EditorClassIdentifier: 
-  itemName: Crystal Dust
-  cost: 1000
-  weight: 20
+  itemName: Antiparasitic
+  cost: 200
+  treatmentEffect: 2
