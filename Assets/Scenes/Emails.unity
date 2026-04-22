@@ -463,7 +463,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c3218af31b9a124b9c0befbc3fec8d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allEmails: []
+  allEmails:
+  - id: 
+    sender: 'Your Boss  '
+    subject: Welcome, New Manager!
+    preview: First of all, I'd like to...
+    body: 'Hello Newbie!
+
+      
+
+      First of all, I''d like to congratulate
+      you once again on your brand new position as a Zoo Manager! We''re so happy
+      to have you as a part of our team. To get you started, we''ve arranged for
+      the transfer of a Ryufuku to your property. As a part of the onboarding process,
+      we''d like to see you provide it with a suitable habitat in your facility.
+      Please note that successful completion of the onboarding process will provide
+      you with further funding for your endeavors.
+
+      
+
+      We look forward
+      to hearing back from you about your success!
+
+      
+
+      Your Boss'
+  - id: 
+    sender: 'Your Boss  '
+    subject: Welcome, New Manager!
+    preview: First of all, I'd like to...
+    body: 'Hello Newbie!
+
+      
+
+      First of all, I''d like to congratulate
+      you once again on your brand new position as a Zoo Manager! We''re so happy
+      to have you as a part of our team. To get you started, we''ve arranged for
+      the transfer of a Ryufuku to your property. As a part of the onboarding process,
+      we''d like to see you provide it with a suitable habitat in your facility.
+      Please note that successful completion of the onboarding process will provide
+      you with further funding for your endeavors.
+
+      
+
+      We look forward
+      to hearing back from you about your success!
+
+      
+
+      Your Boss'
 --- !u!1 &52838326
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,8 +1170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0233bc2e715e6ed49ae017189aa03d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contentArea: {fileID: 0}
-  emailPrefab: {fileID: 0}
+  contentArea: {fileID: 52838327}
+  emailPrefab: {fileID: 1530383309}
 --- !u!1 &654787820
 GameObject:
   m_ObjectHideFlags: 0
@@ -1690,7 +1738,7 @@ GameObject:
   - component: {fileID: 961551727}
   - component: {fileID: 961551726}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: EmailText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2460,10 +2508,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04f0f42862d49484c8f5526f5352d08a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  senderText: {fileID: 0}
-  subjectText: {fileID: 0}
-  previewText: {fileID: 0}
-  bodyText: {fileID: 0}
+  senderText: {fileID: 2000017891}
+  subjectText: {fileID: 1648166989}
+  previewText: {fileID: 1941484921}
+  bodyText: {fileID: 961551726}
 --- !u!1 &1596056790
 GameObject:
   m_ObjectHideFlags: 0
@@ -2625,6 +2673,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1596056790}
   m_CullTransparentMesh: 1
+--- !u!114 &1648166989 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 418570321903130017, guid: 9a9c85deec0b574438286766c9a5be1c, type: 3}
+  m_PrefabInstance: {fileID: 5316632964923346899}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1682388674
 GameObject:
   m_ObjectHideFlags: 0
@@ -3031,6 +3090,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1936248997}
   m_CullTransparentMesh: 1
+--- !u!114 &1941484921 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2432655551536413584, guid: 9a9c85deec0b574438286766c9a5be1c, type: 3}
+  m_PrefabInstance: {fileID: 5316632964923346899}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1947608709
 GameObject:
   m_ObjectHideFlags: 0
@@ -3167,6 +3237,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1947608709}
   m_CullTransparentMesh: 1
+--- !u!114 &2000017891 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8964312265912204240, guid: 9a9c85deec0b574438286766c9a5be1c, type: 3}
+  m_PrefabInstance: {fileID: 5316632964923346899}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2056892846
 GameObject:
   m_ObjectHideFlags: 0
@@ -3211,6 +3292,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 911662262}
     m_Modifications:
+    - target: {fileID: 2131122344288297760, guid: 9a9c85deec0b574438286766c9a5be1c, type: 3}
+      propertyPath: m_Name
+      value: Subject
+      objectReference: {fileID: 0}
     - target: {fileID: 3447592138080880690, guid: 9a9c85deec0b574438286766c9a5be1c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -3223,6 +3308,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 34317785}
+    - target: {fileID: 4284254111962402374, guid: 9a9c85deec0b574438286766c9a5be1c, type: 3}
+      propertyPath: m_Name
+      value: Discription
+      objectReference: {fileID: 0}
+    - target: {fileID: 5782213237039753857, guid: 9a9c85deec0b574438286766c9a5be1c, type: 3}
+      propertyPath: m_Name
+      value: Sender
+      objectReference: {fileID: 0}
     - target: {fileID: 7434305482940425107, guid: 9a9c85deec0b574438286766c9a5be1c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3302,6 +3395,10 @@ PrefabInstance:
     - target: {fileID: 7434305482940425107, guid: 9a9c85deec0b574438286766c9a5be1c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8488002245491589253, guid: 9a9c85deec0b574438286766c9a5be1c, type: 3}
+      propertyPath: m_Name
+      value: Time
       objectReference: {fileID: 0}
     - target: {fileID: 8678663374019861796, guid: 9a9c85deec0b574438286766c9a5be1c, type: 3}
       propertyPath: m_Name
