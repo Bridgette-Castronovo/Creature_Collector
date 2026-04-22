@@ -1,10 +1,9 @@
-using UnityEngine;
-
 public class EmailUIManager : MonoBehaviour
 {
     [Header("References")]
     public Transform contentArea;
     public GameObject emailPrefab;
+    public EmailBodyDisplay bodyDisplay; 
 
     void Start()
     {
@@ -20,13 +19,16 @@ public class EmailUIManager : MonoBehaviour
     void SpawnEmail(QuestEmail email)
     {
         GameObject instance = Instantiate(emailPrefab, contentArea);
+
         EmailPrefabUI ui = instance.GetComponent<EmailPrefabUI>();
         if (ui == null)
         {
             Debug.LogWarning("EmailUIManager: spawned prefab has no EmailPrefabUI component.");
             return;
         }
-        ui.Populate(email);
+
+        ui.Populate(email, bodyDisplay); 
+
         instance.transform.SetAsFirstSibling();
     }
 }

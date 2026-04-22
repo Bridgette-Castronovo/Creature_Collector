@@ -632,7 +632,7 @@ GameObject:
   - component: {fileID: 7591984911182943109}
   - component: {fileID: 6393169931992242967}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: NameLetters
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -934,6 +934,7 @@ MonoBehaviour:
   senderText: {fileID: 8964312265912204240}
   subjectText: {fileID: 418570321903130017}
   previewText: {fileID: 2432655551536413584}
+  bodyText: {fileID: 0}
 --- !u!114 &4906214210503609658
 MonoBehaviour:
   m_ObjectHideFlags: 0
