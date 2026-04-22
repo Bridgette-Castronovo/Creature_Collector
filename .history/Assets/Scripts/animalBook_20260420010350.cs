@@ -9,41 +9,39 @@ public class animalBook : MonoBehaviour
     int index = -1;
     bool rotate = false;
     [SerializeField] GameObject backButton;
+    [SerializeField] GameObject forwardButton;
 
     private void Start() {
-        InitialState();
-
-    }
-    public Transform GetPage(int index)
-    {
-        if (index < 0 || index >= pages.Count) return null;
-        return pages[index];
-    }
-    public void InitialState() {
-        index = -1;
-        for (int i=0; i < pages.Count; i++) {
-            pages[i].transform.rotation= Quaternion.identity;
-        }
-        pages[0].SetAsLastSibling();
         backButton.SetActive(false);
+
     }
   
     public void RotateNext() {
-
+        Debug.Log(index);
+        Debug.Log("next");
         if (index >= pages.Count - 1) return;
         if (rotate==true) return;
         index++;
         float angle = 180;
+        ForwardButtonAction();
         pages[index].SetAsLastSibling();
         StartCoroutine(Rotate(angle, true));
-        BackButtonActions();
         
 
     }
 
+    public void ForwardButtonAction() {
+        if (backButton.activeInHierarchy == false) {
+            backButton.SetActive(true);
+        }
+        if (index >= pages.Count - 1) {
+            forwardButton.SetActive(false);
+        }
+    }
 
     public void RotatePrev() {
-
+        Debug.Log(index);
+        Debug.Log("prev");
         if (rotate==true) return;
         if (index <= -1) return;
         float angle = 0;
@@ -53,37 +51,11 @@ public class animalBook : MonoBehaviour
 
     }
     public void BackButtonActions() {
-    backButton.SetActive(index >= 0);
-}
-    public void GoToPage(int targetIndex)
-    {
-        if (rotate) return;
-
-        if (targetIndex < 0 || targetIndex >= pages.Count) return;
-
-        StartCoroutine(FlipToPage(targetIndex));
-    }
-
-    IEnumerator FlipToPage(int targetIndex)
-    {
-        while (index < targetIndex)
-        {
-            int prevIndex = index;
-
-            RotateNext();
-            yield return new WaitUntil(() => rotate == false);
-
-            if (index == prevIndex) yield break; 
+        if(forwardButton.activeInHierarchy == false) {
+            forwardButton.SetActive(true);
         }
-
-        while (index > targetIndex)
-        {
-            int prevIndex = index;
-
-            RotatePrev();
-            yield return new WaitUntil(() => rotate == false);
-
-            if (index == prevIndex) yield break; 
+        if(index -1 == -1) {
+            backButton.SetActive(false);
         }
     }
 
