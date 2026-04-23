@@ -20,7 +20,6 @@ public class animalBook : MonoBehaviour
         return pages[index];
     }
     public void InitialState() {
-        index = -1;
         for (int i=0; i < pages.Count; i++) {
             pages[i].transform.rotation= Quaternion.identity;
         }
@@ -29,21 +28,22 @@ public class animalBook : MonoBehaviour
     }
   
     public void RotateNext() {
-
+        Debug.Log(index);
+        Debug.Log("next");
         if (index >= pages.Count - 1) return;
         if (rotate==true) return;
         index++;
         float angle = 180;
         pages[index].SetAsLastSibling();
         StartCoroutine(Rotate(angle, true));
-        BackButtonActions();
         
 
     }
 
 
     public void RotatePrev() {
-
+        Debug.Log(index);
+        Debug.Log("prev");
         if (rotate==true) return;
         if (index <= -1) return;
         float angle = 0;
@@ -53,7 +53,7 @@ public class animalBook : MonoBehaviour
 
     }
     public void BackButtonActions() {
-    backButton.SetActive(index >= 0);
+    backButton.SetActive(index > -1);
 }
     public void GoToPage(int targetIndex)
     {
