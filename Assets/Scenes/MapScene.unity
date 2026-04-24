@@ -545,6 +545,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f59a26c534a84e641a26d58945f24cea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &673484660
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2807351832686721904, guid: 7a009c46c26966943945b688dd309cac, type: 3}
+      propertyPath: m_Name
+      value: MiniHabitatIcon
+      objectReference: {fileID: 0}
+    - target: {fileID: 2807351832686721904, guid: 7a009c46c26966943945b688dd309cac, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068037692450230556, guid: 7a009c46c26966943945b688dd309cac, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068037692450230556, guid: 7a009c46c26966943945b688dd309cac, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068037692450230556, guid: 7a009c46c26966943945b688dd309cac, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068037692450230556, guid: 7a009c46c26966943945b688dd309cac, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068037692450230556, guid: 7a009c46c26966943945b688dd309cac, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068037692450230556, guid: 7a009c46c26966943945b688dd309cac, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068037692450230556, guid: 7a009c46c26966943945b688dd309cac, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068037692450230556, guid: 7a009c46c26966943945b688dd309cac, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068037692450230556, guid: 7a009c46c26966943945b688dd309cac, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068037692450230556, guid: 7a009c46c26966943945b688dd309cac, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7a009c46c26966943945b688dd309cac, type: 3}
 --- !u!1 &725344162
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,7 +656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f42a75263db4a514bbccdc6f3c53a92e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubePrefab: {fileID: 3893920379588913808, guid: cab5421fb43eb38469e5c7ceb18c5f10, type: 3}
+  cubePrefab: {fileID: 2807351832686721904, guid: 7a009c46c26966943945b688dd309cac, type: 3}
   mainCamera: {fileID: 961739752}
 --- !u!114 &725344165
 MonoBehaviour:
@@ -1607,6 +1668,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 961739753}
   - {fileID: 203844589}
+  - {fileID: 673484660}
   - {fileID: 1624527620}
   - {fileID: 912180816}
   - {fileID: 602094464}
