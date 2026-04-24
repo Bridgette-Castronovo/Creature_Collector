@@ -6,7 +6,6 @@ public class CubePlacer : MonoBehaviour
     public Material invalidMaterial;
     public AudioClip dropSound;
     public AudioClip dragSound;
-    public float yOffset = 0f;
     private Camera cam;
     private bool isDragging = false;
     private Vector2Int currentCell;
@@ -21,6 +20,7 @@ public class CubePlacer : MonoBehaviour
         cam = Camera.main;
         renderers = GetComponentsInChildren<Renderer>();
 
+        // Save each child's original material
         defaultMaterials = new Material[renderers.Length];
         for (int i = 0; i < renderers.Length; i++)
         {
@@ -45,11 +45,6 @@ public class CubePlacer : MonoBehaviour
         {
             renderers[i].material = defaultMaterials[i];
         }
-    }
-
-    Vector3 GetPlacementPosition(Vector2Int cell)
-    {
-        return GridManager.Instance.GridToWorld(cell) + Vector3.up * yOffset;
     }
 
     public void StartDragging()
@@ -99,7 +94,7 @@ public class CubePlacer : MonoBehaviour
             {
                 currentCell = GridManager.Instance.WorldToGrid(hit.point);
                 currentCell = GridManager.Instance.ClampToGrid(currentCell);
-                transform.position = GetPlacementPosition(currentCell);
+                transform.position = GridManager.Instance.GridToWorld(currentCell);
 
                 bool occupied = GridManager.Instance.IsCellOccupied(currentCell);
                 SetMaterial(occupied ? invalidMaterial : validMaterial);
@@ -114,7 +109,7 @@ public class CubePlacer : MonoBehaviour
 
         if (!GridManager.Instance.IsCellOccupied(currentCell))
         {
-            transform.position = GetPlacementPosition(currentCell);
+            transform.position = GridManager.Instance.GridToWorld(currentCell);
             ResetMaterials();
             GridManager.Instance.RegisterCell(currentCell, gameObject);
             previousCell = currentCell;
@@ -123,7 +118,7 @@ public class CubePlacer : MonoBehaviour
         }
         else if (hasBeenPlaced)
         {
-            transform.position = GetPlacementPosition(previousCell);
+            transform.position = GridManager.Instance.GridToWorld(previousCell);
             ResetMaterials();
             GridManager.Instance.RegisterCell(previousCell, gameObject);
             PlayDropSound();
