@@ -8,8 +8,9 @@ public class QuestManager : MonoBehaviour
     public static QuestManager Instance { get; private set; }
 
     public List<QuestEmail> allEmails = new();
-
     public event Action<QuestEmail> OnEmailReceived;
+
+    public bool firstCreatureCollected = false;
 
     void Awake()
     {
@@ -38,5 +39,11 @@ public class QuestManager : MonoBehaviour
             return;
         }
         OnEmailReceived?.Invoke(email);
+    }
+
+    public void CollectFirstCreature()
+    {
+        firstCreatureCollected = true;
+        Debug.Log("First creature collected: " + firstCreatureCollected);
     }
 }
