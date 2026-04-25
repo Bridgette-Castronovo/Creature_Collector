@@ -20,18 +20,19 @@ public class EmailPrefabUI : MonoBehaviour
         subjectText.text = email.subject;
         previewText.text = email.preview;
 
-        GetComponent<Button>().onClick.AddListener(OnClick);
+        Button btn = GetComponent<Button>();
+        btn.onClick.RemoveAllListeners();
+        btn.onClick.AddListener(OnClick);
     }
 
     void OnClick()
     {
-        bodyDisplay.ShowEmail(emailData);
         if (bodyDisplay == null)
         {
-            Debug.LogError("bodyDisplay is NULL");
+            Debug.LogError("bodyDisplay is NULL — check EmailUIManager has Body Display assigned in Inspector");
             return;
         }
-
-        Debug.Log("Email clicked");
+        Debug.Log("Email clicked: " + emailData.subject);
+        bodyDisplay.ShowEmail(emailData);
     }
 }

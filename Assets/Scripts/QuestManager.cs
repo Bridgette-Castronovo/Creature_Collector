@@ -8,8 +8,10 @@ public class QuestManager : MonoBehaviour
     public static QuestManager Instance { get; private set; }
 
     public List<QuestEmail> allEmails = new();
-
     public event Action<QuestEmail> OnEmailReceived;
+
+    public bool firstCreatureCollected = false;
+    public int playerMoney = 0;
 
     void Awake()
     {
@@ -38,5 +40,25 @@ public class QuestManager : MonoBehaviour
             return;
         }
         OnEmailReceived?.Invoke(email);
+    }
+
+    public void ClaimReward(QuestEmail email)
+    {
+        switch (email.rewardType)
+        {
+            case RewardType.FirstCreature:
+                firstCreatureCollected = true;
+                Debug.Log("First creature collected: " + firstCreatureCollected);
+                break;
+
+            case RewardType.Money:
+                playerMoney += email.rewardAmount;
+                Debug.Log("Money received: " + email.rewardAmount + " | Total: " + playerMoney);
+                break;
+
+            case RewardType.None:
+                Debug.Log("No reward for this email.");
+                break;
+        }
     }
 }
