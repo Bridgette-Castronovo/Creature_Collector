@@ -1,37 +1,29 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class ImageClick : MonoBehaviour
 {
-    public animalBook book;
-    public int targetPageIndex;
-    public Creature creature;
+    [Header("Data")]
+    public Creature creatureData;
 
-    public void OnImageClicked()
+    [Header("Popup")]
+    public GameObject popup;
+    public TMP_Text titleElem;
+    public TMP_Text descriptionElem;
+    public Image photoElem;
+
+    public void OpenPopup()
     {
-        if (book == null) return;
+        popup.SetActive(true);
 
-       
-        Transform contentPage = book.GetPage(targetPageIndex + 1);
+        titleElem.text = creatureData.speciesName;
+        descriptionElem.text = creatureData.speciesDesc;
+        photoElem.sprite = creatureData.image;
+    }
 
-        if (contentPage != null)
-        {
-            PageDisplay page = contentPage.GetComponent<PageDisplay>();
-
-            if (page != null)
-            {
-                page.SetData(creature);
-            }
-            else
-            {
-                Debug.LogError("No PageDisplay on content page!");
-            }
-        }
-        else
-        {
-            Debug.LogError("Content page is NULL!");
-        }
-
-        
-        book.GoToPage(targetPageIndex);
+    public void ClosePopup()
+    {
+        popup.SetActive(false);
     }
 }
