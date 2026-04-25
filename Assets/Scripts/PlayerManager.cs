@@ -6,10 +6,20 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager Instance;
 
     private int playerMoney = 20000;
+    private int earnedToday = 0;
+    private int spentToday = 0;
     private int day = 1;
+    private int animalIdCounter = 1;
     public Dictionary<string, int> foodInventory = new Dictionary<string, int>();
     public Dictionary<string, int> medInventory = new Dictionary<string, int>();
-    public Dictionary<int, Creature> creatureInventory = new Dictionary<int, Creature>();
+    
+
+
+    
+
+    public Dictionary<int, Animal> creatureInventory = new Dictionary<int, Animal>();
+    public List<Habitat> habitats = new List<Habitat>();
+
 
     
 
@@ -34,6 +44,12 @@ public class PlayerManager : MonoBehaviour
         medInventory["Cast"] = 1;
         medInventory["Antiparasitic"] = 1;
         medInventory["Antibiotic"] = 1;
+
+        Habitat firstHabitat = CreateHabitat();
+        habitats.Add(firstHabitat);
+
+        Habitat secondHabitat = CreateHabitat();
+        habitats.Add(secondHabitat);
     }
 
     public int getMoney()
@@ -43,11 +59,13 @@ public class PlayerManager : MonoBehaviour
 
     public void addMoney(int amount)
     {
+        earnedToday += amount;
         playerMoney += amount;
     }
 
     public void subtractMoney(int amount)
     {
+        spentToday += amount;
         playerMoney -= amount;
     }
 
@@ -60,6 +78,49 @@ public class PlayerManager : MonoBehaviour
     public int getDay()
     {
         return day;
+    }
+
+
+    Animal GenerateRandAnimal(Creature creature)
+    {
+        Animal newAnimal = new Animal();
+        newAnimal.id = animalIdCounter;
+        animalIdCounter += 1;
+        newAnimal.creature = creature;
+        newAnimal.health = 100;
+        newAnimal.habitatHappiness = 100;
+        newAnimal.hunger = 0;
+
+        creatureInventory[newAnimal.id] = newAnimal;
+        return newAnimal;
+    }
+
+    Animal GenerateSickAnimal(Creature creature, int ill1, int ill2, int ill3)
+    {
+        Animal newAnimal = new Animal();
+        newAnimal.id = animalIdCounter;
+        animalIdCounter += 1;
+        newAnimal.creature = creature;
+        newAnimal.health = 100;
+        newAnimal.habitatHappiness = 100;
+        newAnimal.hunger = 0;
+
+        newAnimal.illnesses = new int[3] { ill1, ill2, ill3 };
+        creatureInventory[newAnimal.id] = newAnimal;
+        return newAnimal;
+    }
+
+    Habitat CreateHabitat()
+    {
+        Habitat newHabitat = new Habitat();
+        newHabitat.animal1 = null;
+        newHabitat.animal2 = null;
+        newHabitat.animal3 = null;
+        newHabitat.animal4 = null;
+        newHabitat.temperature = 50;
+        newHabitat.waterLevel = 50;
+        habitats.Add(newHabitat);
+        return newHabitat;
     }
 
     

@@ -1,16 +1,13 @@
 using UnityEngine;
 
-public class Habitat : MonoBehaviour
+[System.Serializable]
+public class Habitat
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public Animal animal1;
+    public Animal animal2;
+    public Animal animal3;
+    public Animal animal4;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int temperature;
+    public int waterLevel;
 }
