@@ -11,6 +11,7 @@ public class QuestManager : MonoBehaviour
     public event Action<QuestEmail> OnEmailReceived;
 
     public bool firstCreatureCollected = false;
+    public int playerMoney = 0;
 
     void Awake()
     {
@@ -41,9 +42,23 @@ public class QuestManager : MonoBehaviour
         OnEmailReceived?.Invoke(email);
     }
 
-    public void CollectFirstCreature()
+    public void ClaimReward(QuestEmail email)
     {
-        firstCreatureCollected = true;
-        Debug.Log("First creature collected: " + firstCreatureCollected);
+        switch (email.rewardType)
+        {
+            case RewardType.FirstCreature:
+                firstCreatureCollected = true;
+                Debug.Log("First creature collected: " + firstCreatureCollected);
+                break;
+
+            case RewardType.Money:
+                playerMoney += email.rewardAmount;
+                Debug.Log("Money received: " + email.rewardAmount + " | Total: " + playerMoney);
+                break;
+
+            case RewardType.None:
+                Debug.Log("No reward for this email.");
+                break;
+        }
     }
 }
