@@ -49,6 +49,10 @@ public class HabitatManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI currIllnesses;
     [SerializeField] private TextMeshProUGUI currMedText;
 
+    //habitat menu text
+    [SerializeField] private TextMeshProUGUI tempText;
+    [SerializeField] private TextMeshProUGUI waterText;
+
 
     //food type scriptable objects
     [SerializeField] private FoodType fruitData;
@@ -67,7 +71,7 @@ public class HabitatManager : MonoBehaviour
 
     private Dictionary<String, int> foodMixInv = new Dictionary<String, int>();
     private MedType currMed;
-    private int habitatIndex = 0;
+    private int habitatIndex;
     private Habitat currHabitat;
 
     private int currWeight = 0;
@@ -83,6 +87,13 @@ public class HabitatManager : MonoBehaviour
     private Animal habAnimal4;
 
 
+    void Awake()
+    {
+        Creature1Canvas.gameObject.SetActive(false);
+        Creature2Canvas.gameObject.SetActive(false);
+        Creature3Canvas.gameObject.SetActive(false);
+        Creature4Canvas.gameObject.SetActive(false);
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -96,14 +107,24 @@ public class HabitatManager : MonoBehaviour
         currAnimal = null;
         currMed = null;
 
+        habitatIndex = 0;
         currHabitat = PlayerManager.Instance.habitats[habitatIndex];
+        
+        
         updateAnimalSlots();
+
         
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (currAnimal != null)
+        {
+            Debug.Log("Current animal: " + currAnimal.id);
+
+        }
+        
         if (menuState == 0)
         {
             FeedCanvas.gameObject.SetActive(false);
@@ -140,18 +161,18 @@ public class HabitatManager : MonoBehaviour
             HealthCanvas.gameObject.SetActive(false);
             DailyReportCanvas.gameObject.SetActive(false);
 
-            if (currAnimal != null)
-            {
-                currIllnesses.text = String.Join("\n", currAnimal.illnesses);
-            }
-            if (currMed != null)
-            {
-                currMedText.text = currMed.getName();
-            }
+            // if (currAnimal != null)
+            // {
+            //     currIllnesses.text = String.Join("\n", currAnimal.illnesses);
+            // }
+            // if (currMed != null)
+            // {
+            //     currMedText.text = currMed.getName();
+            // }
                 
-            castAmt.text = "x" + PlayerManager.Instance.medInventory["Cast"].ToString();
-            bacAmt.text = "x" + PlayerManager.Instance.medInventory["Antibiotic"].ToString();
-            parAmt.text = "x" + PlayerManager.Instance.medInventory["Antiparasitic"].ToString();
+            // castAmt.text = "x" + PlayerManager.Instance.medInventory["Cast"].ToString();
+            // bacAmt.text = "x" + PlayerManager.Instance.medInventory["Antibiotic"].ToString();
+            // parAmt.text = "x" + PlayerManager.Instance.medInventory["Antiparasitic"].ToString();
             
         }
 
@@ -163,6 +184,9 @@ public class HabitatManager : MonoBehaviour
             SelectCanvas.gameObject.SetActive(false);
             HealthCanvas.gameObject.SetActive(false);
             DailyReportCanvas.gameObject.SetActive(false);
+
+            waterText.text = currHabitat.waterLevel.ToString() + "%";
+            tempText.text = currHabitat.temperature.ToString() + "%";
         }
 
         if (menuState == 4)
@@ -194,65 +218,148 @@ public class HabitatManager : MonoBehaviour
         habAnimal3 = currHabitat.animal3;
         habAnimal4 = currHabitat.animal4;
 
-        Creature1Canvas.gameObject.SetActive(habAnimal1 != null);
-        Creature2Canvas.gameObject.SetActive(habAnimal2 != null);
-        Creature3Canvas.gameObject.SetActive(habAnimal3 != null);
-        Creature4Canvas.gameObject.SetActive(habAnimal4 != null);
+        Creature1Canvas.gameObject.SetActive(habAnimal1 != null && habAnimal1.id != 0);
+        Creature2Canvas.gameObject.SetActive(habAnimal2 != null && habAnimal2.id != 0);
+        Creature3Canvas.gameObject.SetActive(habAnimal3 != null && habAnimal3.id != 0);
+        Creature4Canvas.gameObject.SetActive(habAnimal4 != null && habAnimal4.id != 0);
+
+        Debug.Log("Updated animal slots");
     }
 
 
     public void Select1()
     {
-        if (currHabitat.animal1 != null)
+        if (habAnimal1 != null && habAnimal1.id != 0)
         {
-            currAnimal = currHabitat.animal1;
+            currAnimal = habAnimal1;
         }
         
     }
     public void Select2()
     {
-        if (currHabitat.animal2 != null)
+        if (habAnimal2 != null && habAnimal2.id != 0)
         {
-            currAnimal = currHabitat.animal2;
+            currAnimal = habAnimal2;
         }
     }
     public void Select3()
     {
-        if (currHabitat.animal3 != null)
+        if (habAnimal3 != null && habAnimal3.id != 0)
         {
-            currAnimal = currHabitat.animal3;
+            currAnimal = habAnimal3;
         }
     }
     public void Select4()
     {
-        if (currHabitat.animal4 != null)
+        if (habAnimal4 != null && habAnimal4.id != 0)
         {
-            currAnimal = currHabitat.animal4;
+            currAnimal = habAnimal4;
         }
     }
 
     public void HabitatNext()
     {
-        habitatIndex = (habitatIndex - 1) % PlayerManager.Instance.habitats.Count;
+        habitatIndex = (habitatIndex + 1  + PlayerManager.Instance.habitats.Count) % PlayerManager.Instance.habitats.Count;
         currHabitat = PlayerManager.Instance.habitats[habitatIndex];
         updateAnimalSlots();
+
+        Debug.Log("Current habitat index: " + habitatIndex);
     }
     public void HabitatPrev()
     {
-        habitatIndex = (habitatIndex + 1) % PlayerManager.Instance.habitats.Count;
+        habitatIndex = (habitatIndex - 1  + PlayerManager.Instance.habitats.Count) % PlayerManager.Instance.habitats.Count;
         currHabitat = PlayerManager.Instance.habitats[habitatIndex];
         updateAnimalSlots();
+
+        Debug.Log("Current habitat index: " + habitatIndex);
     }
 
     public void CreateCreatureTest()
     {
         PlayerManager.Instance.GenerateRandAnimal(dragonData);
+        Debug.Log("Creature Created");
     }
 
     public void CreateHabitatTest()
     {
         PlayerManager.Instance.CreateHabitat();
     }
+
+
+    public void AddSlot1()
+    {
+        Debug.Log("Add1 called");
+        Animal toAssign = PlayerManager.Instance.unassignedAnimals.Dequeue();
+        currHabitat.animal1 = toAssign;
+        updateAnimalSlots();
+    }
+
+    public void AddSlot2()
+    {
+        Animal toAssign = PlayerManager.Instance.unassignedAnimals.Dequeue();
+        currHabitat.animal2 = toAssign;
+        updateAnimalSlots();
+    }
+
+    public void AddSlot3()
+    {
+        Animal toAssign = PlayerManager.Instance.unassignedAnimals.Dequeue();
+        currHabitat.animal3 = toAssign;
+        updateAnimalSlots();
+    }
+
+    public void AddSlot4()
+    {
+        Animal toAssign = PlayerManager.Instance.unassignedAnimals.Dequeue();
+        currHabitat.animal4 = toAssign;
+        updateAnimalSlots();
+    }
+
+
+    public void increaseWater()
+    {
+        currHabitat.waterLevel += 5;
+        currHabitat.waterLevel = System.Math.Clamp(currHabitat.waterLevel, 0, 100);
+    }
+    public void decreaseWater()
+    {
+        currHabitat.waterLevel -= 5;
+        currHabitat.waterLevel = System.Math.Clamp(currHabitat.waterLevel, 0, 100);
+    }
+
+    public void increaseTemp()
+    {
+        currHabitat.temperature += 5;
+        currHabitat.temperature = System.Math.Clamp(currHabitat.temperature, 0, 100);
+    }
+    public void decreaseTemp()
+    {
+        currHabitat.temperature -= 5;
+        currHabitat.temperature = System.Math.Clamp(currHabitat.temperature, 0, 100);
+    }
+
+
+    public void CloseMenu()
+    {
+        menuState = 0;
+    }
+
+    public void FeedMenu()
+    {
+        menuState = 1;
+    }
+
+    public void MedMenu()
+    {
+        menuState = 2;
+    }
+
+    public void HabitatMenu()
+    {
+        menuState = 3;
+    }
+
+    
 
 
 }
