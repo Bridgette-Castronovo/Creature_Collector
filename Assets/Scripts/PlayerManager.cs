@@ -99,7 +99,7 @@ public class PlayerManager : MonoBehaviour
         newAnimal.creature = creature;
         newAnimal.health = 100;
         newAnimal.habitatHappiness = 100;
-        newAnimal.hunger = 0;
+        newAnimal.hunger = 100;
 
         creatureInventory[newAnimal.id] = newAnimal;
         unassignedAnimals.Enqueue(newAnimal);
@@ -114,7 +114,7 @@ public class PlayerManager : MonoBehaviour
         newAnimal.creature = creature;
         newAnimal.health = 100;
         newAnimal.habitatHappiness = 100;
-        newAnimal.hunger = 0;
+        newAnimal.hunger = 100;
 
         newAnimal.illnesses = new int[3] { ill1, ill2, ill3 };
         creatureInventory[newAnimal.id] = newAnimal;
@@ -133,6 +133,35 @@ public class PlayerManager : MonoBehaviour
         newHabitat.waterLevel = 50;
         habitats.Add(newHabitat);
         return newHabitat;
+    }
+
+    public void calculateHealth()
+    {
+        foreach (var animal in creatureInventory.Values)
+        {
+            
+        }
+        
+    }
+
+    public void setHunger()
+    {
+        foreach (var animal in creatureInventory.Values)
+        {
+            animal.hunger = 100;
+        }
+    }
+
+    public int getProfits()
+    {
+        int totalProfits = 0;
+        foreach (var val in creatureInventory.Values)
+        {
+            totalProfits += (val.creature.value * (val.health / 100));
+        }
+
+        return totalProfits;
+            
     }
 
     

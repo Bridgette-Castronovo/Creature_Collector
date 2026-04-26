@@ -20,15 +20,11 @@ MonoBehaviour:
     perhaps used in granting luck to others. Wishing and meditating to this dragon
     may bring you luck in the near future. '
   image: {fileID: 21300000, guid: 0dd623e4f9a414d06bd2c4670fd6b37b, type: 3}
-  weightMin: 2000
-  weightMax: 2500
-  hunger: 200
-  fruitMin: 50
-  fruitMax: 75
-  meatMin: 90
-  meatMax: 125
-  grainsMin: 0
-  grainsMax: 0
-  crystalMin: 0
-  crystalMax: 0
+  weightMax: 500
+  fruitIdeal: 3
+  meatIdeal: 2
+  grainsIdeal: 0
+  crystalIdeal: 0
+  waterIdeal: 20
+  tempIdeal: 70
   research: 0
