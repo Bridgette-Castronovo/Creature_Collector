@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Antibiotic
   m_EditorClassIdentifier: 
   itemName: Antibiotic
-  cost: 200
+  cost: 500
   treatmentEffect: 3

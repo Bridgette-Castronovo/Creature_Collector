@@ -79,7 +79,7 @@ public class CareButtons : MonoBehaviour
         foodMixInv["Meat"] = 0;
         foodMixInv["Crystal Dust"] = 0;
 
-        maxFeed = habitatCreature.hunger;
+        // maxFeed = habitatCreature.hunger;
         // maxFeed = 150;
     }
 
@@ -289,34 +289,34 @@ public class CareButtons : MonoBehaviour
             grainAmt.text = PlayerManager.Instance.foodInventory["Grains"].ToString();
             crystalAmt.text = PlayerManager.Instance.foodInventory["Crystal Dust"].ToString();
 
-            if (foodMixInv["Fruit"]*fruitData.getWeight() >= habitatCreature.fruitMin)
-            {
-                fruitFill.color = Color.green;
-            } else
-            {
-                fruitFill.color = Color.red;
-            }
-            if (foodMixInv["Meat"]*meatData.getWeight() >= habitatCreature.meatMin)
-            {
-                meatFill.color = Color.green;
-            } else
-            {
-                meatFill.color = Color.red;
-            }
-            if (foodMixInv["Grains"]*grainData.getWeight() >= habitatCreature.grainsMin)
-            {
-                grainsFill.color = Color.green;
-            } else
-            {
-                grainsFill.color = Color.red;
-            }
-            if (foodMixInv["Crystal Dust"]*crystalData.getWeight() >= habitatCreature.crystalMin)
-            {
-                crystalFill.color = Color.green;
-            } else
-            {
-                crystalFill.color = Color.red;
-            }
+            // if (foodMixInv["Fruit"]*fruitData.getWeight() >= habitatCreature.fruitMin)
+            // {
+            //     fruitFill.color = Color.green;
+            // } else
+            // {
+            //     fruitFill.color = Color.red;
+            // }
+            // if (foodMixInv["Meat"]*meatData.getWeight() >= habitatCreature.meatMin)
+            // {
+            //     meatFill.color = Color.green;
+            // } else
+            // {
+            //     meatFill.color = Color.red;
+            // }
+            // if (foodMixInv["Grains"]*grainData.getWeight() >= habitatCreature.grainsMin)
+            // {
+            //     grainsFill.color = Color.green;
+            // } else
+            // {
+            //     grainsFill.color = Color.red;
+            // }
+            // if (foodMixInv["Crystal Dust"]*crystalData.getWeight() >= habitatCreature.crystalMin)
+            // {
+            //     crystalFill.color = Color.green;
+            // } else
+            // {
+            //     crystalFill.color = Color.red;
+            // }
 
 
             foodMixCanvas.gameObject.SetActive(true);

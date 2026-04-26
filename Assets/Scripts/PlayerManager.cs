@@ -99,7 +99,7 @@ public class PlayerManager : MonoBehaviour
         newAnimal.creature = creature;
         newAnimal.health = 100;
         newAnimal.habitatHappiness = 100;
-        newAnimal.hunger = 0;
+        newAnimal.hunger = 100;
 
         creatureInventory[newAnimal.id] = newAnimal;
         unassignedAnimals.Enqueue(newAnimal);

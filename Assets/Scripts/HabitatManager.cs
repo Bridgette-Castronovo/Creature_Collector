@@ -39,6 +39,12 @@ public class HabitatManager : MonoBehaviour
     //mix weight
     [SerializeField] private TextMeshProUGUI weightText;
 
+    //food fill bars
+    [SerializeField] private Image fruitFill;
+    [SerializeField] private Image meatFill;
+    [SerializeField] private Image grainsFill;
+    [SerializeField] private Image crystalFill;
+
 
     //med inventory text
     [SerializeField] private TextMeshProUGUI castAmt;
@@ -75,6 +81,8 @@ public class HabitatManager : MonoBehaviour
     private Habitat currHabitat;
 
     private int currWeight = 0;
+    private int maxWeight = 1;
+    private int numAnimals = 0;
 
     private int menuState = 0;
 
@@ -85,6 +93,10 @@ public class HabitatManager : MonoBehaviour
     private Animal habAnimal2;
     private Animal habAnimal3;
     private Animal habAnimal4;
+
+    private bool research = false;
+
+    
 
 
     void Awake()
@@ -109,9 +121,17 @@ public class HabitatManager : MonoBehaviour
 
         habitatIndex = 0;
         currHabitat = PlayerManager.Instance.habitats[habitatIndex];
+
+        fruitFill.fillAmount = 0;
+        meatFill.fillAmount = 0;
+        grainsFill.fillAmount = 0;
+        crystalFill.fillAmount = 0;
         
         
         updateAnimalSlots();
+
+
+        
 
         
     }
@@ -148,6 +168,8 @@ public class HabitatManager : MonoBehaviour
             meatAmt.text = "x" + PlayerManager.Instance.foodInventory["Meat"].ToString();
             grainAmt.text = "x" + PlayerManager.Instance.foodInventory["Grains"].ToString();
             crystalAmt.text = "x" + PlayerManager.Instance.foodInventory["Crystal Dust"].ToString();
+
+            
 
             weightText.text = currWeight.ToString() + " lbs";
         }
@@ -211,6 +233,162 @@ public class HabitatManager : MonoBehaviour
         
     }
 
+    public void FruitAddOnClick()
+    {
+        if (PlayerManager.Instance.foodInventory["Fruit"] >= 1 && (currWeight + fruitData.getWeight() <= maxWeight))
+        {
+            PlayerManager.Instance.foodInventory["Fruit"] -= 1;
+
+            foodMixInv["Fruit"] += 1;
+
+            currWeight += fruitData.getWeight();
+            updateFoodFill();
+            
+        } 
+    }
+
+    public void FruitRemoveOnClick()
+    {
+        if (foodMixInv["Fruit"] >= 1)
+        {
+            PlayerManager.Instance.foodInventory["Fruit"] += 1;
+
+            foodMixInv["Fruit"] -= 1;
+
+            currWeight -= fruitData.getWeight();
+            updateFoodFill();
+            
+        } 
+    }
+
+    public void MeatAddOnClick()
+    {
+        if (PlayerManager.Instance.foodInventory["Meat"] >= 1 && (currWeight + meatData.getWeight() <= maxWeight))
+        {
+            PlayerManager.Instance.foodInventory["Meat"] -= 1;
+
+            foodMixInv["Meat"] += 1;
+
+            currWeight += meatData.getWeight();
+            updateFoodFill();
+            
+        } 
+    }
+
+    public void MeatRemoveOnClick()
+    {
+        if (foodMixInv["Meat"] >= 1)
+        {
+            PlayerManager.Instance.foodInventory["Meat"] += 1;
+
+            foodMixInv["Meat"] -= 1;
+
+            currWeight -= meatData.getWeight();
+            updateFoodFill();
+            
+        } 
+    }
+
+    public void GrainAddOnClick()
+    {
+        if (PlayerManager.Instance.foodInventory["Grains"] >= 1 && (currWeight + grainData.getWeight() <= maxWeight))
+        {
+            PlayerManager.Instance.foodInventory["Grains"] -= 1;
+
+            foodMixInv["Grains"] += 1;
+
+            currWeight += grainData.getWeight();
+            updateFoodFill();
+            
+        } 
+    }
+
+    public void GrainRemoveOnClick()
+    {
+        if (foodMixInv["Grains"] >= 1)
+        {
+            PlayerManager.Instance.foodInventory["Grains"] += 1;
+
+            foodMixInv["Grains"] -= 1;
+
+            currWeight -= grainData.getWeight();
+            updateFoodFill();
+            
+        } 
+    }
+
+    public void CrystalAddOnClick()
+    {
+        if (PlayerManager.Instance.foodInventory["Crystal Dust"] >= 1 && (currWeight + crystalData.getWeight() <= maxWeight))
+        {
+            PlayerManager.Instance.foodInventory["Crystal Dust"] -= 1;
+
+            foodMixInv["Crystal Dust"] += 1;
+
+            currWeight += crystalData.getWeight();
+            updateFoodFill();
+            
+        } 
+    }
+
+    public void CrystalRemoveOnClick()
+    {
+        if (foodMixInv["Crystal Dust"] >= 1)
+        {
+            PlayerManager.Instance.foodInventory["Crystal Dust"] += 1;
+
+            foodMixInv["Crystal Dust"] -= 1;
+
+            currWeight -= crystalData.getWeight();
+            updateFoodFill();
+            
+        } 
+    }
+
+    private void updateFoodFill()
+    {
+        fruitFill.fillAmount = (float)(foodMixInv["Fruit"] * fruitData.getWeight()) / (float)currWeight;
+        meatFill.fillAmount = (float)(foodMixInv["Meat"] * meatData.getWeight()) / (float)currWeight;
+        grainsFill.fillAmount = (float)(foodMixInv["Grains"] * grainData.getWeight()) / (float)currWeight;
+        crystalFill.fillAmount = (float)(foodMixInv["Crystal Dust"] * crystalData.getWeight()) / (float)currWeight;
+
+        ColorUtility.TryParseHtmlString("#411683", out Color myPurple);
+        ColorUtility.TryParseHtmlString("#7F9B85", out Color myGreen);
+        ColorUtility.TryParseHtmlString("#A65555", out Color myRed);
+
+        if (research == false)
+        {
+            fruitFill.color = myPurple;
+            meatFill.color = myPurple;
+            grainsFill.color = myPurple;
+            crystalFill.color = myPurple;
+        }
+        if (research == true)
+        {
+            fruitFill.color = myRed;
+            meatFill.color = myRed;
+            grainsFill.color = myRed;
+            crystalFill.color = myRed;
+            if (foodMixInv["Fruit"] / numAnimals >= dragonData.fruitIdeal)
+            {
+                fruitFill.color = myGreen;
+            }
+            if (foodMixInv["Meat"] / numAnimals >= dragonData.meatIdeal)
+            {
+                meatFill.color = myGreen;
+            }
+            if (foodMixInv["Grains"] / numAnimals >= dragonData.grainsIdeal)
+            {
+                grainsFill.color = myGreen;
+            }
+            if (foodMixInv["Crystal Dust"] / numAnimals >= dragonData.crystalIdeal)
+            {
+                crystalFill.color = myGreen;
+            }
+        }
+
+    }
+
     private void updateAnimalSlots()
     {
         habAnimal1 = currHabitat.animal1;
@@ -223,7 +401,33 @@ public class HabitatManager : MonoBehaviour
         Creature3Canvas.gameObject.SetActive(habAnimal3 != null && habAnimal3.id != 0);
         Creature4Canvas.gameObject.SetActive(habAnimal4 != null && habAnimal4.id != 0);
 
-        Debug.Log("Updated animal slots");
+        maxWeight = 0;
+        numAnimals = 0;
+        if (habAnimal1 != null && habAnimal1.id != 0)
+        {
+            Debug.Log(habAnimal1.creature.weightMax);
+            Debug.Log(habAnimal1.hunger);
+            maxWeight += (habAnimal1.creature.weightMax * (habAnimal1.hunger / 100));
+            Debug.Log(maxWeight);
+            numAnimals += 1;
+        }
+        if (habAnimal2 != null && habAnimal2.id != 0)
+        {
+            maxWeight += (habAnimal2.creature.weightMax * (habAnimal2.hunger / 100));
+            numAnimals += 1;
+        }
+        if (habAnimal3 != null && habAnimal3.id != 0)
+        {
+            maxWeight += (habAnimal3.creature.weightMax * (habAnimal3.hunger / 100));
+            numAnimals += 1;
+        }
+        if (habAnimal4 != null && habAnimal4.id != 0)
+        {
+            maxWeight += (habAnimal4.creature.weightMax * (habAnimal4.hunger / 100));
+            numAnimals += 1;
+        }
+
+        Debug.Log("Max Weight: " + maxWeight);
     }
 
 
@@ -346,6 +550,7 @@ public class HabitatManager : MonoBehaviour
 
     public void FeedMenu()
     {
+        updateFoodFill();
         menuState = 1;
     }
 
@@ -357,6 +562,18 @@ public class HabitatManager : MonoBehaviour
     public void HabitatMenu()
     {
         menuState = 3;
+    }
+
+    public void HealthMenu()
+    {
+        menuState = 4;
+    }
+
+    public void ResearchOn()
+    {
+        Debug.Log("Research on");
+        updateFoodFill();
+        research = true;
     }
 
     
