@@ -56,6 +56,14 @@ public class HabitatManager : MonoBehaviour
     [SerializeField] private FoodType meatData;
     [SerializeField] private FoodType crystalData;
 
+    //med type scriptable objects
+    [SerializeField] private MedType castData;
+    [SerializeField] private MedType antiparasiticData;
+    [SerializeField] private MedType antibioticData;
+
+    //creature type scriptable objects
+    [SerializeField] private Creature dragonData;
+
 
     private Dictionary<String, int> foodMixInv = new Dictionary<String, int>();
     private MedType currMed;
@@ -234,6 +242,16 @@ public class HabitatManager : MonoBehaviour
         habitatIndex = (habitatIndex + 1) % PlayerManager.Instance.habitats.Count;
         currHabitat = PlayerManager.Instance.habitats[habitatIndex];
         updateAnimalSlots();
+    }
+
+    public void CreateCreatureTest()
+    {
+        PlayerManager.Instance.GenerateRandAnimal(dragonData);
+    }
+
+    public void CreateHabitatTest()
+    {
+        PlayerManager.Instance.CreateHabitat();
     }
 
 

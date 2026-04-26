@@ -81,7 +81,7 @@ public class PlayerManager : MonoBehaviour
     }
 
 
-    Animal GenerateRandAnimal(Creature creature)
+    public Animal GenerateRandAnimal(Creature creature)
     {
         Animal newAnimal = new Animal();
         newAnimal.id = animalIdCounter;
@@ -95,7 +95,7 @@ public class PlayerManager : MonoBehaviour
         return newAnimal;
     }
 
-    Animal GenerateSickAnimal(Creature creature, int ill1, int ill2, int ill3)
+    public Animal GenerateSickAnimal(Creature creature, int ill1, int ill2, int ill3)
     {
         Animal newAnimal = new Animal();
         newAnimal.id = animalIdCounter;
@@ -110,7 +110,7 @@ public class PlayerManager : MonoBehaviour
         return newAnimal;
     }
 
-    Habitat CreateHabitat()
+    public Habitat CreateHabitat()
     {
         Habitat newHabitat = new Habitat();
         newHabitat.animal1 = null;
