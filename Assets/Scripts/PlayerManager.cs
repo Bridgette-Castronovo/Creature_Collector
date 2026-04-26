@@ -18,6 +18,7 @@ public class PlayerManager : MonoBehaviour
     
 
     public Dictionary<int, Animal> creatureInventory = new Dictionary<int, Animal>();
+    public Queue<Animal> unassignedAnimals = new Queue<Animal>();
     public List<Habitat> habitats = new List<Habitat>();
 
 
@@ -36,6 +37,20 @@ public class PlayerManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
 
+        if (habitats.Count == 0)
+        {
+            InitializePlayerData();
+        }
+
+    }
+
+    private void InitializePlayerData()
+    {
+        // Create initial habitats and animals for the player
+        Habitat habitat1 = CreateHabitat();
+        habitat1.animal1 = null;
+        Habitat habitat2 = CreateHabitat();
+
         foodInventory["Fruit"] = 5;
         foodInventory["Grains"] = 5;
         foodInventory["Meat"] = 5;
@@ -44,12 +59,6 @@ public class PlayerManager : MonoBehaviour
         medInventory["Cast"] = 1;
         medInventory["Antiparasitic"] = 1;
         medInventory["Antibiotic"] = 1;
-
-        Habitat firstHabitat = CreateHabitat();
-        habitats.Add(firstHabitat);
-
-        Habitat secondHabitat = CreateHabitat();
-        habitats.Add(secondHabitat);
     }
 
     public int getMoney()
@@ -81,8 +90,9 @@ public class PlayerManager : MonoBehaviour
     }
 
 
-    Animal GenerateRandAnimal(Creature creature)
+    public Animal GenerateRandAnimal(Creature creature)
     {
+        Debug.Log("New Animal Generated");
         Animal newAnimal = new Animal();
         newAnimal.id = animalIdCounter;
         animalIdCounter += 1;
@@ -92,10 +102,11 @@ public class PlayerManager : MonoBehaviour
         newAnimal.hunger = 0;
 
         creatureInventory[newAnimal.id] = newAnimal;
+        unassignedAnimals.Enqueue(newAnimal);
         return newAnimal;
     }
 
-    Animal GenerateSickAnimal(Creature creature, int ill1, int ill2, int ill3)
+    public Animal GenerateSickAnimal(Creature creature, int ill1, int ill2, int ill3)
     {
         Animal newAnimal = new Animal();
         newAnimal.id = animalIdCounter;
@@ -107,10 +118,11 @@ public class PlayerManager : MonoBehaviour
 
         newAnimal.illnesses = new int[3] { ill1, ill2, ill3 };
         creatureInventory[newAnimal.id] = newAnimal;
+        unassignedAnimals.Enqueue(newAnimal);
         return newAnimal;
     }
 
-    Habitat CreateHabitat()
+    public Habitat CreateHabitat()
     {
         Habitat newHabitat = new Habitat();
         newHabitat.animal1 = null;

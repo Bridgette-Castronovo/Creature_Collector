@@ -11,16 +11,9 @@ public class CareButtons : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dayText;
     [SerializeField] private TextMeshProUGUI animalNeeds;
     [SerializeField] private Button FeedButton;
-    // [SerializeField] private Button WaterButton;
-    // [SerializeField] private Button EntertainmentButton;
 
     [SerializeField] public Canvas foodInvCanvas;
     
-    // //add from inventory
-    // [SerializeField] private Button FruitButton;
-    // [SerializeField] private Button MeatButton;
-    // [SerializeField] private Button GrainsButton;
-    // [SerializeField] private Button CrystalButton;
     [SerializeField] public Canvas canvas;
 
     //food inventory text
@@ -36,15 +29,6 @@ public class CareButtons : MonoBehaviour
     [SerializeField] private TextMeshProUGUI meatMixAmt;
     [SerializeField] private TextMeshProUGUI grainMixAmt;
     [SerializeField] private TextMeshProUGUI crystalMixAmt;
-
-    // //remove from mix
-    // [SerializeField] private Button FruitMixButton;
-    // [SerializeField] private Button MeatMixButton;
-    // [SerializeField] private Button GrainsMixButton;
-    // [SerializeField] private Button CrystalMixButton;
-
-    // //feed to animals
-    // [SerializeField] private Button FeedMixButton;
 
     //food type scriptable objects
     [SerializeField] private FoodType fruitData;
@@ -139,15 +123,6 @@ public class CareButtons : MonoBehaviour
 
             currFeed += fruitData.getWeight();
 
-            // hunger += 30;
-            // currFeed += fruitData.getWeight();
-
-            // if (currFeed >= maxFeed)
-            // {
-            //     fed = true;
-            // }
-
-            // inMenu = 0;
         }
         
     }
@@ -163,15 +138,6 @@ public class CareButtons : MonoBehaviour
             meatMixAmt.text = foodMixInv["Meat"].ToString();
 
             currFeed += meatData.getWeight();
-            // hunger += 5;
-            // currFeed += meatData.getWeight();
-
-            // if (currFeed >= maxFeed)
-            // {
-            //     fed = true;
-            // }
-
-            // inMenu = 0;
         }
         
     }
@@ -187,16 +153,6 @@ public class CareButtons : MonoBehaviour
             grainMixAmt.text = foodMixInv["Grains"].ToString();
 
             currFeed += grainData.getWeight();
-
-            // hunger += 5;
-            // currFeed += grainData.getWeight();
-
-            // if (currFeed >= maxFeed)
-            // {
-            //     fed = true;
-            // }
-
-            // inMenu = 0;
         }
         
     }
@@ -212,16 +168,6 @@ public class CareButtons : MonoBehaviour
             crystalMixAmt.text = foodMixInv["Crystal Dust"].ToString();
 
             currFeed += crystalData.getWeight();
-
-            // hunger += 50;
-            // currFeed += crystalData.getWeight();
-
-            // if (currFeed >= maxFeed)
-            // {
-            //     fed = true;
-            // }
-            
-            // inMenu = 0;
         }
         
     }
