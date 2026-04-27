@@ -1666,7 +1666,7 @@ GameObject:
   - component: {fileID: 1590948045}
   - component: {fileID: 1590948044}
   m_Layer: 5
-  m_Name: card1Dragon
+  m_Name: card1Unkown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1688,8 +1688,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 249.518, y: 139.58}
-  m_SizeDelta: {x: 299.939, y: 411.839}
+  m_AnchoredPosition: {x: 286.9999, y: 193.99998}
+  m_SizeDelta: {x: 1175.358, y: 658.051}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1590948044
 MonoBehaviour:
@@ -1711,7 +1711,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: aa40e979c4c00470abda05f0ad409e9e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 65bcc68b2d0be40118ef9bb0bb78c12f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1788,8 +1788,8 @@ MonoBehaviour:
   - {fileID: 1945144401}
   backButton: {fileID: 92577549}
   firstDragonPage: {fileID: 2020311792}
-  unknownImage: {fileID: 1859514157}
-  dragonImage: {fileID: 1590948042}
+  unknownImage: {fileID: 1590948042}
+  dragonImage: {fileID: 1859514157}
   unknownSprite: {fileID: 21300000, guid: 65bcc68b2d0be40118ef9bb0bb78c12f, type: 3}
   dragonSprite: {fileID: 21300000, guid: aa40e979c4c00470abda05f0ad409e9e, type: 3}
 --- !u!1 &1785240313
@@ -1843,7 +1843,7 @@ GameObject:
   - component: {fileID: 1859514161}
   - component: {fileID: 1859514162}
   m_Layer: 5
-  m_Name: card1Unkown
+  m_Name: card1Dragon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1865,8 +1865,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 337, y: 244}
-  m_SizeDelta: {x: 4009.254, y: 2332.1}
+  m_AnchoredPosition: {x: 313.06274, y: 209.77005}
+  m_SizeDelta: {x: 1164.142, y: 1678.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1859514159
 MonoBehaviour:
@@ -1888,7 +1888,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 65bcc68b2d0be40118ef9bb0bb78c12f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aa40e979c4c00470abda05f0ad409e9e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
