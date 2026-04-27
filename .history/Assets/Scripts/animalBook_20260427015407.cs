@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
 
 public class animalBook : MonoBehaviour
 {
@@ -11,25 +10,24 @@ public class animalBook : MonoBehaviour
     bool rotate = false;
     [SerializeField] GameObject backButton;
     [SerializeField] Transform firstDragonPage;
-    [SerializeField] GameObject unknownImage;
-    [SerializeField] GameObject dragonImage;
-    [SerializeField] Sprite unknownSprite;
-    [SerializeField] Sprite dragonSprite;
 
     private void Start() {
-    InitialState();
-    if (firstDragonPage == null)
-    {
-        Debug.LogError("First Dragon Page is NOT assigned!");
-        return;
-    }
+        InitialState();
 
-    bool unlocked = QuestManager.Instance != null && QuestManager.Instance.firstCreatureCollected;
+        if (firstDragonPage == null)
+        {
+            Debug.LogError("First Dragon Page is NOT assigned!");
+            return;
+        }
 
-    unknownImage.SetActive(!unlocked);
-    dragonImage.SetActive(unlocked);
-    
-    firstDragonPage.gameObject.SetActive(unlocked);
+        if (QuestManager.Instance != null && QuestManager.Instance.firstCreatureCollected)
+        {
+            firstDragonPage.gameObject.SetActive(true);
+        }
+        else
+        {
+            firstDragonPage.gameObject.SetActive(false);
+        }
     }
     public Transform GetPage(int index)
     {
