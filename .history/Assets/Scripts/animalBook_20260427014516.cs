@@ -9,19 +9,19 @@ public class animalBook : MonoBehaviour
     int index = -1;
     bool rotate = false;
     [SerializeField] GameObject backButton;
-    // [SerializeField] Transform firstDragonPage;
+    [SerializeField] Transform firstDragonPage;
 
     private void Start() {
     InitialState();
 
-    // if (QuestManager.Instance.firstCreatureCollected)
-    // {
-    //     firstDragonPage.gameObject.SetActive(true);
-    // }
-    // else
-    // {
-    //     firstDragonPage.gameObject.SetActive(false);
-    // }
+    if (QuestManager.Instance.firstCreatureCollected)
+    {
+        firstDragonPage.gameObject.SetActive(true);
+    }
+    else
+    {
+        firstDragonPage.gameObject.SetActive(false);
+    }
 }
     public Transform GetPage(int index)
     {

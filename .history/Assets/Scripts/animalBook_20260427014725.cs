@@ -14,14 +14,14 @@ public class animalBook : MonoBehaviour
     private void Start() {
     InitialState();
 
-    // if (QuestManager.Instance.firstCreatureCollected)
-    // {
-    //     firstDragonPage.gameObject.SetActive(true);
-    // }
-    // else
-    // {
-    //     firstDragonPage.gameObject.SetActive(false);
-    // }
+    if (QuestManager.Instance.firstCreatureCollected)
+    {
+        firstDragonPage.gameObject.SetActive(true);
+    }
+    else
+    {
+        firstDragonPage.gameObject.SetActive(false);
+    }
 }
     public Transform GetPage(int index)
     {
