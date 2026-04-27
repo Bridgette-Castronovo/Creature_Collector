@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c736f8b812cb59646ad0458f5f9cef07
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - officeBGM: {fileID: 8300000, guid: 001f4feff48e2ec4dabf10f13b850ab1, type: 3}
+  - outsideBGM: {fileID: 8300000, guid: 9cb022c0be871b444b946cf34ee2796b, type: 3}
+  - currMusic: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
