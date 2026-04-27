@@ -345,6 +345,30 @@ public class HabitatManager : MonoBehaviour
         } 
     }
 
+    public void FeedAnimals()
+    {
+        if (PlayerManager.Instance.quest3Triggered == false)
+        {
+            PlayerManager.Instance.quest3Triggered = true;
+        }
+    }
+
+    public void CureAnimal()
+    {
+        if (PlayerManager.Instance.quest4Triggered == false)
+        {
+            PlayerManager.Instance.quest4Triggered = true;
+        }
+    }
+
+    public void NextDay()
+    {
+        if (PlayerManager.Instance.quest6Triggered == false)
+        {
+            PlayerManager.Instance.quest6Triggered = true;
+        }
+    }
+
     private void updateFoodFill()
     {
         fruitFill.fillAmount = (float)(foodMixInv["Fruit"] * fruitData.getWeight()) / (float)currWeight;
@@ -496,6 +520,11 @@ public class HabitatManager : MonoBehaviour
         Animal toAssign = PlayerManager.Instance.unassignedAnimals.Dequeue();
         currHabitat.animal1 = toAssign;
         updateAnimalSlots();
+
+        if (PlayerManager.Instance.quest2Triggered == false)
+        {
+            PlayerManager.Instance.quest2Triggered = true;
+        }
     }
 
     public void AddSlot2()
@@ -503,6 +532,11 @@ public class HabitatManager : MonoBehaviour
         Animal toAssign = PlayerManager.Instance.unassignedAnimals.Dequeue();
         currHabitat.animal2 = toAssign;
         updateAnimalSlots();
+
+        if (PlayerManager.Instance.quest2Triggered == false)
+        {
+            PlayerManager.Instance.quest2Triggered = true;
+        }
     }
 
     public void AddSlot3()
@@ -510,6 +544,11 @@ public class HabitatManager : MonoBehaviour
         Animal toAssign = PlayerManager.Instance.unassignedAnimals.Dequeue();
         currHabitat.animal3 = toAssign;
         updateAnimalSlots();
+
+        if (PlayerManager.Instance.quest2Triggered == false)
+        {
+            PlayerManager.Instance.quest2Triggered = true;
+        }
     }
 
     public void AddSlot4()
@@ -517,6 +556,11 @@ public class HabitatManager : MonoBehaviour
         Animal toAssign = PlayerManager.Instance.unassignedAnimals.Dequeue();
         currHabitat.animal4 = toAssign;
         updateAnimalSlots();
+
+        if (PlayerManager.Instance.quest2Triggered == false)
+        {
+            PlayerManager.Instance.quest2Triggered = true;
+        }
     }
 
 

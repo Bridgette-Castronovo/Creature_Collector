@@ -170,6 +170,11 @@ public class StoreScript : MonoBehaviour
                     PlayerManager.Instance.CreateHabitat();
                     purchaseAmount -= 1;
                 }
+
+                if (PlayerManager.Instance.quest5Triggered == false)
+                {
+                    PlayerManager.Instance.quest5Triggered = true;
+                }
                 
             }
             
