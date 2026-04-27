@@ -429,7 +429,7 @@ MonoBehaviour:
     rewardType: 0
     rewardAmount: 20000
   - id: tutorial_complete
-    sender: System Manager
+    sender: System
     subject: All-Systems Access
     preview: Thank you for completing...
     body: "Thank you for completing your employee training. As the park systems are
@@ -1085,7 +1085,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 385674108}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99858534
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1766,7 +1766,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000088786, y: 0.00006873738}
+  m_AnchoredPosition: {x: -0.000088786, y: 0.00004160874}
   m_SizeDelta: {x: -1.4374, y: 900.35}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &911662263
