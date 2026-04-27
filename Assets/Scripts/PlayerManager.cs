@@ -1,13 +1,15 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
+using UnityEditor;
 
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance;
 
     private int playerMoney = 20000;
-    private int earnedToday = 0;
-    private int spentToday = 0;
+    public int earnedToday = 0;
+    public int spentToday = 0;
     private int day = 1;
     private int animalIdCounter = 1;
     public Dictionary<string, int> foodInventory = new Dictionary<string, int>();
@@ -63,7 +65,7 @@ public class PlayerManager : MonoBehaviour
 
         foodInventory["Fruit"] = 5;
         foodInventory["Grains"] = 5;
-        foodInventory["Meat"] = 5;
+        foodInventory["Meat"] = 10;
         foodInventory["Crystal Dust"] = 0;
 
         medInventory["Cast"] = 1;
@@ -91,7 +93,6 @@ public class PlayerManager : MonoBehaviour
     public void progressDay()
     {
         day += 1;
-        playerMoney += 1000;
     }
 
     public int getDay()
@@ -109,7 +110,8 @@ public class PlayerManager : MonoBehaviour
         newAnimal.creature = creature;
         newAnimal.health = 100;
         newAnimal.habitatHappiness = 100;
-        newAnimal.hunger = 100;
+        newAnimal.hunger = 100.0f;
+        newAnimal.illnesses = new int[3] { 0, 0, 0 };
 
         creatureInventory[newAnimal.id] = newAnimal;
         unassignedAnimals.Enqueue(newAnimal);
@@ -124,7 +126,7 @@ public class PlayerManager : MonoBehaviour
         newAnimal.creature = creature;
         newAnimal.health = 100;
         newAnimal.habitatHappiness = 100;
-        newAnimal.hunger = 100;
+        newAnimal.hunger = 100.0f;
 
         newAnimal.illnesses = new int[3] { ill1, ill2, ill3 };
         creatureInventory[newAnimal.id] = newAnimal;
@@ -145,10 +147,81 @@ public class PlayerManager : MonoBehaviour
         return newHabitat;
     }
 
+    public void calculateHabitatHappiness()
+    {
+        foreach (var animal in creatureInventory.Values)
+        {
+            if (animal.waterCurr < animal.creature.waterIdeal-10 || animal.waterCurr > animal.creature.waterIdeal+10)
+            {
+                animal.habitatHappiness -= 10;
+            }
+            else
+            {
+                animal.habitatHappiness += 5;
+            }
+
+            if (animal.tempCurr < animal.creature.tempIdeal-10 || animal.tempCurr > animal.creature.tempIdeal+10)
+            {
+                animal.habitatHappiness -= 10;
+            }
+            else
+            {
+                animal.habitatHappiness += 5;
+            }
+        }
+        
+    }
+
     public void calculateHealth()
     {
         foreach (var animal in creatureInventory.Values)
         {
+            if (animal.hunger < 50)
+            {
+                animal.health -= 30;
+            }
+            if (animal.hunger > 80)
+            {
+                animal.health += 5;
+            }
+            if (animal.habitatHappiness < 50)
+            {
+                animal.health -= 10;
+            }
+            if (animal.habitatHappiness > 80)
+            {
+                animal.health += 5;
+            }
+            if (animal.illnesses[0] == 1)
+            {
+                animal.health -= 10;
+            }
+            if (animal.illnesses[1] == 1)
+            {
+                animal.health -= 10;
+            }
+            if (animal.illnesses[2] == 1)
+            {
+                animal.health -= 20;
+            }
+            if (animal.dayFruit < animal.creature.fruitIdeal)
+            {
+                animal.health -= 10;
+            }
+            if (animal.dayMeat < animal.creature.meatIdeal)
+            {
+                animal.health -= 10;
+            }
+            if (animal.dayGrains < animal.creature.grainsIdeal)
+            {
+                animal.health -= 10;
+            }
+            if (animal.dayCrystal < animal.creature.crystalIdeal)
+            {
+                animal.health -= 10;
+            }
+
+            animal.health = Math.Clamp(animal.health, 0, 100);
             
         }
         
@@ -167,11 +240,46 @@ public class PlayerManager : MonoBehaviour
         int totalProfits = 0;
         foreach (var val in creatureInventory.Values)
         {
-            totalProfits += (val.creature.value * (val.health / 100));
+            totalProfits += Mathf.RoundToInt(val.creature.value * (val.health / 100f));
+            Debug.Log("Total Profits: " + totalProfits);
         }
 
         return totalProfits;
             
+    }
+
+    public string getIllnesses(Animal animal)
+    {
+        string illnessString = "";
+        if (animal.illnesses[0] == 1)
+        {
+            illnessString += "Broken Bone\n";
+        }
+        if (animal.illnesses[1] == 1)
+        {
+            illnessString += "Parasites\n";
+        }
+        if (animal.illnesses[2] == 1)
+        {
+            illnessString += "Disease";
+        }
+
+        if (illnessString == "")
+        {
+            illnessString = "None";
+        }
+
+        return illnessString;
+    }
+
+    public void advanceDay()
+    {
+        earnedToday = 0;
+        spentToday = 0;
+        calculateHabitatHappiness();
+        calculateHealth();
+        setHunger();
+        progressDay();
     }
 
     

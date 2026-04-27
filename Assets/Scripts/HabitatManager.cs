@@ -75,13 +75,26 @@ public class HabitatManager : MonoBehaviour
     [SerializeField] private Creature dragonData;
 
 
+    //health menu text
+    [SerializeField] private TextMeshProUGUI hungerText;
+    [SerializeField] private TextMeshProUGUI habitatText;
+    [SerializeField] private TextMeshProUGUI illnessText;
+    [SerializeField] private TextMeshProUGUI healthText;
+    [SerializeField] private TextMeshProUGUI creatureID;
+
+    //header and next day text
+    [SerializeField] private TextMeshProUGUI animalCount;
+    [SerializeField] private TextMeshProUGUI earnedText;
+    [SerializeField] private TextMeshProUGUI spentText;
+
+
     private Dictionary<String, int> foodMixInv = new Dictionary<String, int>();
     private MedType currMed;
     private int habitatIndex;
     private Habitat currHabitat;
 
     private int currWeight = 0;
-    private int maxWeight = 1;
+    private float maxWeight = 1;
     private int numAnimals = 0;
 
     private int menuState = 0;
@@ -139,11 +152,13 @@ public class HabitatManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currAnimal != null)
-        {
-            Debug.Log("Current animal: " + currAnimal.id);
+        // if (currAnimal != null)
+        // {
+        //     Debug.Log("Current animal: " + currAnimal.id);
 
-        }
+        // }
+
+        animalCount.text = PlayerManager.Instance.creatureInventory.Count.ToString() + "/" + PlayerManager.Instance.habitats.Count * 4;
         
         if (menuState == 0)
         {
@@ -219,6 +234,22 @@ public class HabitatManager : MonoBehaviour
             SelectCanvas.gameObject.SetActive(true);
             HealthCanvas.gameObject.SetActive(true);
             DailyReportCanvas.gameObject.SetActive(false);
+
+            if (currAnimal != null)
+            {
+                hungerText.text = currAnimal.hunger.ToString() + "%";
+                habitatText.text = currAnimal.habitatHappiness.ToString() + "%";
+                illnessText.text = PlayerManager.Instance.getIllnesses(currAnimal);
+                healthText.text = currAnimal.health.ToString() + "%";
+                creatureID.text = "ID: " + currAnimal.id.ToString();
+            } else
+            {
+                hungerText.text = "---";
+                habitatText.text = "---";
+                illnessText.text = "---";
+                healthText.text = "---";
+                creatureID.text = "No Creature Selected";
+            }
         }
 
         if (menuState == 5)
@@ -347,10 +378,89 @@ public class HabitatManager : MonoBehaviour
 
     public void FeedAnimals()
     {
+        int eating = countAnimals();
+        if (habAnimal1 != null && habAnimal1.id != 0)
+        {
+            habAnimal1.hunger -= (((float)currWeight / eating) / maxWeight) * 100f;
+            habAnimal1.hunger = System.Math.Clamp(habAnimal1.hunger, 0f, 100f);
+            habAnimal1.dayFruit += foodMixInv["Fruit"];
+            habAnimal1.dayMeat += foodMixInv["Meat"];
+            habAnimal1.dayGrains += foodMixInv["Grains"];
+            habAnimal1.dayCrystal += foodMixInv["Crystal Dust"];
+            Debug.Log("Weight " + currWeight);
+            Debug.Log("Per creature " + currWeight / eating);
+            Debug.Log("Reduced by " + maxWeight / (currWeight / eating));
+        }
+        if (habAnimal2 != null && habAnimal2.id != 0)
+        {
+            habAnimal2.hunger -= (((float)currWeight / eating) / maxWeight) * 100f;
+            habAnimal2.hunger = System.Math.Clamp(habAnimal2.hunger, 0f, 100f);
+            habAnimal2.dayFruit += foodMixInv["Fruit"];
+            habAnimal2.dayMeat += foodMixInv["Meat"];
+            habAnimal2.dayGrains += foodMixInv["Grains"];
+            habAnimal2.dayCrystal += foodMixInv["Crystal Dust"];
+        }
+        if (habAnimal3 != null && habAnimal3.id != 0)
+        {
+            habAnimal3.hunger -= (((float)currWeight / eating) / maxWeight) * 100f;
+            habAnimal3.hunger = System.Math.Clamp(habAnimal3.hunger, 0f, 100f);
+            habAnimal3.dayFruit += foodMixInv["Fruit"];
+            habAnimal3.dayMeat += foodMixInv["Meat"];
+            habAnimal3.dayGrains += foodMixInv["Grains"];
+            habAnimal3.dayCrystal += foodMixInv["Crystal Dust"];
+        }
+        if (habAnimal4 != null && habAnimal4.id != 0)
+        {
+            habAnimal4.hunger -= (((float)currWeight / eating) / maxWeight) * 100f;
+            habAnimal4.hunger = System.Math.Clamp(habAnimal4.hunger, 0f, 100f);
+            habAnimal4.dayFruit += foodMixInv["Fruit"];
+            habAnimal4.dayMeat += foodMixInv["Meat"];
+            habAnimal4.dayGrains += foodMixInv["Grains"];
+            habAnimal4.dayCrystal += foodMixInv["Crystal Dust"];
+        }
+
+        Debug.Log(habAnimal1.dayFruit);
+
+        if (eating > 0)
+        {
+            foodMixInv["Fruit"] = 0;
+            foodMixInv["Meat"] = 0;
+            foodMixInv["Grains"] = 0;
+            foodMixInv["Crystal Dust"] = 0;
+            maxWeight -= currWeight;
+            currWeight = 0;
+            updateFoodFill();
+            menuState = 0;
+        }
+
+
         if (PlayerManager.Instance.quest3Triggered == false)
         {
             PlayerManager.Instance.quest3Triggered = true;
         }
+    }
+
+    private int countAnimals()
+    {
+        int count = 0;
+        if (habAnimal1 != null && habAnimal1.id != 0)
+        {
+            count += 1;
+        }
+        if (habAnimal2 != null && habAnimal2.id != 0)
+        {
+            count += 1;
+        }
+        if (habAnimal3 != null && habAnimal3.id != 0)
+        {
+            count += 1;
+        }
+        if (habAnimal4 != null && habAnimal4.id != 0)
+        {
+            count += 1;
+        }
+
+        return count;
     }
 
     public void CureAnimal()
@@ -363,6 +473,16 @@ public class HabitatManager : MonoBehaviour
 
     public void NextDay()
     {
+        menuState = 5;
+        int profits = PlayerManager.Instance.getProfits();
+        PlayerManager.Instance.addMoney(profits);
+        earnedText.text = PlayerManager.Instance.earnedToday.ToString();
+        spentText.text = PlayerManager.Instance.spentToday.ToString();
+
+        PlayerManager.Instance.advanceDay();
+        updateAnimalSlots();
+
+
         if (PlayerManager.Instance.quest6Triggered == false)
         {
             PlayerManager.Instance.quest6Triggered = true;
@@ -415,6 +535,11 @@ public class HabitatManager : MonoBehaviour
 
     private void updateAnimalSlots()
     {
+        // habAnimal1 = PlayerManager.Instance.creatureInventory[currHabitat.animal1.id];
+        // habAnimal2 = PlayerManager.Instance.creatureInventory[currHabitat.animal2.id];
+        // habAnimal3 = PlayerManager.Instance.creatureInventory[currHabitat.animal3.id];
+        // habAnimal4 = PlayerManager.Instance.creatureInventory[currHabitat.animal4.id];
+
         habAnimal1 = currHabitat.animal1;
         habAnimal2 = currHabitat.animal2;
         habAnimal3 = currHabitat.animal3;
@@ -487,6 +612,7 @@ public class HabitatManager : MonoBehaviour
 
     public void HabitatNext()
     {
+        menuState = 0;
         habitatIndex = (habitatIndex + 1  + PlayerManager.Instance.habitats.Count) % PlayerManager.Instance.habitats.Count;
         currHabitat = PlayerManager.Instance.habitats[habitatIndex];
         updateAnimalSlots();
@@ -495,6 +621,7 @@ public class HabitatManager : MonoBehaviour
     }
     public void HabitatPrev()
     {
+        menuState = 0;
         habitatIndex = (habitatIndex - 1  + PlayerManager.Instance.habitats.Count) % PlayerManager.Instance.habitats.Count;
         currHabitat = PlayerManager.Instance.habitats[habitatIndex];
         updateAnimalSlots();
@@ -568,22 +695,51 @@ public class HabitatManager : MonoBehaviour
     {
         currHabitat.waterLevel += 5;
         currHabitat.waterLevel = System.Math.Clamp(currHabitat.waterLevel, 0, 100);
+        updateHabitatConditions();
     }
     public void decreaseWater()
     {
         currHabitat.waterLevel -= 5;
         currHabitat.waterLevel = System.Math.Clamp(currHabitat.waterLevel, 0, 100);
+        updateHabitatConditions();
     }
 
     public void increaseTemp()
     {
         currHabitat.temperature += 5;
         currHabitat.temperature = System.Math.Clamp(currHabitat.temperature, 0, 100);
+        updateHabitatConditions();
     }
     public void decreaseTemp()
     {
         currHabitat.temperature -= 5;
         currHabitat.temperature = System.Math.Clamp(currHabitat.temperature, 0, 100);
+        updateHabitatConditions();
+    }
+
+    private void updateHabitatConditions()
+    {
+        if (habAnimal1 != null && habAnimal1.id != 0)
+        {
+            habAnimal1.waterCurr = currHabitat.waterLevel;
+            habAnimal1.tempCurr = currHabitat.temperature;
+        }
+        if (habAnimal2 != null && habAnimal2.id != 0)
+        {
+            habAnimal2.waterCurr = currHabitat.waterLevel;
+            habAnimal2.tempCurr = currHabitat.temperature;
+        }
+        if (habAnimal3 != null && habAnimal3.id != 0)
+        {
+            habAnimal3.waterCurr = currHabitat.waterLevel;
+            habAnimal3.tempCurr = currHabitat.temperature;
+        }
+        if (habAnimal4 != null && habAnimal4.id != 0)
+        {
+            habAnimal4.waterCurr = currHabitat.waterLevel;
+            habAnimal4.tempCurr = currHabitat.temperature;
+        }
+
     }
 
 

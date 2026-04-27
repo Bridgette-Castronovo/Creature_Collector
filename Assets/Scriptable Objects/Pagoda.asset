@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Pagoda
   m_EditorClassIdentifier: 
   itemName: Pagoda Habitat
-  cost: 500
+  cost: 20000
