@@ -334,24 +334,24 @@ MonoBehaviour:
     sender: Boss Carl
     subject: Welcome, New Manager!
     preview: Well hello there, intern!
-    body: "Well hello there, intern! Welcome to your first day at the park. We\u2019re
-      happy to have some fresh meat after last year\u2019s escaped goblin incident.
-      Ah, but that\u2019s nothing for you to worry about! By now we\u2019ve managed
-      to wrangle all our escapees back to their rightful places. Probably.\n\r\nAnyways,
-      as you may know, taking magical creatures from the wild is generally illegal,
-      except in cases of rescue and rehabilitation. Of course there are channels
-      to get around that\u2026 but we\u2019ll wait to have that discussion until
-      I\u2019m sure you can keep your mouth shut. In any case, that means that the
-      creatures we take in most likely have injuries and diseases you\u2019ll have
-      to treat.\n\r\nOur first addition to the park is a young Ryufuku, rescued by
-      some fishing boats after a storm. We\u2019ve already constructed your first
-      habitat, which can house up to four creatures. Your first step is to release
-      the dragon from its shipping container into the habitat.\n\r\nYou\u2019ll be
-      able to oversee the habitats through the Live Feed, and once you\u2019ve navigated
-      to the habitat you want your creature to be placed in, you can click on the
-      plus symbol to slot the creature in. Unassigned creatures will be added to
-      your habitats in the order you pick them up.\n\nYou can see information about
-      each species in the Animal Book.\r\n\r\n\nBoss Carl"
+    body: "Sender: Boss Carl\n\nWell hello there, intern! Welcome to your first day
+      at the park. We\u2019re happy to have some fresh meat after last year\u2019s
+      escaped goblin incident. Ah, but that\u2019s nothing for you to worry about!
+      By now we\u2019ve managed to wrangle all our escapees back to their rightful
+      places. Probably.\n\r\nAnyways, as you may know, taking magical creatures from
+      the wild is generally illegal, except in cases of rescue and rehabilitation.
+      Of course there are channels to get around that\u2026 but we\u2019ll wait to
+      have that discussion until I\u2019m sure you can keep your mouth shut. In any
+      case, that means that the creatures we take in most likely have injuries and
+      diseases you\u2019ll have to treat.\n\r\nOur first addition to the park is
+      a young Ryufuku, rescued by some fishing boats after a storm. We\u2019ve already
+      constructed your first habitat, which can house up to four creatures. Your
+      first step is to release the dragon from its shipping container into the habitat.\n\r\nYou\u2019ll
+      be able to oversee the habitats through the Live Feed, and once you\u2019ve
+      navigated to the habitat you want your creature to be placed in, you can click
+      on the plus symbol to slot the creature in. Unassigned creatures will be added
+      to your habitats in the order you pick them up.\n\nYou can see information
+      about each species in the Animal Book.\r\n\r\n\nBoss Carl"
     attachmentSprite: {fileID: 21300000, guid: 4cb69f0166a922943a657b574315c0c8, type: 3}
     rewardType: 1
     rewardAmount: 0
@@ -404,13 +404,13 @@ MonoBehaviour:
     sender: Boss Carl
     subject: Healthy Homes
     preview: The habitats themselves will...
-    body: "The habitats themselves will also have an effect on your creatures\u2019
-      health. You can set the parameters by going to the Habitat tab and adjusting
-      the temperature and water level.\n\r\nAs you expand and get more creature types,
-      you\u2019ll want to have multiple habitats so that different species can be
-      kept at different habitat settings. Take this money and go to the store to
-      buy a second habitat.\n\nYou can move your habitats and decorate your park
-      through the Park Map.\r\n\r\n\nBoss Carl"
+    body: "Sender: Boss Carl\n\nThe habitats themselves will also have an effect
+      on your creatures\u2019 health. You can set the parameters by going to the
+      Habitat tab and adjusting the temperature and water level.\n\r\nAs you expand
+      and get more creature types, you\u2019ll want to have multiple habitats so
+      that different species can be kept at different habitat settings. Take this
+      money and go to the store to buy a second habitat.\n\nYou can move your habitats
+      and decorate your park through the Park Map.\r\n\r\n\nBoss Carl"
     attachmentSprite: {fileID: 21300000, guid: 209b35e62bca48d49862a1ffc0d5a166, type: 3}
     rewardType: 2
     rewardAmount: 20000
@@ -568,7 +568,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -264, y: -889}
+  m_AnchoredPosition: {x: -112, y: -976}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &102672611
@@ -1085,7 +1085,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 385674108}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.98625284
+  m_Size: 0.99858534
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1766,7 +1766,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000088786, y: 0.0001716521}
+  m_AnchoredPosition: {x: -0.000088786, y: 0.00006873738}
   m_SizeDelta: {x: -1.4374, y: 900.35}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &911662263
@@ -1887,7 +1887,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -2075,7 +2075,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1340295229
 RectTransform:
   m_ObjectHideFlags: 0
