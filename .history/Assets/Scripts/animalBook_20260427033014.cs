@@ -18,6 +18,7 @@ public class animalBook : MonoBehaviour
 
     private void Start() {
     InitialState();
+    QuestManager.Instance.firstCreatureCollected = true;
     if (firstDragonPage == null)
     {
         Debug.LogError("First Dragon Page is NOT assigned!");

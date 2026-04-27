@@ -11,13 +11,13 @@ public class animalBook : MonoBehaviour
     bool rotate = false;
     [SerializeField] GameObject backButton;
     [SerializeField] Transform firstDragonPage;
-    [SerializeField] GameObject unknownImage;
-    [SerializeField] GameObject dragonImage;
+    [SerializeField] Image firstDragonCardImage;
     [SerializeField] Sprite unknownSprite;
     [SerializeField] Sprite dragonSprite;
 
     private void Start() {
     InitialState();
+    QuestManager.Instance.firstCreatureCollected = true;
     if (firstDragonPage == null)
     {
         Debug.LogError("First Dragon Page is NOT assigned!");
@@ -26,11 +26,14 @@ public class animalBook : MonoBehaviour
 
     bool unlocked = QuestManager.Instance != null && QuestManager.Instance.firstCreatureCollected;
 
-    unknownImage.SetActive(!unlocked);
-    dragonImage.SetActive(unlocked);
     
     firstDragonPage.gameObject.SetActive(unlocked);
+
+    if (firstDragonCardImage != null)
+    {
+        firstDragonCardImage.sprite = unlocked ? dragonSprite : unknownSprite;
     }
+}
     public Transform GetPage(int index)
     {
         if (index < 0 || index >= pages.Count) return null;
