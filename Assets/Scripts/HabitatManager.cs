@@ -84,6 +84,7 @@ public class HabitatManager : MonoBehaviour
 
     //header and next day text
     [SerializeField] private TextMeshProUGUI animalCount;
+    [SerializeField] private TextMeshProUGUI moneyText;
     [SerializeField] private TextMeshProUGUI earnedText;
     [SerializeField] private TextMeshProUGUI spentText;
 
@@ -159,6 +160,7 @@ public class HabitatManager : MonoBehaviour
         // }
 
         animalCount.text = PlayerManager.Instance.creatureInventory.Count.ToString() + "/" + PlayerManager.Instance.habitats.Count * 4;
+        moneyText.text = PlayerManager.Instance.getMoney().ToString();
         
         if (menuState == 0)
         {
@@ -481,6 +483,8 @@ public class HabitatManager : MonoBehaviour
 
         PlayerManager.Instance.advanceDay();
         updateAnimalSlots();
+
+        
 
 
         if (PlayerManager.Instance.quest6Triggered == false)

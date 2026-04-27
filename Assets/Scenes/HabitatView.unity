@@ -5978,6 +5978,7 @@ MonoBehaviour:
   healthText: {fileID: 1502073016}
   creatureID: {fileID: 302262909}
   animalCount: {fileID: 832191458}
+  moneyText: {fileID: 668298312}
   earnedText: {fileID: 839665101}
   spentText: {fileID: 1393711226}
 --- !u!4 &1075344458
