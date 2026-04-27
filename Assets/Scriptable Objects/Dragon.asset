@@ -19,7 +19,8 @@ MonoBehaviour:
     the jewel is used as a mystical object that the dragon likes to play with or
     perhaps used in granting luck to others. Wishing and meditating to this dragon
     may bring you luck in the near future. '
-  image: {fileID: 21300000, guid: 0dd623e4f9a414d06bd2c4670fd6b37b, type: 3}
+  image: {fileID: 21300000, guid: 4dfbce751568ed94f87063e1c9f66c1a, type: 3}
+  value: 1000
   weightMax: 500
   fruitIdeal: 3
   meatIdeal: 2

@@ -22,6 +22,16 @@ public class PlayerManager : MonoBehaviour
     public List<Habitat> habitats = new List<Habitat>();
 
 
+
+    //quest variables
+    public bool quest2Triggered = false;
+    public bool quest3Triggered = false;
+    public bool quest4Triggered = false;
+    public bool quest5Triggered = false;
+    public bool quest6Triggered = false;
+
+
+
     
 
 
