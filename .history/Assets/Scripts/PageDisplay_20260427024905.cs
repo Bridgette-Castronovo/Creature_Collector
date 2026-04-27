@@ -12,16 +12,13 @@ public class PageDisplay : MonoBehaviour
     public void SetData(Creature data)
     {
         if (data == null) return;
-
         Debug.Log("Setting page: " + data.speciesName);
-
         infoText.text =
-            "Name: " + data.speciesName + "\n" +
-            "Weight: " + data.weightMax + "\n" +
-            "Value: " + data.value + "\n" +
-            "Water: " + data.waterIdeal + "\n" +
-            "Temp: " + data.tempIdeal;
-
+            "Name: " + c.speciesName + "\n" +
+            "Weight: " + c.weightMax + "\n" +
+            "Value: " + c.value + "\n" +
+            "Water: " + c.waterIdeal + "\n" +
+            "Temp: " + c.tempIdeal;
         descriptionText.text = data.speciesDesc;
         image.sprite = data.image;
     }

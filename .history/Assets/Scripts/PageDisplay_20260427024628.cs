@@ -4,24 +4,19 @@ using TMPro;
 
 public class PageDisplay : MonoBehaviour
 {
-    public TMP_Text infoText;
+    public TMP_Text titleText;
     public TMP_Text descriptionText;
     public Image image;
-   
+    public TMP_Text weightText;
+    public TMP_Text valueText;
+    public TMP_Text waterText;
+    public TMP_Text tempText;
 
     public void SetData(Creature data)
     {
         if (data == null) return;
-
         Debug.Log("Setting page: " + data.speciesName);
-
-        infoText.text =
-            "Name: " + data.speciesName + "\n" +
-            "Weight: " + data.weightMax + "\n" +
-            "Value: " + data.value + "\n" +
-            "Water: " + data.waterIdeal + "\n" +
-            "Temp: " + data.tempIdeal;
-
+        titleText.text = data.speciesName;
         descriptionText.text = data.speciesDesc;
         image.sprite = data.image;
     }
