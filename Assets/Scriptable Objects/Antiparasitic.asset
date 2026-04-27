@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Antiparasitic
   m_EditorClassIdentifier: 
   itemName: Antiparasitic
-  cost: 200
+  cost: 500
   treatmentEffect: 2

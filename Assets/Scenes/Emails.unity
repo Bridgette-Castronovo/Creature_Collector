@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 34317785}
   - component: {fileID: 34317786}
   - component: {fileID: 34317787}
+  - component: {fileID: 34317788}
   m_Layer: 5
   m_Name: Scipt Holder
   m_TagString: Untagged
@@ -330,60 +331,118 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allEmails:
   - id: corporate_start
-    sender: 'Your Boss  '
+    sender: Boss Carl
     subject: Welcome, New Manager!
-    preview: First of all, I'd like to...
-    body: "Well hello there, intern! Welcome to your first day at [park name]. We\u2019re
+    preview: Well hello there, intern!
+    body: "Well hello there, intern! Welcome to your first day at the park. We\u2019re
       happy to have some fresh meat after last year\u2019s escaped goblin incident.
       Ah, but that\u2019s nothing for you to worry about! By now we\u2019ve managed
-      to wrangle all our escapees back to their rightful places. Probably.\r\nAnyways,
+      to wrangle all our escapees back to their rightful places. Probably.\n\r\nAnyways,
       as you may know, taking magical creatures from the wild is generally illegal,
       except in cases of rescue and rehabilitation. Of course there are channels
       to get around that\u2026 but we\u2019ll wait to have that discussion until
       I\u2019m sure you can keep your mouth shut. In any case, that means that the
       creatures we take in most likely have injuries and diseases you\u2019ll have
-      to treat.\r\nOur first addition to the park is a young Ryufuku, rescued by
-      some fishing boats after a storm. This one has already been mostly treated,
-      so you\u2019ll only have to worry about the day-to-day care. We\u2019ve already
-      constructed your first habitat, which can house up to four creatures. Your
-      first step is to release the dragon from its shipping container into the habitat.\r\nYou\u2019ll
-      be able to oversee the habitats through the security cameras, and once you\u2019ve
-      navigated to the habitat you want your creature to be placed in, you can click
-      on it to slot the creature in.\r\n\r\n[Creature attached to email. Player clicks
-      to add to inventory]\r\n\n\nWe look forward to hearing back from you about
-      your success!\n\n\nYour Boss"
+      to treat.\n\r\nOur first addition to the park is a young Ryufuku, rescued by
+      some fishing boats after a storm. We\u2019ve already constructed your first
+      habitat, which can house up to four creatures. Your first step is to release
+      the dragon from its shipping container into the habitat.\n\r\nYou\u2019ll be
+      able to oversee the habitats through the Live Feed, and once you\u2019ve navigated
+      to the habitat you want your creature to be placed in, you can click on the
+      plus symbol to slot the creature in. Unassigned creatures will be added to
+      your habitats in the order you pick them up.\n\nYou can see information about
+      each species in the Animal Book.\r\n\r\n\nBoss Carl"
     attachmentSprite: {fileID: 21300000, guid: 4cb69f0166a922943a657b574315c0c8, type: 3}
     rewardType: 1
     rewardAmount: 0
   - id: conservation_m1
-    sender: 'Your Boss  '
+    sender: Boss Carl
     subject: Feeding the Fishes
-    preview: First of all, I'd like to...
+    preview: I see your first creature has...
     body: "I see your first creature has been released into their habitat. Well done!
       Now that they\u2019re on display, the customers will start arriving at the
       park to see what we have to offer. The greater the quantity and rarity of the
       creatures we have on display, the more money we earn in admission fees at the
       end of the day. Admission fees alone won\u2019t make us rich, but they\u2019re
-      enough to offset some of the costs in caring for the creatures.\r\nYour major
+      enough to offset some of the costs in caring for the creatures.\n\r\nYour major
       care costs will be food and healing items. You can find those at the store,
-      along with additional habitats once you\u2019re ready to expand.\r\nAs for
+      along with additional habitats once you\u2019re ready to expand.\n\r\nAs for
       the sort of food you should get\u2026 how should I know? Each creature has
-      a certain weight of food they want to eat per day. Too much and they\u2019ll
-      become overweight, too little and they\u2019ll get malnourished. They also
-      have a certain amount of each food type that they need to eat per day. Anything
-      over that will only add weight.\r\nYou\u2019ll mix the food once per day, and
-      feed mixes are shared across creatures in the habitat. The correct food ratios
-      are consistent across members of a species, but you\u2019ll have to experiment
+      a certain weight of food they want to eat per day in order to restore their
+      hunger, and they can\u2019t be fed more than that. They also have a certain
+      amount of each food type they need to eat. Feeding your creatures the wrong
+      food mix will result in their health being reduced, and which will lower the
+      amount of profit you can earn by having that creature in your park.\n\r\nFeed
+      mixes are shared across creatures in the habitat. The correct food ratios are
+      consistent across members of a species, but you\u2019ll have to experiment
       to find out what they are. Or you might see if you can get in touch with the
       Research Lab. They\u2019ll be able to find out how you should feed your creatures\u2026
       for a price, of course.\r\nWhy don\u2019t you go ahead and feed your Ryufuku
-      now? I\u2019ll give you some spending money to help you out.\r\n\r\n[Player
-      gets $15000]\r\n"
+      now? I\u2019ll give you some spending money to help you out.\r\n\n\nBoss Carl"
     attachmentSprite: {fileID: 21300000, guid: 209b35e62bca48d49862a1ffc0d5a166, type: 3}
     rewardType: 2
-    rewardAmount: 1500
+    rewardAmount: 15000
+  - id: conservation_m2
+    sender: Boss Carl
+    subject: Miracle Cures
+    preview: "Now that your creature\u2019s been fed..."
+    body: "Now that your creature\u2019s been fed, it\u2019s time to cure its illnesses.
+      Remember, the amount of profit you earn from a creature per day depends on
+      how healthy it is, and going to the next day with an illness will decrease
+      your creature\u2019s health.\n\r\nThis Ryufuku came in with a broken wing because
+      of the storm. Broken Bones can be cured with Casts. Additionally, Antiparasitics
+      will cure your creature of Parasites, and Antibiotics will cure them of Disease.\n\r\nAll
+      cures will take effect instantly. Don\u2019t ask me how it works.\r\nGo back
+      to your Live Feed, navigate to the Medical tab, select the creature you want
+      to cure and the cure you want to use, and then confirm to treat the animal.\n\r\nYou
+      can view a creature\u2019s health by clicking on the creature icon and selecting
+      the creature you want to view.\r\n\n\n\nBoss Carl"
+    attachmentSprite: {fileID: 21300000, guid: 2035f0f1656d44e45bd1a0df07bcd68e, type: 3}
+    rewardType: 0
+    rewardAmount: 15000
+  - id: conservation_m3
+    sender: Boss Carl
+    subject: Healthy Homes
+    preview: The habitats themselves will...
+    body: "The habitats themselves will also have an effect on your creatures\u2019
+      health. You can set the parameters by going to the Habitat tab and adjusting
+      the temperature and water level.\n\r\nAs you expand and get more creature types,
+      you\u2019ll want to have multiple habitats so that different species can be
+      kept at different habitat settings. Take this money and go to the store to
+      buy a second habitat.\n\nYou can move your habitats and decorate your park
+      through the Park Map.\r\n\r\n\nBoss Carl"
+    attachmentSprite: {fileID: 21300000, guid: 209b35e62bca48d49862a1ffc0d5a166, type: 3}
+    rewardType: 2
+    rewardAmount: 20000
+  - id: conservation_m4
+    sender: Boss Carl
+    subject: Clocking Out
+    preview: Not so bad for your first day, eh?
+    body: "Not so bad for your first day, eh? I think we\u2019ve done about as much
+      as we can do for today, so I\u2019ll let you head home early.\n\r\nTo move
+      to the next day, all you have to do is click the skip button next to the clock.
+      You\u2019ll be able to see an expense report of all your profits and losses
+      for the day.\n\r\nJust make sure that all your creatures have been taken care
+      of, or you\u2019ll be in for a not-so-happy surprise the next day!\r\n\r\n\nBoss
+      Carl"
+    attachmentSprite: {fileID: 21300000, guid: 2035f0f1656d44e45bd1a0df07bcd68e, type: 3}
+    rewardType: 0
+    rewardAmount: 20000
+  - id: tutorial_complete
+    sender: System Manager
+    subject: All-Systems Access
+    preview: Thank you for completing...
+    body: "Thank you for completing your employee training. As the park systems are
+      still under construction, we\u2019ve provided you with access to additional
+      tools to allow exploration.\n\r\nIn the Live Feed, you can now add unlimited
+      creatures and habitats, along with turning on research mode to see the correct
+      food and habitat settings.\r"
+    attachmentSprite: {fileID: 21300000, guid: 2035f0f1656d44e45bd1a0df07bcd68e, type: 3}
+    rewardType: 0
+    rewardAmount: 20000
   firstCreatureCollected: 0
   playerMoney: 0
+  dragonData: {fileID: 11400000, guid: 9337e74559c22bf409cc1f28c36bcffa, type: 2}
 --- !u!114 &34317787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,6 +458,18 @@ MonoBehaviour:
   contentArea: {fileID: 911662262}
   emailPrefab: {fileID: 8678663374019861796, guid: 9a9c85deec0b574438286766c9a5be1c, type: 3}
   bodyDisplay: {fileID: 2056892848}
+--- !u!114 &34317788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34317779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f81297b73fdcbd34a974c9066baf48fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &52838326
 GameObject:
   m_ObjectHideFlags: 0
@@ -878,7 +949,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 385674108}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.04790361
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1481,7 +1552,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000088786, y: 51.626553}
+  m_AnchoredPosition: {x: -0.000088786, y: 0.00019180503}
   m_SizeDelta: {x: -1.4374, y: 900.35}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &911662263

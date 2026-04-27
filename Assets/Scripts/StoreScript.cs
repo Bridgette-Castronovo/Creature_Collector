@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System;
 using TMPro;
 using NUnit.Framework.Constraints;
+using Unity.VisualScripting;
 
 public class StoreScript : MonoBehaviour
 {
@@ -52,6 +53,16 @@ public class StoreScript : MonoBehaviour
     [SerializeField] private MedType antiparasiticData;
     [SerializeField] private MedType antibioticData;
 
+    //habitat scriptable object
+    [SerializeField] private HabitatSlot habitatData;
+
+    [Header("Purchase Images")]
+    [SerializeField] private Image fruitImage;
+    [SerializeField] private Image grainImage;
+    [SerializeField] private Image meatImage;
+    [SerializeField] private Image crystalImage;
+    [SerializeField] private Image habitatImage;
+
 
     private bool purchaseOpen = false;
     private int storeType = 0;
@@ -60,6 +71,7 @@ public class StoreScript : MonoBehaviour
     private int purchaseCat = 0;
     private int totalCost = 0;
     private Buyable purchaseType = null;
+    private Image purchaseImage;
 
 
 
@@ -68,6 +80,7 @@ public class StoreScript : MonoBehaviour
     {
         overlayCanvas.gameObject.SetActive(false);
         purchaseCanvas.gameObject.SetActive(false);
+        purchaseImage = fruitImage;
     }
 
     // Update is called once per frame
@@ -117,10 +130,12 @@ public class StoreScript : MonoBehaviour
 
             totalCost = purchaseType.getCost() * purchaseAmount;
             itemCost.text = totalCost.ToString();
+            purchaseImage.gameObject.SetActive(true);
         } else
         {
             overlayCanvas.gameObject.SetActive(false);
             purchaseCanvas.gameObject.SetActive(false); 
+            purchaseImage.gameObject.SetActive(false);
         }
 
     }
@@ -147,11 +162,28 @@ public class StoreScript : MonoBehaviour
             if (purchaseCat == 1) {
                 PlayerManager.Instance.medInventory[purchaseType.getName()] += purchaseAmount;
             }
+
+            if (purchaseType == habitatData)
+            {
+                while (purchaseAmount > 0)
+                {
+                    PlayerManager.Instance.CreateHabitat();
+                    purchaseAmount -= 1;
+                }
+
+                if (PlayerManager.Instance.quest5Triggered == false)
+                {
+                    PlayerManager.Instance.quest5Triggered = true;
+                }
+                
+            }
             
 
             purchaseOpen = false;
             purchaseAmount = 0;
             purchaseType = null;
+
+            Debug.Log(PlayerManager.Instance.habitats.Count);
         }
         
     }
@@ -171,6 +203,7 @@ public class StoreScript : MonoBehaviour
         purchaseOpen = true;
         purchaseType = fruitData;
         purchaseCat = 0;
+        purchaseImage = fruitImage;
     }
 
     public void purchaseMeat()
@@ -178,6 +211,7 @@ public class StoreScript : MonoBehaviour
         purchaseOpen = true;
         purchaseType = meatData;
         purchaseCat = 0;
+        purchaseImage = meatImage;
     }
 
     public void purchaseGrains()
@@ -185,6 +219,7 @@ public class StoreScript : MonoBehaviour
         purchaseOpen = true;
         purchaseType = grainData;
         purchaseCat = 0;
+        purchaseImage = grainImage;
     }
 
     public void purchaseCrystal()
@@ -192,6 +227,7 @@ public class StoreScript : MonoBehaviour
         purchaseOpen = true;
         purchaseType = crystalData;
         purchaseCat = 0;
+        purchaseImage = crystalImage;
     }
 
     public void purchaseCast()
@@ -199,6 +235,7 @@ public class StoreScript : MonoBehaviour
         purchaseOpen = true;
         purchaseType = castData;
         purchaseCat = 1;
+        purchaseImage = crystalImage;
     }
 
     public void purchaseAntiparasitic()
@@ -206,6 +243,7 @@ public class StoreScript : MonoBehaviour
         purchaseOpen = true;
         purchaseType = antiparasiticData;
         purchaseCat = 1;
+        purchaseImage = crystalImage;
     }
 
     public void purchaseAntibiotic()
@@ -213,6 +251,15 @@ public class StoreScript : MonoBehaviour
         purchaseOpen = true;
         purchaseType = antibioticData;
         purchaseCat = 1;
+        purchaseImage = crystalImage;
+    }
+
+    public void purchaseHabitatUpgrade()
+    {
+        purchaseOpen = true;
+        purchaseType = habitatData;
+        purchaseCat = 2;
+        purchaseImage = habitatImage;
     }
 
     public void foodTab()

@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Grains
   cost: 100
-  weight: 20
+  weight: 10

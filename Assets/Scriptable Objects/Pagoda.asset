@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0f24479b6045cc41b12a4ba68003bce, type: 3}
-  m_Name: Antibiotic
+  m_Script: {fileID: 11500000, guid: 4d8be1304c8bb8442920c7d2d54fd801, type: 3}
+  m_Name: Pagoda
   m_EditorClassIdentifier: 
-  itemName: Antibiotic
+  itemName: Pagoda Habitat
   cost: 500
-  treatmentEffect: 3

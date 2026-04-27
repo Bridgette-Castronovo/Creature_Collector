@@ -11,8 +11,8 @@ public class CreatureStats : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        currWeight = Random.Range(species.weightMin, species.weightMax);
-        currHunger = species.hunger;
+        // currWeight = Random.Range(species.weightMin, species.weightMax);
+        // currHunger = species.hunger;
     }
 
     // Update is called once per frame
