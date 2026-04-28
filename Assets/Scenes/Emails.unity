@@ -353,6 +353,7 @@ MonoBehaviour:
       to your habitats in the order you pick them up.\n\nYou can see information
       about each species in the Animal Book.\r\n\r\n\nBoss Carl"
     attachmentSprite: {fileID: 21300000, guid: 4cb69f0166a922943a657b574315c0c8, type: 3}
+    isRead: 0
     rewardType: 1
     rewardAmount: 0
   - id: conservation_m1
@@ -380,6 +381,7 @@ MonoBehaviour:
       for a price, of course.\r\nWhy don\u2019t you go ahead and feed your Ryufuku
       now? I\u2019ll give you some spending money to help you out.\r\n\n\nBoss Carl"
     attachmentSprite: {fileID: 21300000, guid: 209b35e62bca48d49862a1ffc0d5a166, type: 3}
+    isRead: 0
     rewardType: 2
     rewardAmount: 15000
   - id: conservation_m2
@@ -398,6 +400,7 @@ MonoBehaviour:
       can view a creature\u2019s health by clicking on the creature icon and selecting
       the creature you want to view.\r\n\n\n\nBoss Carl"
     attachmentSprite: {fileID: 21300000, guid: 2035f0f1656d44e45bd1a0df07bcd68e, type: 3}
+    isRead: 0
     rewardType: 0
     rewardAmount: 15000
   - id: conservation_m3
@@ -412,6 +415,7 @@ MonoBehaviour:
       money and go to the store to buy a second habitat.\n\nYou can move your habitats
       and decorate your park through the Park Map.\r\n\r\n\nBoss Carl"
     attachmentSprite: {fileID: 21300000, guid: 209b35e62bca48d49862a1ffc0d5a166, type: 3}
+    isRead: 0
     rewardType: 2
     rewardAmount: 20000
   - id: conservation_m4
@@ -426,6 +430,7 @@ MonoBehaviour:
       of, or you\u2019ll be in for a not-so-happy surprise the next day!\r\n\r\n\nBoss
       Carl"
     attachmentSprite: {fileID: 21300000, guid: 2035f0f1656d44e45bd1a0df07bcd68e, type: 3}
+    isRead: 0
     rewardType: 0
     rewardAmount: 20000
   - id: tutorial_complete
@@ -438,6 +443,7 @@ MonoBehaviour:
       creatures and habitats, along with turning on research mode to see the correct
       food and habitat settings.\r"
     attachmentSprite: {fileID: 21300000, guid: 2035f0f1656d44e45bd1a0df07bcd68e, type: 3}
+    isRead: 0
     rewardType: 0
     rewardAmount: 20000
   firstCreatureCollected: 0
@@ -568,7 +574,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -308, y: -893}
+  m_AnchoredPosition: {x: -308, y: -950}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &102672611
@@ -1085,7 +1091,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 385674108}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999987
+  m_Size: 0.99920356
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1765,7 +1771,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000088786, y: -0.000004528744}
+  m_AnchoredPosition: {x: -0.000088786, y: 0.0008332678}
   m_SizeDelta: {x: -1.4374, y: 900.35}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &911662263
@@ -1863,7 +1869,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4279111182
-  m_fontColor: {r: 0.5372549, g: 0.49411768, b: 0.6627451, a: 1}
+  m_fontColor: {r: 0.8862745, g: 0.8509804, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

@@ -1441,7 +1441,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 602094467}
         m_TargetAssemblyTypeName: SceneSwitcher, Assembly-CSharp
-        m_MethodName: OpenEmailScene
+        m_MethodName: OpenComputerScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
