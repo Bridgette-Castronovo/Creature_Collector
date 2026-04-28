@@ -10,10 +10,9 @@ public class QuestEmail
     [TextArea(4, 10)]
     public string body;
     public Sprite attachmentSprite;
-
-    // Reward
+    public bool isRead = false;
     public RewardType rewardType;
-    public int rewardAmount; // used for money rewards
+    public int rewardAmount;
 }
 
 public enum RewardType
