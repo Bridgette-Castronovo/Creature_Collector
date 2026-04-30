@@ -109,6 +109,10 @@ public class HabitatManager : MonoBehaviour
     private Animal habAnimal4;
 
     private bool research = false;
+    private bool debug = false;
+
+    //debug buttons
+    [SerializeField] private Canvas debugCanvas;
 
     
 
@@ -161,6 +165,14 @@ public class HabitatManager : MonoBehaviour
 
         animalCount.text = PlayerManager.Instance.creatureInventory.Count.ToString() + "/" + PlayerManager.Instance.habitats.Count * 4;
         moneyText.text = PlayerManager.Instance.getMoney().ToString();
+
+        if (debug)
+        {
+            debugCanvas.gameObject.SetActive(true);
+        } else
+        {
+            debugCanvas.gameObject.SetActive(false);
+        }
         
         if (menuState == 0)
         {
@@ -209,9 +221,25 @@ public class HabitatManager : MonoBehaviour
             //     currMedText.text = currMed.getName();
             // }
                 
-            // castAmt.text = "x" + PlayerManager.Instance.medInventory["Cast"].ToString();
-            // bacAmt.text = "x" + PlayerManager.Instance.medInventory["Antibiotic"].ToString();
-            // parAmt.text = "x" + PlayerManager.Instance.medInventory["Antiparasitic"].ToString();
+            castAmt.text = "x" + PlayerManager.Instance.medInventory["Cast"].ToString();
+            bacAmt.text = "x" + PlayerManager.Instance.medInventory["Antibiotic"].ToString();
+            parAmt.text = "x" + PlayerManager.Instance.medInventory["Antiparasitic"].ToString();
+            if (currAnimal != null)
+            {
+                currIllnesses.text = PlayerManager.Instance.getIllnesses(currAnimal);
+            } else
+            {
+                currIllnesses.text = "---";
+                creatureID.text = "No Creature Selected";
+            }
+
+            if (currMed != null)
+            {
+                currMedText.text = currMed.getName();
+            } else
+            {
+                currMedText.text = "---";
+            }
             
         }
 
@@ -383,7 +411,7 @@ public class HabitatManager : MonoBehaviour
         int eating = countAnimals();
         if (habAnimal1 != null && habAnimal1.id != 0)
         {
-            habAnimal1.hunger -= (((float)currWeight / eating) / maxWeight) * 100f;
+            habAnimal1.hunger -= (((float)currWeight / eating) / habAnimal1.creature.weightMax) * 100f;
             habAnimal1.hunger = System.Math.Clamp(habAnimal1.hunger, 0f, 100f);
             habAnimal1.dayFruit += foodMixInv["Fruit"];
             habAnimal1.dayMeat += foodMixInv["Meat"];
@@ -391,11 +419,11 @@ public class HabitatManager : MonoBehaviour
             habAnimal1.dayCrystal += foodMixInv["Crystal Dust"];
             Debug.Log("Weight " + currWeight);
             Debug.Log("Per creature " + currWeight / eating);
-            Debug.Log("Reduced by " + maxWeight / (currWeight / eating));
+            Debug.Log("Reduced by " + (((float)currWeight / eating) / habAnimal1.creature.weightMax) * 100f);
         }
         if (habAnimal2 != null && habAnimal2.id != 0)
         {
-            habAnimal2.hunger -= (((float)currWeight / eating) / maxWeight) * 100f;
+            habAnimal2.hunger -= (((float)currWeight / eating) / habAnimal2.creature.weightMax) * 100f;
             habAnimal2.hunger = System.Math.Clamp(habAnimal2.hunger, 0f, 100f);
             habAnimal2.dayFruit += foodMixInv["Fruit"];
             habAnimal2.dayMeat += foodMixInv["Meat"];
@@ -404,7 +432,7 @@ public class HabitatManager : MonoBehaviour
         }
         if (habAnimal3 != null && habAnimal3.id != 0)
         {
-            habAnimal3.hunger -= (((float)currWeight / eating) / maxWeight) * 100f;
+            habAnimal3.hunger -= (((float)currWeight / eating) / habAnimal3.creature.weightMax) * 100f;
             habAnimal3.hunger = System.Math.Clamp(habAnimal3.hunger, 0f, 100f);
             habAnimal3.dayFruit += foodMixInv["Fruit"];
             habAnimal3.dayMeat += foodMixInv["Meat"];
@@ -413,7 +441,7 @@ public class HabitatManager : MonoBehaviour
         }
         if (habAnimal4 != null && habAnimal4.id != 0)
         {
-            habAnimal4.hunger -= (((float)currWeight / eating) / maxWeight) * 100f;
+            habAnimal4.hunger -= (((float)currWeight / eating) / habAnimal4.creature.weightMax) * 100f;
             habAnimal4.hunger = System.Math.Clamp(habAnimal4.hunger, 0f, 100f);
             habAnimal4.dayFruit += foodMixInv["Fruit"];
             habAnimal4.dayMeat += foodMixInv["Meat"];
@@ -465,12 +493,46 @@ public class HabitatManager : MonoBehaviour
         return count;
     }
 
+    public void castButton()
+    {
+        currMed = castData;
+    }
+
+    public void BacButton()
+    {
+        currMed = antibioticData;
+    }  
+
+    public void ParButton()
+    {
+        currMed = antiparasiticData;
+    }
+
+
     public void CureAnimal()
     {
-        if (PlayerManager.Instance.quest4Triggered == false)
-        {
-            PlayerManager.Instance.quest4Triggered = true;
-        }
+            if (currAnimal != null && currMed != null)
+            {
+                int treatment = currMed.getTreatment();
+                int illnessValue = currAnimal.illnesses[treatment-1];
+
+                if (illnessValue == 1 && PlayerManager.Instance.medInventory[currMed.getName()] > 0)
+                {
+                    PlayerManager.Instance.medInventory[currMed.getName()] -= 1;
+                    currAnimal.illnesses[treatment-1] = 0;
+                    currMed = null;
+                    menuState = 0;
+
+                    if (PlayerManager.Instance.quest4Triggered == false)
+                    {
+                        PlayerManager.Instance.quest4Triggered = true;
+                    }
+                }
+
+                
+            }
+
+        
     }
 
     public void NextDay()
@@ -483,6 +545,7 @@ public class HabitatManager : MonoBehaviour
 
         PlayerManager.Instance.advanceDay();
         updateAnimalSlots();
+        debug = true;
 
         
 
@@ -490,6 +553,33 @@ public class HabitatManager : MonoBehaviour
         if (PlayerManager.Instance.quest6Triggered == false)
         {
             PlayerManager.Instance.quest6Triggered = true;
+            
+        }
+    }
+
+    private void updateHabColor()
+    {
+        ColorUtility.TryParseHtmlString("#411683", out Color myPurple);
+        ColorUtility.TryParseHtmlString("#7F9B85", out Color myGreen);
+        ColorUtility.TryParseHtmlString("#A65555", out Color myRed);
+
+        if (research == true)
+        {
+            if (currHabitat.waterLevel >= dragonData.waterIdeal-10 && currHabitat.waterLevel <= dragonData.waterIdeal+10)
+            
+            {
+                waterText.color = myGreen;
+            } else
+            {
+                waterText.color = myRed;
+            }
+            if (currHabitat.temperature >= dragonData.tempIdeal-10 && currHabitat.temperature <= dragonData.tempIdeal+10)
+            {
+                tempText.color = myGreen;
+            } else
+            {
+                tempText.color = myRed;
+            }
         }
     }
 
@@ -635,7 +725,7 @@ public class HabitatManager : MonoBehaviour
 
     public void CreateCreatureTest()
     {
-        PlayerManager.Instance.GenerateRandAnimal(dragonData);
+        PlayerManager.Instance.GenerateSickAnimal(dragonData, 1, 1, 1);
         Debug.Log("Creature Created");
     }
 
@@ -699,12 +789,14 @@ public class HabitatManager : MonoBehaviour
     {
         currHabitat.waterLevel += 5;
         currHabitat.waterLevel = System.Math.Clamp(currHabitat.waterLevel, 0, 100);
+        updateHabColor();
         updateHabitatConditions();
     }
     public void decreaseWater()
     {
         currHabitat.waterLevel -= 5;
         currHabitat.waterLevel = System.Math.Clamp(currHabitat.waterLevel, 0, 100);
+        updateHabColor();
         updateHabitatConditions();
     }
 
@@ -712,12 +804,14 @@ public class HabitatManager : MonoBehaviour
     {
         currHabitat.temperature += 5;
         currHabitat.temperature = System.Math.Clamp(currHabitat.temperature, 0, 100);
+        updateHabColor();
         updateHabitatConditions();
     }
     public void decreaseTemp()
     {
         currHabitat.temperature -= 5;
         currHabitat.temperature = System.Math.Clamp(currHabitat.temperature, 0, 100);
+        updateHabColor();
         updateHabitatConditions();
     }
 
@@ -743,6 +837,7 @@ public class HabitatManager : MonoBehaviour
             habAnimal4.waterCurr = currHabitat.waterLevel;
             habAnimal4.tempCurr = currHabitat.temperature;
         }
+
 
     }
 
@@ -779,8 +874,4 @@ public class HabitatManager : MonoBehaviour
         updateFoodFill();
         research = true;
     }
-
-    
-
-
 }

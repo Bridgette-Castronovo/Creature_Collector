@@ -168,6 +168,8 @@ public class PlayerManager : MonoBehaviour
             {
                 animal.habitatHappiness += 5;
             }
+
+            animal.habitatHappiness = Math.Clamp(animal.habitatHappiness, 0, 100);
         }
         
     }
@@ -281,6 +283,4 @@ public class PlayerManager : MonoBehaviour
         setHunger();
         progressDay();
     }
-
-    
 }
