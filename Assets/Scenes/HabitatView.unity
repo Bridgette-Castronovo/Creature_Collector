@@ -6387,6 +6387,7 @@ MonoBehaviour:
   moneyText: {fileID: 668298312}
   earnedText: {fileID: 839665101}
   spentText: {fileID: 1393711226}
+  debugCanvas: {fileID: 1247157570}
 --- !u!4 &1075344458
 Transform:
   m_ObjectHideFlags: 0
@@ -7833,7 +7834,7 @@ GameObject:
   - component: {fileID: 1247157569}
   - component: {fileID: 1247157568}
   m_Layer: 5
-  m_Name: UICanvas
+  m_Name: DebugCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
