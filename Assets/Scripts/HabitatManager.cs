@@ -109,6 +109,10 @@ public class HabitatManager : MonoBehaviour
     private Animal habAnimal4;
 
     private bool research = false;
+    private bool debug = false;
+
+    //debug buttons
+    [SerializeField] private Canvas debugCanvas;
 
     
 
@@ -161,6 +165,14 @@ public class HabitatManager : MonoBehaviour
 
         animalCount.text = PlayerManager.Instance.creatureInventory.Count.ToString() + "/" + PlayerManager.Instance.habitats.Count * 4;
         moneyText.text = PlayerManager.Instance.getMoney().ToString();
+
+        if (debug)
+        {
+            debugCanvas.gameObject.SetActive(true);
+        } else
+        {
+            debugCanvas.gameObject.SetActive(false);
+        }
         
         if (menuState == 0)
         {
@@ -533,6 +545,7 @@ public class HabitatManager : MonoBehaviour
 
         PlayerManager.Instance.advanceDay();
         updateAnimalSlots();
+        debug = true;
 
         
 
@@ -540,6 +553,7 @@ public class HabitatManager : MonoBehaviour
         if (PlayerManager.Instance.quest6Triggered == false)
         {
             PlayerManager.Instance.quest6Triggered = true;
+            
         }
     }
 
@@ -860,8 +874,4 @@ public class HabitatManager : MonoBehaviour
         updateFoodFill();
         research = true;
     }
-
-    
-
-
 }

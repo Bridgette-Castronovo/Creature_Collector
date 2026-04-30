@@ -283,6 +283,4 @@ public class PlayerManager : MonoBehaviour
         setHunger();
         progressDay();
     }
-
-    
 }
