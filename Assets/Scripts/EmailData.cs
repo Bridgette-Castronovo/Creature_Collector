@@ -6,5 +6,6 @@ public class EmailData
     public string body;
     public string time;
     public bool isUnread;
-    public string tag; 
+    public string tag;
+    public bool isRead = false;
 }

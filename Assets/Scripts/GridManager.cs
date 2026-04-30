@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GridManager : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class GridManager : MonoBehaviour
     public Vector3 gridOrigin = Vector3.zero;
     public int gridWidth = 10;
     public int gridHeight = 10;
+    public int habitatCounter;
+    public TextMeshProUGUI habitatText;
+
 
     private Dictionary<Vector2Int, GameObject> occupiedCells = new();
 
@@ -16,7 +20,12 @@ public class GridManager : MonoBehaviour
     {
         Instance = this;
     }
-
+    public void AddHabitat()
+    {
+        habitatCounter++;
+        Debug.Log("habitat counter updated");
+        habitatText.text = "x" + habitatCounter;
+    }
     public Vector2Int WorldToGrid(Vector3 worldPos)
     {
         int x = Mathf.RoundToInt((worldPos.x - gridOrigin.x) / cellSize);
