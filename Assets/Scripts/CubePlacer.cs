@@ -15,6 +15,8 @@ public class CubePlacer : MonoBehaviour
     private Renderer[] renderers;
     private Material[] defaultMaterials;
 
+    public int habitatCounter;
+
     void Awake()
     {
         cam = Camera.main;
@@ -30,6 +32,8 @@ public class CubePlacer : MonoBehaviour
         int cubeLayer = LayerMask.NameToLayer("Cube");
         layerMask = ~(1 << cubeLayer);
     }
+
+
 
     void SetMaterial(Material mat)
     {
@@ -50,6 +54,7 @@ public class CubePlacer : MonoBehaviour
     public void StartDragging()
     {
         isDragging = true;
+        GridManager.Instance.AddHabitat();
         PlayDragSound();
     }
 
@@ -60,6 +65,7 @@ public class CubePlacer : MonoBehaviour
         if (hasBeenPlaced)
         {
             GridManager.Instance.UnregisterCell(previousCell);
+            
         }
     }
 
